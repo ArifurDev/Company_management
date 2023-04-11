@@ -108,7 +108,7 @@
                                           <label class="col-sm-3 col-form-label">Payment</label>
                                           <div class="col-sm-9">
                                             <select class="form-control text-light" name="payment">
-                                             <option value=" " selected>Select Payment Method</option>
+                                             <option value="" selected>Select Payment Method</option>
                                               <option value="card">Card</option>
                                               <option value="none">None</option>
                                             </select>
@@ -129,6 +129,7 @@
                                       </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mb-3">Filter</button>
+                                    <button type="reset" class="btn btn-primary mb-3">Reset</button>
                                   </form>
                                   <!-- Large Modal -->
 
