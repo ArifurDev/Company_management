@@ -49,10 +49,19 @@
 
                             <form class="forms-sample" action="{{ route("update.empolyeereport",['id'=>$empolyees->id]) }}" method="POST">
                                 @csrf
-                              <div class="form-group">
+                              <div class="form-group" hidden>
                                 <label for="exampleInputCompany">Company</label>
-                                <input type="text" class="form-control text-light" id="exampleInputCompany" placeholder="Company Name" name="company" value="{{ $empolyees->company }}">
-                              </div>
+                                <input type="text" class="form-control text-light" id="exampleInputCompany" placeholder="Company Name" name="company" value="{{ $empolyees->company }}" >
+                                {{-- <select
+                                            class="form-control text-light"
+                                            name="compony_name">
+                                            <option value="{{ $comopany->compony_name }}">{{ $comopany->compony_name }}</option>
+                                            @foreach ($comopanies as $comopany)
+                                              <option value="{{ $comopany->compony_name }}">{{ $comopany->compony_name }}</option>
+                                            @endforeach
+                                        </select> --}}
+                            </div>
+
                               <div class="form-group">
                                 <label for="exampleInputIncoming">Incoming</label>
                                 <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Incoming" name="incoming" value="{{ $empolyees->incoming }}">

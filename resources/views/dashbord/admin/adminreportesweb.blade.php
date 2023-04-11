@@ -49,6 +49,18 @@
 
                             <form class="forms-sample" action="{{ route("adminwebreport.store") }}" method="POST">
                                 @csrf
+                                <div class="form-group">
+                                    <label for="email">Company</label>
+                                    <select class="form-control text-light" name="company">
+                                        @foreach ($componies as $compony)
+                                         <option value="{{ $compony->compony_name }}">{{ $compony->compony_name }}</option>
+                                        @endforeach
+                                      </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control text-light" id="email" placeholder="email" name="email">
+                                  </div>
                               <div class="form-group">
                                 <label for="site_name">Site Name</label>
                                 <input type="text" class="form-control text-light" id="site_name" placeholder="site_name" name="site_name">

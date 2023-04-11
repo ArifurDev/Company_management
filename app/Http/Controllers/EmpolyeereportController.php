@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\comopany;
 use App\Models\empolyeereport;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class EmpolyeereportController extends Controller
 {
@@ -17,25 +18,37 @@ class EmpolyeereportController extends Controller
      */
     public function index()
     {
-        $empolyees =empolyeereport::latest()->paginate(30);
-        $empolyeereport_onlyTrashed = empolyeereport::onlyTrashed()->get();
-        return view('dashbord.empolyeereport.showreport',compact('empolyees','empolyeereport_onlyTrashed'));
+        // $login_user = Auth::user();
+        // $login_result = User::where('compony_name','$login_user->compony_name')
+        // if ($login_user->role == 'empolyees') {
+        //     return 'empolyees';
+        // } else {
+        //     return 'admin';
+        // }
 
+        $empolyees = empolyeereport::latest()->paginate(30);
+        $empolyeereport_onlyTrashed = empolyeereport::onlyTrashed()->get();
+
+        return view('dashbord.empolyeereport.showreport', compact('empolyees', 'empolyeereport_onlyTrashed'));
     }
+
     public function getdate(Request $request)
     {
-
         $startDate = Carbon::createFromFormat('Y-m-d', $request->fromdate)->startOfDay();
         $endDate = Carbon::createFromFormat('Y-m-d', $request->today)->endOfDay();
 
         $empolyees = empolyeereport::whereBetween('created_at', [$startDate, $endDate])->get();
-        return view('dashbord.empolyeereport.search_getdate_data',compact('empolyees'));
+
+        return view('dashbord.empolyeereport.search_getdate_data', compact('empolyees'));
     }
+
     public function details($id)
     {
-       $details = empolyeereport::find($id);
-       return view('dashbord.empolyeereport.details',compact('details'));
+        $details = empolyeereport::find($id);
+
+        return view('dashbord.empolyeereport.details', compact('details'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -49,7 +62,6 @@ class EmpolyeereportController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,31 +72,35 @@ class EmpolyeereportController extends Controller
 
         $total = $request->incoming + $request->outgoing;
         $cash = $request->incoming - $request->outgoing;
+        $compony_name = Auth::user()->compony_name;
         $email = Auth::user()->email;
-        empolyeereport::insert([
-            "company" => $request->company,
-            "empolyee" => $email,
-            "incoming" => $request->incoming,
-            "outgoing" => $request->outgoing,
-            "total" => $total,
-            "cash" => $cash,
-            "card" => $request->card,
-            "note" => $request->note,
-            "created_at" => now(),
-         ]);
-         return back()->withSuccess('Empolyee Report submit Successfully');
 
+        if ($compony_name == null) {
+            return back()->withSuccess('Before add a Company to your profile After that submit data');
+        } else {
+            empolyeereport::insert([
+                'company' => $compony_name,
+                'empolyee' => $email,
+                'incoming' => $request->incoming,
+                'outgoing' => $request->outgoing,
+                'total' => $total,
+                'cash' => $cash,
+                'card' => $request->card,
+                'note' => $request->note,
+                'created_at' => now(),
+            ]);
+
+            return back()->withSuccess('Empolyee Report submit Successfully');
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\empolyeereport  $empolyeereport
      * @return \Illuminate\Http\Response
      */
     public function show(empolyeereport $empolyeereport)
     {
-
     }
 
     /**
@@ -93,16 +109,17 @@ class EmpolyeereportController extends Controller
      * @param  \App\Models\empolyeereport  $empolyeereport
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
-       $empolyees = empolyeereport::find($id);
-       return view('dashbord.empolyeereport.editempolyeereport',compact('empolyees'));
+        $empolyees = empolyeereport::find($id);
+        $comopanies = comopany::all();
+
+        return view('dashbord.empolyeereport.editempolyeereport', compact('empolyees', 'comopanies'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\empolyeereport  $empolyeereport
      * @return \Illuminate\Http\Response
      */
@@ -111,15 +128,16 @@ class EmpolyeereportController extends Controller
         $total = $request->incoming + $request->outgoing;
         $cash = $request->incoming - $request->outgoing;
         empolyeereport::find($id)->update([
-            "company" => $request->company,
-            "incoming" => $request->incoming,
-            "outgoing" => $request->outgoing,
-            "total" => $total,
-            "cash" => $cash,
-            "card" => $request->card,
-            "note" => $request->note,
-         ]);
-         return back()->withSuccess('Empolyee Report updated Successfully');
+            'company' => $request->company,
+            'incoming' => $request->incoming,
+            'outgoing' => $request->outgoing,
+            'total' => $total,
+            'cash' => $cash,
+            'card' => $request->card,
+            'note' => $request->note,
+        ]);
+
+        return back()->withSuccess('Empolyee Report updated Successfully');
     }
 
     /**
@@ -131,19 +149,22 @@ class EmpolyeereportController extends Controller
     public function destroy($id)
     {
         empolyeereport::find($id)->delete();
+
         return back()->withSuccess('Empolyee Report Tmp Deleted Successfully');
     }
+
     public function restor($id)
     {
         empolyeereport::onlyTrashed()->find($id)->restore();
-        return back()->withSuccess('Empolyee Report Restore Successfully');
 
+        return back()->withSuccess('Empolyee Report Restore Successfully');
     }
+
     public function delete($id)
     {
         empolyeereport::onlyTrashed()->find($id)->forceDelete();
-        return back()->withSuccess('Empolyee Report Deleted Forever!');
 
+        return back()->withSuccess('Empolyee Report Deleted Forever!');
     }
 
     /**
@@ -151,13 +172,11 @@ class EmpolyeereportController extends Controller
      */
     public function search(Request $request)
     {
-        $output=" ";
-        $empolyeereports = empolyeereport::where('company','Like','%'.$request->search.'%')->orWhere('empolyee','Like','%'.$request->search.'%')->orWhere('card','Like','%'.$request->search.'%')->get();
+        $output = ' ';
+        $empolyeereports = empolyeereport::where('company', 'Like', '%'.$request->search.'%')->orWhere('empolyee', 'Like', '%'.$request->search.'%')->orWhere('card', 'Like', '%'.$request->search.'%')->get();
 
-
-        foreach($empolyeereports as $empolyeereport)
-        {
-            $output.=
+        foreach ($empolyeereports as $empolyeereport) {
+            $output .=
 
             '<tr>
             <td> '.$empolyeereport->company.' </td>
@@ -175,13 +194,13 @@ class EmpolyeereportController extends Controller
                 '.'<i class="mdi mdi-delete"></i></a>
             '.' </td>
             </tr>';
-
         }
-        return response($output);
 
+        return response($output);
     }
+
     public function datesearch(Request $request)
     {
-      return $request;
+        return $request;
     }
 }

@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AdminriportsController;
 use App\Http\Controllers\adminwebreportController;
+use App\Http\Controllers\ComopanyController;
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\EmpolyeeController;
 use App\Http\Controllers\EmpolyeereportController;
-use App\Models\siteriports;
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\ReciveloanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,96 +25,139 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-
-
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     // Route::get('/dashboard', function () { return view('dashbord.dashbordtem');});
     Route::controller(DashbordController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
         Route::get('/check', 'check')->name('check');
+        Route::get('daily/comopany/report/', 'daily')->name('daily.comopany.reports');
+        Route::post('daily/comopany/report/search/', 'filter')->name('daily.comopany.reports.search');
     });
+
+    /**
+     * companycontroller
+     */
+    Route::controller(ComopanyController::class)->group(function () {
+        Route::get('create/company', 'create')->name('company.create');
+        Route::post('create/company', 'store')->name('company.store');
+        Route::get('destroy/company/{id}', 'destroy')->name('company.destroy');
+    });
+
+    /**
+     * companycontroller  END
+     */
 
     /**
      * Empolyee
      */
-
-     Route::get('create/empolyee',[EmpolyeeController::class, 'create'])->name('cerate.empolyee')->middleware('RoleChecker');
-     Route::post('create/empolyee',[EmpolyeeController::class, 'store'])->name('store.empolyee')->middleware('RoleChecker');
-     Route::get('edit/empolyee/{id}',[EmpolyeeController::class, 'edit'])->name('edit.empolyee')->middleware('RoleChecker');
-     Route::post('update/empolyee/{id}',[EmpolyeeController::class, 'update'])->name('update.empolyee')->middleware('RoleChecker');
-     Route::post('delete/empolyee/{id}',[EmpolyeeController::class, 'destroy'])->name('delete.empolyee')->middleware('RoleChecker');
-     Route::get('delete/empolyee/{id}',[EmpolyeeController::class, 'destroy'])->middleware('RoleChecker');
-     /**
-      * live search
-      */
-      Route::get('/search',[EmpolyeeController::class, 'search'])->middleware('RoleChecker');
-      /**
-      *  end live search route
-      */
-
-      /**
-       * Admin daily reports
-       */
-        Route::controller(AdminriportsController::class)->middleware('RoleChecker')->group(function () {
-            Route::get('create/admin/daily/report', 'create')->name('admindailyraport.create');
-            Route::post('create/admin/daily/report', 'store')->name('admindailyraport.store');
-            Route::get('show/admin/daily/report', 'index')->name('admindailyraport.show');
-            Route::get('edit/admin/daily/report/{id}', 'edit')->name('admindailyraport.edit');
-            Route::post('edit/admin/daily/report/{id}', 'update')->name('admindailyraport.update');
-            Route::get('destroy/admin/daily/report/{id}', 'destroy')->name('admindailyraport.destroy');
-            Route::get('restor/admin/daily/report/{id}', 'restor')->name('admindailyraport.restor');
-            Route::get('delete/admin/daily/report/{id}','delete')->name('admindailyraport.delete');
-            /**
-             * date search
-             */
-            Route::post('/admin/dailyreport/datasearch','getdate')->name('admindailyraport.datasearch');//get data search date
-            /**
-             *  end date search route
-             */
-
-        });
-          /**
-       * Empolyee daily reports
-       */
-      Route::get('create/empolyee/report',[EmpolyeereportController::class, 'create'])->name('cerate.empolyeereport');
-      Route::post('create/empolyee/report',[EmpolyeereportController::class, 'store'])->name('store.empolyeereport');
-      Route::get('show/empolyee/report',[EmpolyeereportController::class, 'index'])->name('show.empolyeereport');
-      Route::get('show/empolyee/report/details/{id}',[EmpolyeereportController::class, 'details'])->name('details.empolyeereport')->middleware('RoleChecker');
-      Route::get('empolyee/report/edit/{id}',[EmpolyeereportController::class, 'edit'])->name('edit.empolyeereport')->middleware('RoleChecker');
-      Route::post('empolyee/report/edit/{id}',[EmpolyeereportController::class, 'update'])->name('update.empolyeereport')->middleware('RoleChecker');
-      Route::post('empolyee/report/destroy/{id}',[EmpolyeereportController::class, 'destroy'])->name('destroy.empolyeereport')->middleware('RoleChecker');
-      Route::get('empolyee/report/destroy/{id}',[EmpolyeereportController::class, 'destroy'])->middleware('RoleChecker');
-      Route::get('empolyee/report/restor/{id}',[EmpolyeereportController::class, 'restor'])->name('restor.empolyeereport')->middleware('RoleChecker');
-      Route::get('empolyee/report/delete/{id}',[EmpolyeereportController::class, 'delete'])->name('delete.empolyeereport')->middleware('RoleChecker');
-      /**
-      * live search
-      */
-      Route::get('/empolyeereportsearch',[EmpolyeereportController::class, 'search'])->middleware('RoleChecker');
-     /**
+    Route::get('create/empolyee', [EmpolyeeController::class, 'create'])->name('cerate.empolyee')->middleware('RoleChecker');
+    Route::post('create/empolyee', [EmpolyeeController::class, 'store'])->name('store.empolyee')->middleware('RoleChecker');
+    Route::get('edit/empolyee/{id}', [EmpolyeeController::class, 'edit'])->name('edit.empolyee')->middleware('RoleChecker');
+    Route::post('update/empolyee/{id}', [EmpolyeeController::class, 'update'])->name('update.empolyee')->middleware('RoleChecker');
+    Route::post('delete/empolyee/{id}', [EmpolyeeController::class, 'destroy'])->name('delete.empolyee')->middleware('RoleChecker');
+    Route::get('delete/empolyee/{id}', [EmpolyeeController::class, 'destroy'])->middleware('RoleChecker');
+    /**
+     * live search
+     */
+    Route::get('/search', [EmpolyeeController::class, 'search'])->middleware('RoleChecker');
+    /**
      *  end live search route
      */
-     /**
-      * date search
-      */
-      Route::post('/datesearch',[EmpolyeereportController::class, 'getdate'])->name('datesearch.empolyeereport')->middleware('RoleChecker');//get data
-      /**
-      *  end date search route
-      */
+
+    /**
+     * Admin daily reports
+     */
+    Route::controller(AdminriportsController::class)->middleware('RoleChecker')->group(function () {
+        Route::get('create/admin/daily/report', 'create')->name('admindailyraport.create');
+        Route::post('create/admin/daily/report', 'store')->name('admindailyraport.store');
+        Route::get('show/admin/daily/report', 'index')->name('admindailyraport.show');
+        Route::get('edit/admin/daily/report/{id}', 'edit')->name('admindailyraport.edit');
+        Route::post('edit/admin/daily/report/{id}', 'update')->name('admindailyraport.update');
+        Route::get('destroy/admin/daily/report/{id}', 'destroy')->name('admindailyraport.destroy');
+        Route::get('restor/admin/daily/report/{id}', 'restor')->name('admindailyraport.restor');
+        Route::get('delete/admin/daily/report/{id}', 'delete')->name('admindailyraport.delete');
+        /**
+         * date search
+         */
+        Route::post('/admin/dailyreport/datasearch', 'getdate')->name('admindailyraport.datasearch'); //get data search date
+        /**
+         *  end date search route
+         */
+    });
+    /**
+     * Empolyee daily reports
+     */
+    Route::get('create/empolyee/report', [EmpolyeereportController::class, 'create'])->name('cerate.empolyeereport');
+    Route::post('create/empolyee/report', [EmpolyeereportController::class, 'store'])->name('store.empolyeereport');
+    Route::get('show/empolyee/report', [EmpolyeereportController::class, 'index'])->name('show.empolyeereport');
+    Route::get('show/empolyee/report/details/{id}', [EmpolyeereportController::class, 'details'])->name('details.empolyeereport')->middleware('RoleChecker');
+    Route::get('empolyee/report/edit/{id}', [EmpolyeereportController::class, 'edit'])->name('edit.empolyeereport')->middleware('RoleChecker');
+    Route::post('empolyee/report/edit/{id}', [EmpolyeereportController::class, 'update'])->name('update.empolyeereport')->middleware('RoleChecker');
+    Route::post('empolyee/report/destroy/{id}', [EmpolyeereportController::class, 'destroy'])->name('destroy.empolyeereport')->middleware('RoleChecker');
+    Route::get('empolyee/report/destroy/{id}', [EmpolyeereportController::class, 'destroy'])->middleware('RoleChecker');
+    Route::get('empolyee/report/restor/{id}', [EmpolyeereportController::class, 'restor'])->name('restor.empolyeereport')->middleware('RoleChecker');
+    Route::get('empolyee/report/delete/{id}', [EmpolyeereportController::class, 'delete'])->name('delete.empolyeereport')->middleware('RoleChecker');
+    /**
+     * live search
+     */
+    Route::get('/empolyeereportsearch', [EmpolyeereportController::class, 'search'])->middleware('RoleChecker');
+    /**
+     *  end live search route
+     */
+    /**
+     * date search
+     */
+    Route::post('/datesearch', [EmpolyeereportController::class, 'getdate'])->name('datesearch.empolyeereport')->middleware('RoleChecker'); //get data
+    /**
+     *  end date search route
+     */
+
+    /**
+     * Admin daily reports end
+     */
+    Route::controller(adminwebreportController::class)->middleware('RoleChecker')->group(function () {
+        Route::get('adminwebreport', 'create')->name('adminwebreport.create');
+        Route::post('adminwebreport', 'store')->name('adminwebreport.store');
+        Route::get('adminwebreport/show', 'index')->name('adminwebreport.show');
+        Route::get('adminwebreport/edit/{id}', 'edit')->name('adminwebreport.edit');
+        Route::post('adminwebreport/edit/{id}', 'update')->name('adminwebreport.update');
+        Route::get('adminwebreport/destroy/{id}', 'destroy')->name('adminwebreport.destroy');
+        Route::get('adminwebreport/restor/{id}', 'restor')->name('restor.adminwebreport');
+        Route::get('adminwebreport/delete/{id}', 'delete')->name('delete.adminwebreport');
+
+        /**
+         * live search
+         */
+        Route::get('/adminwebreportsearch', 'search');
+    });
+
+    /**
+     * Loan send Controller
+     */
+    Route::controller(LoanController::class)->middleware('RoleChecker')->group(function () {
+        Route::get('admin/loan/send', 'create')->name('adminLoanReportSend.create');
+        Route::post('admin/loan/send', 'store')->name('adminLoanReportSend.store');
+        Route::get('admin/loan/send/show', 'index')->name('adminLoanReportSend.show');
+        Route::get('admin/loan/send/edit/{id}', 'edit')->name('adminLoanReportSend.edit');
+        Route::post('admin/loan/send/edit/{id}', 'update')->name('adminLoanReportSend.update');
+        Route::get('admin/loan/send/destroy/{id}', 'destroy')->name('adminLoanReportSend.destroy');
+        Route::get('admin/loan/send/restor/{id}', 'restor')->name('adminLoanReportSend.restor');
+        Route::get('admin/loan/send/delete/{id}', 'delete')->name('adminLoanReportSend.delete');
+    });
 
 
-       /**
-       * Admin daily reports end
-       */
 
-         Route::controller(adminwebreportController::class)->middleware('RoleChecker')->group(function () {
-            Route::get('adminwebreport', 'create')->name('adminwebreport.create');
-            Route::post('adminwebreport', 'store')->name('adminwebreport.store');
-            Route::get('adminwebreport/show', 'index')->name('adminwebreport.show');
-            Route::get('adminwebreport/edit/{id}', 'edit')->name('adminwebreport.edit');
-            Route::post('adminwebreport/edit/{id}', 'update')->name('adminwebreport.update');
-            Route::get('adminwebreport/destroy/{id}', 'destroy')->name('adminwebreport.destroy');
-            Route::get('adminwebreport/restor/{id}', 'restor')->name('restor.adminwebreport');
-            Route::get('adminwebreport/delete/{id}','delete')->name('delete.adminwebreport');
-       });
+    /**
+     * Loan recive Controller
+     */
+    Route::controller(ReciveloanController::class)->middleware('RoleChecker')->group(function () {
+        Route::get('admin/loan/recive', 'create')->name('adminLoanReportRecive.create');
+        Route::post('admin/loan/recive', 'store')->name('adminLoanReportRecive.store');
+        Route::get('admin/loan/recive/show', 'index')->name('adminLoanReportRecive.show');
+        Route::get('admin/loan/recive/edit/{id}', 'edit')->name('adminLoanReportRecive.edit');
+        Route::post('admin/loan/recive/edit/{id}', 'update')->name('adminLoanReportRecive.update');
+        Route::get('admin/loan/recive/destroy/{id}', 'destroy')->name('adminLoanReportRecive.destroy');
+        Route::get('admin/loan/recive/restor/{id}', 'restor')->name('adminLoanReportRecive.restor');
+        Route::get('admin/loan/recive/delete/{id}', 'delete')->name('adminLoanReportRecive.delete');
+    });
 });
-

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('siteriports', function (Blueprint $table) {
             $table->id();
+            $table->string('company')->nullable();
+            $table->string('email')->nullable();
             $table->string('site_name')->nullable();
             $table->longText('url')->nullable();
             $table->string('user_name')->nullable();

@@ -50,10 +50,6 @@
                             <form class="forms-sample" action="{{ route("store.empolyeereport") }}" method="POST">
                                 @csrf
                               <div class="form-group">
-                                <label for="exampleInputCompany">Company</label>
-                                <input type="text" class="form-control text-light" id="exampleInputCompany" placeholder="Company Name" name="company">
-                              </div>
-                              <div class="form-group">
                                 <label for="exampleInputIncoming">Incoming</label>
                                 <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Incoming" name="incoming">
                               </div>

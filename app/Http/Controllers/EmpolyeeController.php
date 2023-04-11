@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\comopany;
 use App\Models\empolyee;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Intervention\Image\Facades\Image;
+
 class EmpolyeeController extends Controller
 {
     /**
@@ -26,25 +27,25 @@ class EmpolyeeController extends Controller
      */
     public function create()
     {
-       $empolyee = User::where('role','empolyees')->latest()->paginate(5);
+        $empolyee = User::where('role', 'empolyees')->latest()->paginate(5);
+        $comopanies = comopany::all();
         //create a new empolyee
-        return view('dashbord.empolyee.create',compact('empolyee'));
+        return view('dashbord.empolyee.create', compact('empolyee', 'comopanies'));
     }
+
     /**
      * live search
      */
-
     public function search(Request $request)
     {
-        $output=" ";
-        $empolyee =User::where('role','empolyees')->orWhere('name','Like','%'.$request->search.'%')->orWhere('email','Like','%'.$request->search.'%')->orWhere('number','Like','%'.$request->search.'%')->paginate(5);
+        $output = ' ';
+        $empolyee = User::where('role', 'empolyees')->orWhere('compony_name', 'Like', '%'.$request->search.'%')->orWhere('name', 'Like', '%'.$request->search.'%')->orWhere('email', 'Like', '%'.$request->search.'%')->orWhere('number', 'Like', '%'.$request->search.'%')->paginate(5);
 
-
-        foreach($empolyee as $empolye)
-        {
-            $output.=
+        foreach ($empolyee as $empolye) {
+            $output .=
 
             '<tr>
+            <td> '.$empolye->compony_name.' </td>
             <td> '.$empolye->name.' </td>
             <td> '.$empolye->email.' </td>
             <td> '.$empolye->role.' </td>
@@ -58,41 +59,45 @@ class EmpolyeeController extends Controller
                 '.'<i class="mdi mdi-delete"></i></a>
             '.' </td>
             </tr>';
-
         }
-        return response($output);
 
+        return response($output);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
-            '*' => 'required',
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'gender' => 'required',
+            'number' => 'required',
+            'role' => 'required',
+            'compony_name' => 'required',
         ]);
 
-          DB::table('users')->insert([
-            "name" => $request->name,
-            "email" => $request->email,
-            "gender" => $request->gender,
-            "number" => $request->number,
-            "role" => $request->role,
-            "password" => bcrypt('$request->password'),
-            "created_at" => now(),
-         ]);
-         return back()->withSuccess('Empolyee Account Create Successfully');
+        DB::table('users')->insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'gender' => $request->gender,
+            'number' => $request->number,
+            'role' => $request->role,
+            'compony_name' => $request->compony_name,
+            'password' => bcrypt('12345678'),
+            'email_verified_at' => now(),
+            'created_at' => now(),
+        ]);
 
+        return back()->withSuccess('Empolyee Account Create Successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\empolyee  $empolyee
      * @return \Illuminate\Http\Response
      */
     public function show(empolyee $empolyee)
@@ -108,28 +113,29 @@ class EmpolyeeController extends Controller
      */
     public function edit($id)
     {
+        $comopanies = comopany::all();
         $empolyee = User::find($id);
-        return view('dashbord.empolyee.edit',compact('empolyee'));
+
+        return view('dashbord.empolyee.edit', compact('empolyee', 'comopanies'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\empolyee  $empolyee
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-                User::find($id)->update([
-                'name'=>$request->name,
-                'role'=>$request->role,
-                'gender'=>$request->gender,
-                'number'=>$request->number,
-               ]);
+        User::find($id)->update([
+            'name' => $request->name,
+            'role' => $request->role,
+            'gender' => $request->gender,
+            'number' => $request->number,
+            'compony_name' => $request->compony_name,
+        ]);
 
-         return back()->withSuccess('Account Update Successfully');
-
+        return back()->withSuccess('Account Update Successfully');
     }
 
     /**
@@ -138,9 +144,10 @@ class EmpolyeeController extends Controller
      * @param  \App\Models\empolyee  $empolyee
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         User::find($id)->delete();
+
         return back()->withSuccess('Account delete Successfully');
     }
 }
