@@ -49,7 +49,6 @@
                                         <th> Sewerage Bill </th>
                                         <th> Expanse </th>
                                         <th> Personal </th>
-                                        <th> Loan </th>
                                         <th> Total </th>
                                         <th> Date </th>
                                         <th> Action </th>
@@ -67,7 +66,6 @@
                                             <td> {{ $result_data->sewerage_bill }} tk</td>
                                             <td> {{ $result_data->expanse }} tk</td>
                                             <td> {{ $result_data->personal }} tk</td>
-                                            <td> {{ $result_data->loan }} tk</td>
                                             <td> {{ $result_data->total }} tk</td>
                                             <td> {{ $result_data->created_at->format('d/m/Y')}}</td>
                                             <td>
@@ -86,7 +84,6 @@
                                           </tr>
                                         @endforeach
                                         <tr>
-                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>

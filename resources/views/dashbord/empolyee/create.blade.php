@@ -32,6 +32,16 @@
                                         {{ session::get('success') }}
                                     </div>
                                 @endif
+                                @if ($errors->any())
+                                            @foreach ($errors->all() as $error)
+                                                     <ul>
+                                                        <li >
+                                                             <p class="text-light">{{ $error }}
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                @endforeach
+                                             @endif
                                 <div class="d-flex justify-content-between align-items-center">
                                     {{-- user add --}}
 
@@ -72,16 +82,7 @@
                                                 <div class="table-responsive text-nowrap">
                                                     <div class="col-12 grid-margin">
                                                         <div class="card">
-                                                            @if ($errors->any())
-                                                                @foreach ($errors->all() as $error)
-                                                                    <ul>
-                                                                        <li>
-                                                                            <p class="text-light">{{ $error }}
-                                                                            </p>
-                                                                        </li>
-                                                                    </ul>
-                                                                @endforeach
-                                                            @endif
+
                                                             <div class="card-body">
 
                                                                 <form class="form-sample"
@@ -96,8 +97,8 @@
                                                                                     class="col-sm-3 col-form-label">Name</label>
                                                                                 <div class="col-sm-9">
                                                                                     <input type="text"
-                                                                                        class="form-control"
-                                                                                        name="name" required>
+                                                                                        class="form-control text-light"
+                                                                                        name="name" >
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -108,7 +109,7 @@
                                                                                 <div class="col-sm-9">
                                                                                     <input type="email"
                                                                                         class="form-control"
-                                                                                        name="email" required>
+                                                                                        name="email" >
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -122,7 +123,7 @@
                                                                                 <div class="col-sm-9 ">
                                                                                     <select
                                                                                         class="form-control text-light"
-                                                                                        name="gender" required>
+                                                                                        name="gender" >
                                                                                         <option value="male">Male
                                                                                         </option>
                                                                                         <option value="female">Female
@@ -138,7 +139,7 @@
                                                                                 <div class="col-sm-9">
                                                                                     <input type="number"
                                                                                         class="form-control text-light"
-                                                                                        name="number" required>
+                                                                                        name="number" >
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -146,6 +147,7 @@
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-6">
+
                                                                             <div class="form-group row">
                                                                                 <label
                                                                                     class="col-sm-3 col-form-label">Role</label>
@@ -161,20 +163,23 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+
                                                                         <div class="col-md-6">
                                                                             <div class="form-group row">
                                                                                 <label
-                                                                                    class="col-sm-3 col-form-label">Password</label>
+                                                                                    class="col-sm-3 col-form-label">Company</label>
                                                                                 <div class="col-sm-9 ">
-                                                                                    <input type="password"
-                                                                                        class="form-control"
-                                                                                        id="exampleInputPassword1"
-                                                                                        placeholder="Password"
-                                                                                        name="password">
+                                                                                    <select
+                                                                                        class="form-control text-light"
+                                                                                        name="compony_name">
+                                                                                        <option >Select company name</option>
+                                                                                        @foreach ($comopanies as $comopany)
+                                                                                          <option value="{{ $comopany->compony_name }}">{{ $comopany->compony_name }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-
 
                                                                     </div>
 
@@ -193,9 +198,11 @@
                                 </div>
 
                                 <div class="table-responsive">
+
                                     <table class="table table-dark">
                                         <thead>
                                             <tr>
+                                                <th>Company </th>
                                                 <th>Name </th>
                                                 <th>Email</th>
                                                 <th>Role</th>
@@ -210,6 +217,7 @@
 
 
                                             <tr>
+                                                <td> {{ $empolyees->compony_name }} </td>
                                                 <td> {{ $empolyees->name }} </td>
                                                 <td> {{ $empolyees->email }}</td>
                                                 <td> {{ $empolyees->role }}</td>
@@ -221,9 +229,9 @@
                                                             <i class="mdi mdi-border-color"></i>
                                                         </a>
 
-                                                        <form action="{{ route('delete.empolyee',['id'=>$empolyees->id]) }}" method="post">
+                                                        <form action="{{ route('delete.empolyee',['id'=>$empolyees->id]) }}" method="post" onclick="return confirm('are sure delete forever')">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-primary" title="delete forever">
+                                                            <button type="submit" class="btn btn-primary" title="delete forever" >
                                                                 <i class="mdi mdi-delete"></i>
                                                             </button>
                                                         </form>

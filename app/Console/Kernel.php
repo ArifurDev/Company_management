@@ -13,12 +13,9 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-
-
-     protected $commands = [
+    protected $commands = [
         Commands\SendMail::class,
-     ];
-
+    ];
 
     protected function schedule(Schedule $schedule)
     {

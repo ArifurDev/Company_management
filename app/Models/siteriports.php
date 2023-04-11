@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class siteriports extends Model
 {
     use HasFactory,SoftDeletes;
+
     protected $fillable = [
+        'company',
+        'email',
         'site_name',
         'url',
         'user_name',

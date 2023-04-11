@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\adminriports;
-use App\Models\empolyee;
+use App\Models\comopany;
 use App\Models\empolyeereport;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashbordController extends Controller
 {
@@ -20,12 +21,46 @@ class DashbordController extends Controller
         $startDate = Carbon::createFromFormat('Y-m-d', $daily)->startOfDay();
         $endDate = Carbon::createFromFormat('Y-m-d', $daily)->endOfDay();
 
-        return view('dashbord.dashbordtem',[
-            'total_empolyee' => User::where('role','empolyees')->count(),
+        return view('dashbord.dashbordtem', [
+            'total_empolyee' => User::where('role', 'empolyees')->count(),
             'empolyees' => empolyeereport::whereBetween('created_at', [$startDate, $endDate])->get(),
             'adminriports' => adminriports::whereBetween('created_at', [$startDate, $endDate])->get(),
 
         ]);
     }
-    
+
+    public function daily()
+    {
+        $login_user = Auth::user();
+        $compony_name = Auth::user()->compony_name;
+
+        if ($login_user->role == 'empolyees') {
+            $empolyees_reports = empolyeereport::where('company', $compony_name)->latest()->paginate(30);
+            $componies = comopany::where('compony_name', $compony_name)->get();
+        } else {
+            $empolyees_reports = empolyeereport::latest()->paginate(30);
+            $componies = comopany::all();
+        }
+
+        // $empolyees =empolyeereport::latest()->paginate(30);
+        // $empolyeereport_onlyTrashed = empolyeereport::onlyTrashed()->get();
+
+        return view('dashbord.showdailyreport', compact('empolyees_reports', 'componies'));
+    }
+
+    public function filter(Request $request)
+    {
+
+        $form_date = $request->form_date;
+        $to_date = $request->to_date;
+        $compony = $request->company;
+        // $request->payment
+
+
+            $empolyees_reports = empolyeereport::where('company', $compony)->where('card', $request->payment)->whereBetween('created_at', [$form_date.'00:00:00', $to_date.'23:59:59'])->get();
+
+            //  $empolyees_reports = empolyeereport::where('company',$compony)->orWhere('card',$request->payment)->whereBetween('created_at',[$form_date."00:00:00",$to_date."23:59:59"])->get();
+            return view('dashbord.showsearchresult', compact('empolyees_reports'));
+        
+    }
 }

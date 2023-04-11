@@ -64,10 +64,6 @@
                                 <label for="personal">Personal</label>
                                 <input type="number" class="form-control text-light" id="personal" placeholder="personal" name="personal" value="{{ $adminriports->personal }}">
                               </div>
-                              <div class="form-group">
-                                <label for="Loan">loan</label>
-                                <input type="number" class="form-control text-light" id="loan" placeholder="loan" name="loan" value="{{ $adminriports->loan }}">
-                              </div>
                               <button type="submit" class="btn btn-primary me-2">Update</button>
                             </form>
                           </div>

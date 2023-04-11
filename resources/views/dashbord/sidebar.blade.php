@@ -31,6 +31,14 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+    <li class="nav-item menu-items">
+        <a class="nav-link" href="{{ route('company.create') }}">
+          <span class="menu-icon">
+            <i class="mdi mdi-speedometer"></i>
+          </span>
+          <span class="menu-title">Company</span>
+        </a>
+      </li>
 
     <li class="nav-item menu-items">
       <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -76,6 +84,10 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('admindailyraport.create') }}">Create Report</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('admindailyraport.show') }}">Reports</a></li>
+
+            <li class="nav-item"> <a class="nav-link" href="{{ route('adminLoanReportSend.create') }}">Loan Send</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('adminLoanReportRecive.create') }}">Loan Recive</a></li>
+
           </ul>
         </div>
       </li>

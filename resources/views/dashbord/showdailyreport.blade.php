@@ -34,107 +34,104 @@
                               <div class="card-body">
                                 <h4 class="card-title">Empolyees Reports</h4>
                                   {{-- date search form --}}
-                                  <form action="{{ route('datesearch.empolyeereport') }}" method="POST">
+                                  {{-- <form action="{{ route('daily.comopany.reports.search') }}" method="GET">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-3">
+
+                                        <div class="col-md">
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">From</label>
-                                                <div class="col-sm-9 ">
+                                                <label
+                                                    class="col-sm col-form-label">From</label>
+                                                <div class="col-sm ">
                                                     <input type="date" class="form-control" id="" name="fromdate">
 
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md">
                                             <div class="form-group row">
                                                 <label
-                                                    class="col-sm-3 col-form-label">To</label>
-                                                <div class="col-sm-9 ">
+                                                    class="col-sm col-form-label">To</label>
+                                                <div class="col-sm">
                                                     <input type="date" class="form-control" id=""name="today">
                                                 </div>
                                             </div>
+                                        <div class="col-md">
+                                            <select class="form-control text-light" id="exampleSelectGender" name="payment">
+                                                <option value=" " selected>payment method</option>
+                                                <option value="card">card</option>
+                                                <option value="none">None</option>
+                                              </select>
 
                                         </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-primary">Filter</button>
-                                        </div>
-
-
-                                    </div>
-                                  </form>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="col-md-4">
-                                        <div class="form-group row">
-                                            <div class="col-sm-9">
-                                                <input type="search" class="form-control" name="search" id="search" placeholder="search here......">
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    {{--  --}}
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#largeModal">
-                                       Trash Bin
-                                     </button>
-                                </div>
-                                  <!-- Large Modal -->
-                                <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content  bg-dark">
-                                        <div class="modal-header ">
-                                        <h5 class="modal-title" id="exampleModalLabel3">Trash Bin</h5>
-                                        <button type="button"class="btn-close"data-bs-dismiss="modal"aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body m-1">
-                                            <div class="table-responsive text-nowrap">
-                                                <table class="table table-dark">
-
-                                                <thead>
-                                                    <tr>
-
-                                                        <th> Company </th>
-                                                        <th> Empolyee Email </th>
-                                                        <th> Incoming </th>
-                                                        <th> Outgoing </th>
-                                                        <th> Payment </th>
-                                                        <th> Cash </th>
-                                                        <th> Deleted at </th>
-                                                        <th> Acction </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="table-border-bottom-0">
-                                                    @foreach ($empolyeereport_onlyTrashed as $empolyeereport_Trashed)
-                                                    <tr>
-                                                        <td> {{ $empolyeereport_Trashed->company }} </td>
-                                                        <td> {{ $empolyeereport_Trashed->empolyee }} </td>
-                                                        <td> {{ $empolyeereport_Trashed->incoming }} </td>
-                                                        <td> {{ $empolyeereport_Trashed->outgoing }} </td>
-                                                        <td> {{ $empolyeereport_Trashed->card }} </td>
-                                                        <td> {{ $empolyeereport_Trashed->cash }} </td>
-                                                        <td> {{ $empolyeereport_Trashed->deleted_at->format('d/m/Y') }} </td>
-                                                        <td>
-                                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                                <a type="button" class="btn btn-primary"  href="{{ route('restor.empolyeereport',['id'=>$empolyeereport_Trashed->id]) }}" title="restore">
-                                                                    <i class="mdi mdi-backup-restore"></i>
-                                                                </a>
-                                                                <a type="button" class="btn btn-primary" title="delete forever" href="{{ route('delete.empolyeereport',['id'=>$empolyeereport_Trashed->id]) }}" title="restore">
-                                                                    <i class="mdi mdi-delete-forever"></i>
-                                                                </a>
-                                                        </div></td>
-                                                      </tr>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <select class="form-control text-light" id="exampleSelectGender" name="company">
+                                                    <option value=" " selected>company</option>
+                                                    @foreach ($componies as $compony)
+                                                     <option value="{{ $compony->compony_name }}" >{{ $compony->compony_name }}</option>
                                                     @endforeach
-
-
-                                                </tbody>
-                                                </table>
+                                                  </select>
                                             </div>
 
                                         </div>
+                                        <div class="col-mdm-0">
+                                            <button class="btn btn-primary" type="submit">Filter</button>
+                                        </div>
+
 
                                     </div>
+                                  </form> --}}
+                                  <form class="form-sample" action="{{ route('daily.comopany.reports.search') }}" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                      <div class="col-md-6">
+                                        <div class="form-group row">
+                                          <label class="col-sm-3 col-form-label">Form Date</label>
+                                          <div class="col-sm-9">
+                                            <input type="date" class="form-control search" name="form_date">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <div class="form-group row">
+                                          <label class="col-sm-3 col-form-label">To Date</label>
+                                          <div class="col-sm-9">
+                                            <input type="date" class="form-control search" name="to_date">
+                                          </div>
+                                        </div>
+                                      </div>
                                     </div>
-                                </div>
+                                    <div class="row">
+                                      <div class="col-md-6">
+                                        <div class="form-group row">
+                                          <label class="col-sm-3 col-form-label">Payment</label>
+                                          <div class="col-sm-9">
+                                            <select class="form-control text-light" name="payment">
+                                             <option value=" " selected>Select Payment Method</option>
+                                              <option value="card">Card</option>
+                                              <option value="none">None</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <div class="form-group row">
+                                          <label class="col-sm-3 col-form-label">Company</label>
+                                          <div class="col-sm-9">
+                                            <select class="form-control text-light" name="company">
+                                              @foreach ($componies as $compony)
+                                               <option value="{{ $compony->compony_name }}">{{ $compony->compony_name }}</option>
+                                              @endforeach
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-3">Filter</button>
+                                  </form>
+                                  <!-- Large Modal -->
+
                                 <div class="table-responsive">
                                   <table class="table table-dark">
                                     <thead>
@@ -157,7 +154,7 @@
                                     @endphp
                                     <tbody class="alldata">
 
-                                        @foreach ($empolyees as $empolyee)
+                                        @foreach ($empolyees_reports as $empolyee)
                                         <tr>
                                             <td> {{ $empolyee->company }} </td>
                                             <td> {{ $empolyee->empolyee }} </td>
@@ -165,7 +162,7 @@
                                             <td> {{ $empolyee->outgoing }} tk</td>
                                             <td> {{ $empolyee->card }} </td>
                                             <td> {{ $empolyee->cash }} tk</td>
-                                            <td>{{ $empolyee->created_at->format('d/m/Y') }} {{ $empolyee->created_at->format('g:i A') }} </td>
+                                            <td>{{ $empolyee->created_at->format('d/m/Y') }}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="{{ route('details.empolyeereport',['id'=>$empolyee->id]) }}" title="details">
@@ -200,11 +197,11 @@
                                             <td></td>
                                           </tr>
                                     </tbody>
-                                    <tbody id="Content" class="searchdata"></tbody>   {{--   live search result show this table--}}
+                                    <tbody id="Content" class="searchdata"></tbody>   {{--  search result show this table--}}
                                   </table>
                                   <div class="d-flex justify-content-center mt-3">
 
-                                    {{ $empolyees->links('pagination::bootstrap-5') }}
+                                    {{ $empolyees_reports->links('pagination::bootstrap-5') }}
                                 </div>
                                 </div>
                               </div>
@@ -228,11 +225,9 @@
     @include('dashbord.allscript')
     {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    {{-- live search js code --}}
     <script type="text/javascript">
 
-        $('#search').on('keyup',function()
+        $('.search').on('keyup',function()
         {
 
          $value=$(this).val();
@@ -247,19 +242,20 @@
              $('.searchdata').hide();
          }
 
-         $.ajax({
-                 type:'get',
-                 url:'{{URL::to('empolyeereportsearch')}}',
-                 data:{'search':$value},
-                 success:function(data)
-                 {
-                     console.log(data);
-                     $('#Content').html(data);
-                 }
-             });
+        //  $.ajax({
+        //          type:'get',
+        //          url:'{{URL::to('empolyeereportsearch')}}',
+        //          data:{'search':$value},
+        //          success:function(data)
+        //          {
+        //              console.log(data);
+        //              $('#Content').html(data);
+        //          }
+        //      });
 
          });
      </script>
+
 </body>
 
 </html>

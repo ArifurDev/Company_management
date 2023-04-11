@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class empolyeereport extends Model
 {
     use HasFactory,SoftDeletes;
+
     protected $fillable = [
         'company',
         'empolyee',
@@ -19,5 +20,4 @@ class empolyeereport extends Model
         'card',
         'note',
     ];
-
 }

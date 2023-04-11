@@ -32,14 +32,20 @@
                                 </div>
                             @endif
                               <div class="card-body">
-                                <h4 class="card-title">Empolyees Reports</h4>
-                     
-                                <div class="d-flex justify-content-end align-items-center">
+                                <h4 class="card-title">Site info</h4>
 
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <div class="col-sm-9">
+                                                <input type="search" class="form-control" name="search" id="search" placeholder="search here......">
+                                            </div>
+                                        </div>
+                                    </div>
 
 
                                     {{--  --}}
-                                    <button type="button" class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#largeModal">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#largeModal">
                                        Trash Bin
                                      </button>
                                 </div>
@@ -57,7 +63,8 @@
 
                                                 <thead>
                                                     <tr>
-
+                                                        <th> Company </th>
+                                                        <th> Email </th>
                                                         <th> Site Name </th>
                                                         <th> URL </th>
                                                         <th> U.N </th>
@@ -72,6 +79,8 @@
 
                                                     @foreach ($reportinfo_treshed as $treshed_info)
                                                     <tr>
+                                                        <td> {{ $treshed_info->company }} </td>
+                                                        <td> {{ $treshed_info->email }} </td>
                                                         <td> {{ $treshed_info->site_name }} </td>
                                                         <td> {{ $treshed_info->url }} </td>
                                                         <td> {{ $treshed_info->user_name }} </td>
@@ -106,6 +115,8 @@
                                     <thead>
                                       <tr>
 
+                                        <th> Company </th>
+                                        <th> Email </th>
                                         <th> Site Name </th>
                                         <th> URL </th>
                                         <th> U.N </th>
@@ -122,6 +133,8 @@
 
                                         @foreach ($reportinfo as $info)
                                         <tr>
+                                            <td> {{ $info->company }} </td>
+                                            <td> {{ $info->email }} </td>
                                             <td> {{ $info->site_name }} </td>
                                             <td> {{ $info->url }} </td>
                                             <td> {{ $info->user_name }} </td>
@@ -143,8 +156,9 @@
 
                                           </tr>
                                         @endforeach
-
+                                        <tbody id="Content" class="searchdata"></tbody>   {{--   live search result show this table--}}
                                     </tbody>
+
 
                                   </table>
                                   <div class="d-flex justify-content-center mt-3">
@@ -194,7 +208,7 @@
 
          $.ajax({
                  type:'get',
-                 url:'{{URL::to('empolyeereportsearch')}}',
+                 url:'{{URL::to('adminwebreportsearch')}}',
                  data:{'search':$value},
                  success:function(data)
                  {
