@@ -103,7 +103,18 @@
                                       </div>
                                     </div>
                                     <div class="row">
-
+                                      <div class="col-md-6">
+                                        <div class="form-group row">
+                                          <label class="col-sm-3 col-form-label">Payment</label>
+                                          <div class="col-sm-9">
+                                            <select class="form-control text-light" name="payment">
+                                             <option value=" " selected>Select Payment Method</option>
+                                              <option value="card">Card</option>
+                                              <option value="none">None</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                      </div>
                                       <div class="col-md-6">
                                         <div class="form-group row">
                                           <label class="col-sm-3 col-form-label">Company</label>
@@ -119,7 +130,7 @@
                                     </div>
                                     <button type="reset" class="btn btn-danger mb-3">Reset</button>
                                     <button type="submit" class="btn btn-primary mb-3">Filter</button>
-                                </form>
+                                  </form>
                                   <!-- Large Modal -->
 
                                 <div class="table-responsive">
@@ -192,7 +203,7 @@
                                             <td></td>
                                             <td>{{ $total_cash }} tk</td>
                                             <td></td>
-                                            
+                                            <td></td>
                                           </tr>
                                     </tbody>
                                     <tbody id="Content" class="searchdata"></tbody>   {{--  search result show this table--}}

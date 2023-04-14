@@ -50,14 +50,26 @@ class DashbordController extends Controller
 
     public function filter(Request $request)
     {
+        // $request->validate([
+        //     'form_date' => 'required',
+        //     'to_date' => 'required',
+        // ]);
 
+        $empolyees_reports = empolyeereport::when($request->filled('form_date') && $request->filled('to_daate'), function ($query) {
+            return $query->whereBetween('created_at', [request()->form_date, request()->to_date]);
+        })->when($request->filled('company'), function ($query) {
+            return   $query->where('company', request()->company);
+        })->when($request->filled('payment'), function ($query) {
+            return $query->where('card', request()->payment);
+        })->get();
         $empolyees_reports = empolyeereport::when($request->filled('form_date') && $request->filled('to_daate'), function ($query) {
             return $query->whereBetween('created_at', [request()->form_date, request()->to_date]);
         })->when($request->filled('company'), function ($query) {
             return   $query->where('company', request()->company);
         })->get();
 
-        return view('dashbord.showsearchresult', compact('empolyees_reports'));
+            //  $empolyees_reports = empolyeereport::where('company',$compony)->orWhere('card',$request->payment)->whereBetween('created_at',[$form_date."00:00:00",$to_date."23:59:59"])->get();
+            return view('dashbord.showsearchresult', compact('empolyees_reports'));
 
     }
 }
