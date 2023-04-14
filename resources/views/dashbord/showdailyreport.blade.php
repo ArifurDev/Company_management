@@ -103,18 +103,7 @@
                                       </div>
                                     </div>
                                     <div class="row">
-                                      <div class="col-md-6">
-                                        <div class="form-group row">
-                                          <label class="col-sm-3 col-form-label">Payment</label>
-                                          <div class="col-sm-9">
-                                            <select class="form-control text-light" name="payment">
-                                             <option value=" " selected>Select Payment Method</option>
-                                              <option value="card">Card</option>
-                                              <option value="none">None</option>
-                                            </select>
-                                          </div>
-                                        </div>
-                                      </div>
+
                                       <div class="col-md-6">
                                         <div class="form-group row">
                                           <label class="col-sm-3 col-form-label">Company</label>
@@ -128,8 +117,9 @@
                                         </div>
                                       </div>
                                     </div>
+                                    <button type="reset" class="btn btn-danger mb-3">Reset</button>
                                     <button type="submit" class="btn btn-primary mb-3">Filter</button>
-                                  </form>
+                                </form>
                                   <!-- Large Modal -->
 
                                 <div class="table-responsive">
@@ -139,15 +129,18 @@
 
                                         <th> Company </th>
                                         <th> Empolyee Email </th>
+                                        <th> Incoming Card</th>
+                                        <th> Incoming Cash</th>
                                         <th> Incoming </th>
                                         <th> Outgoing </th>
-                                        <th> Payment </th>
                                         <th> Cash </th>
                                         <th> Date </th>
                                         <th> Acction </th>
                                       </tr>
                                     </thead>
                                     @php
+                                        $total_incoming_card = 0;
+                                        $total_incoming_cash = 0;
                                         $total_incoming = 0;
                                         $total_outgoing = 0;
                                         $total_cash = 0;
@@ -158,9 +151,10 @@
                                         <tr>
                                             <td> {{ $empolyee->company }} </td>
                                             <td> {{ $empolyee->empolyee }} </td>
+                                            <td> {{ $empolyee->incoming_card }} tk</td>
+                                            <td> {{ $empolyee->incoming_cash }} tk</td>
                                             <td> {{ $empolyee->incoming }} tk</td>
                                             <td> {{ $empolyee->outgoing }} tk</td>
-                                            <td> {{ $empolyee->card }} </td>
                                             <td> {{ $empolyee->cash }} tk</td>
                                             <td>{{ $empolyee->created_at->format('d/m/Y') }}</td>
                                             <td>
@@ -180,6 +174,8 @@
                                                     </form>
                                             </div></td>
                                             @php
+                                                $total_incoming_card = $total_incoming_card + $empolyee->incoming_card;
+                                                $total_incoming_cash = $total_incoming_cash + $empolyee->incoming_cash;
                                                 $total_incoming = $total_incoming + $empolyee->incoming;
                                                 $total_outgoing = $total_outgoing + $empolyee->outgoing;
                                                 $total_cash = $total_cash + $empolyee->cash;
@@ -189,12 +185,14 @@
                                           <tr>
                                             <td></td>
                                             <td></td>
+                                            <td>{{ $total_incoming_card }} card</td>
+                                            <td>{{ $total_incoming_cash }} cash</td>
                                             <td>{{ $total_incoming }} tk</td>
                                             <td>{{ $total_outgoing }} tk</td>
                                             <td></td>
                                             <td>{{ $total_cash }} tk</td>
                                             <td></td>
-                                            <td></td>
+                                            
                                           </tr>
                                     </tbody>
                                     <tbody id="Content" class="searchdata"></tbody>   {{--  search result show this table--}}

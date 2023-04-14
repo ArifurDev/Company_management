@@ -13,7 +13,7 @@ class ReciveloanController extends Controller
 
     public function create()
     {
-        $loanRecive = reciveloan::all();
+        $loanRecive = reciveloan::latest()->get();
         $loanRecive_trashed = reciveloan::onlyTrashed()->get();
         return view('dashbord.admin.loan.loanRecive.create', compact('loanRecive','loanRecive_trashed'));
     }

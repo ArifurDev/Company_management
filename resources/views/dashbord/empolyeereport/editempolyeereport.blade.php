@@ -62,21 +62,19 @@
                                         </select> --}}
                             </div>
 
+                            <div class="form-group">
+                                <label for="exampleInputIncoming">Incoming card</label>
+                                <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Incoming card" name="incoming_card" value="{{ $empolyees->incoming_card }}">
+                              </div>
                               <div class="form-group">
-                                <label for="exampleInputIncoming">Incoming</label>
-                                <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Incoming" name="incoming" value="{{ $empolyees->incoming }}">
+                                <label for="exampleInputIncoming">Incoming cash</label>
+                                <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Incoming cash" name="incoming_cash" value="{{ $empolyees->incoming_cash }}">
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputIncoming">Outgoing</label>
                                 <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Outgoing" name="outgoing" value="{{ $empolyees->outgoing }}">
                               </div>
-                              <div class="form-group">
-                                <label for="exampleSelectGender">Card</label>
-                                <select class="form-control text-light" id="exampleSelectGender" name="card">
-                                  <option value="card"  @selected($empolyees->card === 'card')>card</option>
-                                  <option value="none" @selected($empolyees->card === 'none')>None</option>
-                                </select>
-                              </div>
+
 
 
                               <div class="form-group">

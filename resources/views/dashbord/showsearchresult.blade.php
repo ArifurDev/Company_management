@@ -42,15 +42,18 @@
 
                                         <th> Company </th>
                                         <th> Empolyee Email </th>
+                                        <th> Incoming Card</th>
+                                        <th> Incoming Cash</th>
                                         <th> Incoming </th>
                                         <th> Outgoing </th>
-                                        <th> Payment </th>
                                         <th> Cash </th>
                                         <th> Date </th>
                                         <th> Acction </th>
                                       </tr>
                                     </thead>
                                     @php
+                                        $t_incoming_card = 0;
+                                        $t_incoming_cash = 0;
                                         $total_incoming = 0;
                                         $total_outgoing = 0;
                                         $total_cash = 0;
@@ -61,11 +64,12 @@
                                         <tr>
                                             <td> {{ $empolyee->company }} </td>
                                             <td> {{ $empolyee->empolyee }} </td>
+                                            <td> {{ $empolyee->incoming_card }} tk</td>
+                                            <td> {{ $empolyee->incoming_cash }} tk</td>
                                             <td> {{ $empolyee->incoming }} tk</td>
                                             <td> {{ $empolyee->outgoing }} tk</td>
-                                            <td> {{ $empolyee->card }} </td>
                                             <td> {{ $empolyee->cash }} tk</td>
-                                            <td>{{ $empolyee->created_at->format('d/m/Y') }}</td>
+                                            <td> {{ $empolyee->created_at->format('d/m/Y') }}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="{{ route('details.empolyeereport',['id'=>$empolyee->id]) }}" title="details">
@@ -83,6 +87,9 @@
                                                     </form>
                                             </div></td>
                                             @php
+                                                $t_incoming_card = $t_incoming_card + $empolyee->incoming_card;
+                                                $t_incoming_cash = $t_incoming_cash + $empolyee->incoming_cash;
+
                                                 $total_incoming = $total_incoming + $empolyee->incoming;
                                                 $total_outgoing = $total_outgoing + $empolyee->outgoing;
                                                 $total_cash = $total_cash + $empolyee->cash;
@@ -92,9 +99,10 @@
                                           <tr>
                                             <td></td>
                                             <td></td>
+                                            <td>{{ $t_incoming_card }} tk</td>
+                                            <td>{{ $t_incoming_cash }} tk</td>
                                             <td>{{ $total_incoming }} tk</td>
                                             <td>{{ $total_outgoing }} tk</td>
-                                            <td></td>
                                             <td>{{ $total_cash }} tk</td>
                                             <td></td>
                                             <td></td>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Billdate;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -22,5 +23,6 @@ class adminseeder extends Seeder
             'email_verified_at' => now(),
             'created_at' => now(),
         ]);
+       
     }
 }

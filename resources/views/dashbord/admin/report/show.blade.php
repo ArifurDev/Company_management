@@ -97,6 +97,7 @@
                                                         <th> Loan </th>
                                                         <th> Total </th>
                                                         <th> Date </th>
+
                                                         <th> Action </th>
                                                     </tr>
                                                 </thead>
@@ -141,11 +142,18 @@
                                         <th> Gard Bill </th>
                                         <th> Electricity Bill </th>
                                         <th> Sewerage Bill </th>
+                                        <th> Water Bill </th>
+                                        <th> Fewa Bill </th>
+                                        <th> Wifi Bill </th>
                                         <th> Expanse </th>
                                         <th> Personal </th>
                                         <th> Loan </th>
+                                        <th> A </th>
+                                        <th> B </th>
+                                        <th> C </th>
                                         <th> Total </th>
                                         <th> Date </th>
+                                        <th> Note </th>
                                         <th> Action </th>
                                       </tr>
                                     </thead>
@@ -156,11 +164,18 @@
                                             <td> {{ $info->gard_bill }} tk</td>
                                             <td> {{ $info->electricity_bill }} tk</td>
                                             <td> {{ $info->sewerage_bill }} tk</td>
+                                            <td> {{ $info->water_bill }} tk</td>
+                                            <td> {{ $info->fewa_bill }} tk</td>
+                                            <td> {{ $info->wifi_bill }} tk</td>
                                             <td> {{ $info->expanse }} tk</td>
                                             <td> {{ $info->personal }} tk</td>
                                             <td> {{ $info->loan }} tk</td>
+                                            <td> {{ $info->a }} tk</td>
+                                            <td> {{ $info->b }} tk</td>
+                                            <td> {{ $info->c }} tk</td>
                                             <td> {{ $info->total }} tk</td>
                                             <td> {{ $info->created_at->format('d/m/Y')}}</td>
+                                            <td> {{ $info->note }} </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
 

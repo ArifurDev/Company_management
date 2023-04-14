@@ -33,16 +33,16 @@
                             <ul class="list-group  bg-dark">
                               <li class="list-group-item">Company:- {{ $details->company }}</li>
                               <li class="list-group-item">Empolyee Email:- {{ $details->empolyee }}</li>
+                              <li class="list-group-item">Incoming Card:- {{ $details->incoming_card }}</li>
+                              <li class="list-group-item">Incoming Cash:- {{ $details->incoming_cash }}</li>
                               <li class="list-group-item">Incoming:- {{ $details->incoming }}</li>
                               <li class="list-group-item">Outgoing:- {{ $details->outgoing }}</li>
-                              <li class="list-group-item">Total:- {{ $details->total }}</li>
                               <li class="list-group-item">Cash:- {{ $details->cash }}</li>
-                              <li class="list-group-item">Payment:- {{ $details->card }}</li>
                               <li class="list-group-item">Note:- {{ $details->note }}</li>
                               <li class="list-group-item">Submited_at:- {{ $details->created_at }}</li>
                               <li class="list-group-item">Updated_at:- {{ $details->updated_at }}</li>
                             </ul>
-                            
+
                           </div>
                     </div>
 

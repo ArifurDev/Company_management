@@ -39,6 +39,9 @@ class adminwebreportController extends Controller
             'password' => $request->password,
             'verifi_code' => $request->verifi_code,
             'payment_date' => $request->payment_date,
+            'why_create' => $request->why_create,
+            'number' => $request->number,
+            'note' => $request->note,
             'created_at' => now(),
         ]);
 
@@ -55,7 +58,6 @@ class adminwebreportController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($request->site_name || $request->url || $request->user_name || $request->user_id || $request->password || $request->verifi_code || $request->payment_date) {
             siteriports::find($id)->update([
                 'company' => $request->company,
                 'email' => $request->email,
@@ -66,12 +68,13 @@ class adminwebreportController extends Controller
                 'password' => $request->password,
                 'verifi_code' => $request->verifi_code,
                 'payment_date' => $request->payment_date,
+                'why_create' => $request->why_create,
+                'number' => $request->number,
+                'note' => $request->note,
             ]);
 
             return back()->withSuccess('Information update Successfully');
-        } else {
-            return back();
-        }
+
     }
 
     public function destroy($id)
@@ -101,7 +104,7 @@ class adminwebreportController extends Controller
     public function search(Request $request)
     {
         $output = ' ';
-        $siteriports = siteriports::where('company', 'Like', '%'.$request->search.'%')->orWhere('email', 'Like', '%'.$request->search.'%')->orWhere('site_name', 'Like', '%'.$request->search.'%')->orWhere('url', 'Like', '%'.$request->search.'%')->orWhere('user_name', 'Like', '%'.$request->search.'%')->orWhere('user_id', 'Like', '%'.$request->search.'%')->orWhere('password', 'Like', '%'.$request->search.'%')->orWhere('verifi_code', 'Like', '%'.$request->search.'%')->orWhere('payment_date', 'Like', '%'.$request->search.'%')->get();
+        $siteriports = siteriports::where('company', 'Like', '%'.$request->search.'%')->orWhere('email', 'Like', '%'.$request->search.'%')->orWhere('site_name', 'Like', '%'.$request->search.'%')->orWhere('url', 'Like', '%'.$request->search.'%')->orWhere('user_name', 'Like', '%'.$request->search.'%')->orWhere('user_id', 'Like', '%'.$request->search.'%')->orWhere('password', 'Like', '%'.$request->search.'%')->orWhere('verifi_code', 'Like', '%'.$request->search.'%')->orWhere('payment_date', 'Like', '%'.$request->search.'%')->orWhere('why_create', 'Like', '%'.$request->search.'%')->orWhere('number', 'Like', '%'.$request->search.'%')->orWhere('note', 'Like', '%'.$request->search.'%')->get();
 
         foreach ($siteriports as $siteriport) {
             $output .=
@@ -114,7 +117,10 @@ class adminwebreportController extends Controller
             <td> '.$siteriport->user_name.' </td>
             <td> '.$siteriport->user_id.' </td>
             <td> '.$siteriport->password.' </td>
+            <td> '.$siteriport->why_create.' </td>
+            <td> '.$siteriport->number.' </td>
             <td> '.$siteriport->verifi_code.' </td>
+            <td> '.$siteriport->note.' </td>
             <td> '.$siteriport->payment_date.' </td>
             <td> '.$siteriport->created_at.' </td>
             <td> '.'

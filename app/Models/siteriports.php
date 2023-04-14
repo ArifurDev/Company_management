@@ -21,5 +21,8 @@ class siteriports extends Model
         'verifi_code',
         'payment_date',
 
+        'why_create',
+        'number',
+        'note',
     ];
 }

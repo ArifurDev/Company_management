@@ -50,19 +50,17 @@
                             <form class="forms-sample" action="{{ route("store.empolyeereport") }}" method="POST">
                                 @csrf
                               <div class="form-group">
-                                <label for="exampleInputIncoming">Incoming</label>
-                                <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Incoming" name="incoming">
+                                <label for="exampleInputIncoming">Incoming card</label>
+                                <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Incoming card" name="incoming_card">
                               </div>
+                              <div class="form-group">
+                                <label for="exampleInputIncoming">Incoming cash</label>
+                                <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Incoming cash" name="incoming_cash">
+                              </div>
+
                               <div class="form-group">
                                 <label for="exampleInputIncoming">Outgoing</label>
                                 <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Outgoing" name="outgoing">
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleSelectGender">Card</label>
-                                <select class="form-control text-light" id="exampleSelectGender" name="card">
-                                  <option value="card">card</option>
-                                  <option value="none" selected>None</option>
-                                </select>
                               </div>
 
 

@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AdminriportsController;
 use App\Http\Controllers\adminwebreportController;
+use App\Http\Controllers\BilldateController;
 use App\Http\Controllers\ComopanyController;
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\EmpolyeeController;
 use App\Http\Controllers\EmpolyeereportController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\LoanrecivesiduleController;
+use App\Http\Controllers\LoansendshiduleController;
 use App\Http\Controllers\ReciveloanController;
 use Illuminate\Support\Facades\Route;
 
@@ -130,6 +133,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
          */
         Route::get('/adminwebreportsearch', 'search');
     });
+     /**
+     * bill payment date
+     */
+        Route::controller(BilldateController::class)->middleware('RoleChecker')->group(function () {
+            // Route::get('payment/date/show', 'show')->name('payment.date.show');
+            Route::get('payment/date', 'edit')->name('payment.date.edit');
+            Route::post('payment/date/{id}', 'update')->name('payment.date.update');
+
+        });
 
     /**
      * Loan send Controller
@@ -144,7 +156,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('admin/loan/send/restor/{id}', 'restor')->name('adminLoanReportSend.restor');
         Route::get('admin/loan/send/delete/{id}', 'delete')->name('adminLoanReportSend.delete');
     });
-
+    //loan send installment
+    Route::controller(LoansendshiduleController::class)->middleware('RoleChecker')->group(function () {
+        Route::post('admin/loan/send/installment', 'store')->name('loanSendInstallment.store');
+        Route::get('admin/loan/send/installment/{email}', 'show')->name('loanSendInstallment.show');
+        Route::get('send/installment/edit/{id}', 'edit')->name('loanSendInstallment.edit');
+        Route::post('send/installment/edit/{id}', 'update')->name('loanSendInstallment.update');
+        Route::get('send/installment/destroy/{id}', 'destroy')->name('loanSendInstallment.destroy');
+        Route::get('send/installment/restor/{id}', 'restor')->name('loanSendInstallment.restor');
+        Route::get('send/installment/delete/{id}', 'delete')->name('loanSendInstallment.delete');
+    });
 
 
     /**
@@ -160,4 +181,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('admin/loan/recive/restor/{id}', 'restor')->name('adminLoanReportRecive.restor');
         Route::get('admin/loan/recive/delete/{id}', 'delete')->name('adminLoanReportRecive.delete');
     });
+    //loan recive installment
+    Route::controller(LoanrecivesiduleController::class)->middleware('RoleChecker')->group(function () {
+        Route::post('admin/loan/recive/installment', 'store')->name('loanReciveInstallment.store');
+        Route::get('admin/loan/recive/installment/{email}', 'show')->name('loanReciveInstallment.show');
+        Route::get('recive/installment/edit/{id}', 'edit')->name('loanReciveInstallment.edit');
+        Route::post('recive/installment/edit/{id}', 'update')->name('loanReciveInstallment.update');
+        Route::get('recive/installment/destroy/{id}', 'destroy')->name('loanReciveInstallment.destroy');
+        Route::get('recive/installment/restor/{id}', 'restor')->name('loanReciveInstallment.restor');
+        Route::get('recive/installment/delete/{id}', 'delete')->name('loanReciveInstallment.delete');
+    });
+
 });

@@ -79,8 +79,16 @@
                                 <input type="number" class="form-control text-light" id="user_id" placeholder="user_id" name="user_id" value="{{ $sitereports->user_id }}">
                               </div>
                               <div class="form-group">
-                                <label for="password">Passeord</label>
+                                <label for="password">Password</label>
                                 <input type="text" class="form-control text-light" id="password" placeholder="password" name="password" value="{{ $sitereports->password }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="Create">Why Create this</label>
+                                <input type="text" class="form-control text-light" id="Create" placeholder="Why Create this" name="why_create" value="{{ $sitereports->why_create }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="Number">Number</label>
+                                <input type="text" class="form-control text-light" id="Number" placeholder="Number" name="number" value="{{ $sitereports->number }}">
                               </div>
                               <div class="form-group">
                                 <label for="verifi_code">Verification Code</label>
@@ -90,7 +98,10 @@
                                 <label for="payment_date">Payment Date</label>
                                 <input type="date" class="form-control text-light" id="payment_date" placeholder="payment_date" name="payment_date" value="{{ $sitereports->payment_date }}">
                               </div>
-
+                              <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Note</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="note" >{{ $sitereports->note }}</textarea>
+                              </div>
                               <button type="submit" class="btn btn-primary me-2">Submit</button>
                             </form>
                           </div>

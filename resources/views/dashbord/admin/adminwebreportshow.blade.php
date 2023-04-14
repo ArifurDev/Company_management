@@ -122,7 +122,10 @@
                                         <th> U.N </th>
                                         <th> U.I </th>
                                         <th> Password </th>
+                                        <th> Why create </th>
+                                        <th> Number </th>
                                         <th> Verifi Code </th>
+                                        <th> Note </th>
                                         <th> Payment Date </th>
                                         <th> Save Date </th>
                                         <th> Acction </th>
@@ -140,7 +143,10 @@
                                             <td> {{ $info->user_name }} </td>
                                             <td> {{ $info->user_id }} </td>
                                             <td> {{ $info->password }} </td>
+                                            <td> {{ $info->why_create }} </td>
+                                            <td> {{ $info->number }} </td>
                                             <td> {{ $info->verifi_code }} </td>
+                                            <td> {{ $info->note }} </td>
                                             <td> {{ $info->payment_date }} </td>
                                             <td> {{ $info->created_at->format('d/m/Y')}}</td>
                                             <td>

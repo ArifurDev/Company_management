@@ -34,16 +34,17 @@
     <li class="nav-item menu-items">
         <a class="nav-link" href="{{ route('company.create') }}">
           <span class="menu-icon">
-            <i class="mdi mdi-speedometer"></i>
+            <i class="mdi mdi-grid"></i>
           </span>
           <span class="menu-title">Company</span>
         </a>
       </li>
 
+
     <li class="nav-item menu-items">
       <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
-          <i class="mdi mdi-laptop"></i>
+          <i class="mdi mdi-account-multiple"></i>
         </span>
         <span class="menu-title">Empolyee</span>
         <i class="menu-arrow"></i>
@@ -57,25 +58,11 @@
       </div>
     </li>
 
-    <li class="nav-item menu-items">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
-          <span class="menu-icon">
-            <i class="mdi mdi-laptop"></i>
-          </span>
-          <span class="menu-title">Site</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="ui-basic1">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('adminwebreport.create') }}"> Save site info </a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('adminwebreport.show') }}"> site info </a></li>
-          </ul>
-        </div>
-      </li>
+
       <li class="nav-item menu-items">
         <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
           <span class="menu-icon">
-            <i class="mdi mdi-laptop"></i>
+            <i class="mdi mdi-account-star"></i>
           </span>
           <span class="menu-title">Admin</span>
           <i class="menu-arrow"></i>
@@ -91,7 +78,29 @@
           </ul>
         </div>
       </li>
-
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-icon">
+            <i class="mdi mdi-laptop"></i>
+          </span>
+          <span class="menu-title">Site</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-basic1">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('adminwebreport.create') }}"> Save site info </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('adminwebreport.show') }}"> site info </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{ route('payment.date.edit') }}">
+          <span class="menu-icon">
+            <i class="mdi mdi-dns"></i>
+          </span>
+          <span class="menu-title">All Payment Date</span>
+        </a>
+      </li>
 
 
   </ul>

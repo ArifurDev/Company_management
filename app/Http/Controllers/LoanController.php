@@ -13,8 +13,8 @@ class LoanController extends Controller
 
     public function create()
     {
-        $loanSend = loan::all();
-        $loanSend_trashed = loan::onlyTrashed()->get();
+        $loanSend = loan::latest()->get();
+        $loanSend_trashed = loan::onlyTrashed()->latest()->get();
         return view('dashbord.admin.loan.loanSend.create', compact('loanSend','loanSend_trashed'));
     }
 

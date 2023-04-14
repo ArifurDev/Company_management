@@ -62,7 +62,9 @@ class AdminriportsController extends Controller
      */
     public function store(Request $request)
     {
-        $total = $request->house_rent + $request->gard_bill + $request->electricity_bill + $request->sewerage_bill + $request->expanse + $request->personal;
+
+
+        $total = $request->house_rent + $request->gard_bill + $request->electricity_bill + $request->sewerage_bill + $request->expanse + $request->personal + $request->water_bill + $request->fewa_bill + $request->wifi_bill + $request->a + $request->b + $request->c;
 
         adminriports::insert([
             'house_rent' => $request->house_rent,
@@ -71,6 +73,17 @@ class AdminriportsController extends Controller
             'sewerage_bill' => $request->sewerage_bill,
             'expanse' => $request->expanse,
             'personal' => $request->personal,
+
+            'water_bill' => $request->water_bill,
+            'fewa_bill' => $request->fewa_bill,
+            'wifi_bill' => $request->wifi_bill,
+
+            'a' => $request->a,
+            'b' => $request->b,
+            'c' => $request->c,
+
+            'note' => $request->note,
+
             'total' => $total,
             'created_at' => now(),
         ]);
@@ -109,14 +122,25 @@ class AdminriportsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $total = $request->house_rent + $request->gard_bill + $request->electricity_bill + $request->sewerage_bill + $request->expanse + $request->personal;
-        adminriports::find($id)->update([
+
+        $total = $request->house_rent + $request->gard_bill + $request->electricity_bill + $request->sewerage_bill + $request->expanse + $request->personal + $request->water_bill + $request->fewa_bill + $request->wifi_bill + $request->a + $request->b + $request->c;
+         adminriports::find($id)->update([
             'house_rent' => $request->house_rent,
             'gard_bill' => $request->gard_bill,
             'electricity_bill' => $request->electricity_bill,
             'sewerage_bill' => $request->sewerage_bill,
             'expanse' => $request->expanse,
             'personal' => $request->personal,
+
+            'water_bill' => $request->water_bill,
+            'fewa_bill' => $request->fewa_bill,
+            'wifi_bill' => $request->wifi_bill,
+
+            'a' => $request->a,
+            'b' => $request->b,
+            'c' => $request->c,
+
+            'note' => $request->note,
             'total' => $total,
         ]);
 

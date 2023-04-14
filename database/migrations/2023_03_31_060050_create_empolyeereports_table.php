@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('company');
             $table->string('empolyee');
-            $table->integer('incoming')->default('0');
-            $table->integer('outgoing')->default('0');
-            $table->integer('total');
-            $table->integer('cash');
-            $table->string('card');
-            $table->longText('note');
+            $table->integer('incoming_card');
+            $table->integer('incoming_cash');
+            $table->integer('incoming')->default('0')->nullable();
+            $table->integer('outgoing')->default('0')->nullable();
+            $table->integer('cash')->nullable();
+            $table->longText('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

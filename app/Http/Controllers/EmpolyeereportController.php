@@ -69,9 +69,10 @@ class EmpolyeereportController extends Controller
         $request->validate([
             '*' => 'required',
         ]);
+        $incoming = $request->incoming_card + $request->incoming_cash;
 
-        $total = $request->incoming + $request->outgoing;
-        $cash = $request->incoming - $request->outgoing;
+        $total = $incoming + $request->outgoing;
+        $cash = $incoming - $request->outgoing;
         $compony_name = Auth::user()->compony_name;
         $email = Auth::user()->email;
 
@@ -81,11 +82,12 @@ class EmpolyeereportController extends Controller
             empolyeereport::insert([
                 'company' => $compony_name,
                 'empolyee' => $email,
-                'incoming' => $request->incoming,
+                'incoming' => $incoming,
+                'incoming_card' => $request->incoming_card,
+                'incoming_cash' => $request->incoming_cash,
                 'outgoing' => $request->outgoing,
-                'total' => $total,
+
                 'cash' => $cash,
-                'card' => $request->card,
                 'note' => $request->note,
                 'created_at' => now(),
             ]);
@@ -125,15 +127,18 @@ class EmpolyeereportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $total = $request->incoming + $request->outgoing;
-        $cash = $request->incoming - $request->outgoing;
+        $incoming = $request->incoming_card + $request->incoming_cash;
+
+        $total = $incoming + $request->outgoing;
+        $cash = $incoming - $request->outgoing;
         empolyeereport::find($id)->update([
             'company' => $request->company,
-            'incoming' => $request->incoming,
+            'incoming' => $incoming,
+            'incoming_card' => $request->incoming_card,
+            'incoming_cash' => $request->incoming_cash,
             'outgoing' => $request->outgoing,
-            'total' => $total,
+
             'cash' => $cash,
-            'card' => $request->card,
             'note' => $request->note,
         ]);
 
@@ -173,7 +178,7 @@ class EmpolyeereportController extends Controller
     public function search(Request $request)
     {
         $output = ' ';
-        $empolyeereports = empolyeereport::where('company', 'Like', '%'.$request->search.'%')->orWhere('empolyee', 'Like', '%'.$request->search.'%')->orWhere('card', 'Like', '%'.$request->search.'%')->get();
+        $empolyeereports = empolyeereport::where('company', 'Like', '%'.$request->search.'%')->orWhere('empolyee', 'Like', '%'.$request->search.'%')->orWhere('incoming_card', 'Like', '%'.$request->search.'%')->orWhere('incoming_cash', 'Like', '%'.$request->search.'%')->orWhere('incoming_card', 'Like', '%'.$request->search.'%')->orWhere('created_at', 'Like', '%'.$request->search.'%')->get();
 
         foreach ($empolyeereports as $empolyeereport) {
             $output .=
@@ -181,9 +186,10 @@ class EmpolyeereportController extends Controller
             '<tr>
             <td> '.$empolyeereport->company.' </td>
             <td> '.$empolyeereport->empolyee.' </td>
-            <td> '.$empolyeereport->incoming.' </td>
+            <td> '.$empolyeereport->incoming_card.' </td>
+            <td> '.$empolyeereport->incoming_cash.' </td>
+            <td> '.$empolyeereport->incoming .' </td>
             <td> '.$empolyeereport->outgoing.' </td>
-            <td> '.$empolyeereport->card.' </td>
             <td> '.$empolyeereport->cash.' </td>
             <td> '.$empolyeereport->created_at.' </td>
             <td> '.'
