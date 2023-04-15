@@ -51,55 +51,55 @@
                                 @csrf
                               <div class="form-group">
                                 <label for="house_rent">House Rent</label>
-                                <input type="number" class="form-control text-light" id="house_rent" placeholder="House Rent" name="house_rent" >
+                                <input type="number" class="form-control text-light" id="house_rent" min="0" placeholder="House Rent" name="house_rent" >
                               </div>
                               <div class="form-group">
                                 <label for="gard_bill">Card Bill</label>
-                                <input type="number" class="form-control text-light" id="gard_bill" placeholder="Card Bill" name="gard_bill">
+                                <input type="number" class="form-control text-light" id="gard_bill" min="0" placeholder="Card Bill" name="gard_bill">
                               </div>
                               <div class="form-group">
                                 <label for="electricity_bill">Electricity Bill</label>
-                                <input type="number" class="form-control text-light" id="electricity_bill" placeholder="Electricity Bill" name="electricity_bill">
+                                <input type="number" class="form-control text-light" id="electricity_bill" min="0" placeholder="Electricity Bill" name="electricity_bill">
                               </div>
                               <div class="form-group">
                                 <label for="sewerage_bill">Sewerage Bill</label>
-                                <input type="number" class="form-control text-light" id="sewerage_bill" placeholder="Sewerage Bill" name="sewerage_bill">
+                                <input type="number" class="form-control text-light" id="sewerage_bill" min="0" placeholder="Sewerage Bill" name="sewerage_bill">
                               </div>
 
 
                               <div class="form-group">
                                 <label for="Water_bill">Water Bill</label>
-                                <input type="number" class="form-control text-light" id="Water_bill" placeholder="Water Bill" name="water_bill">
+                                <input type="number" class="form-control text-light" id="Water_bill" min="0" placeholder="Water Bill" name="water_bill">
                               </div>
                               <div class="form-group">
                                 <label for="Fewa_bill">Fewa Bill</label>
-                                <input type="number" class="form-control text-light" id="Fewa_bill" placeholder="Fewa Bill" name="fewa_bill">
+                                <input type="number" class="form-control text-light" id="Fewa_bill" min="0" placeholder="Fewa Bill" name="fewa_bill">
                               </div><div class="form-group">
                                 <label for="Wifi_bill">Wifi Bill</label>
-                                <input type="number" class="form-control text-light" id="Wifi_bill" placeholder="Wifi Bill" name="wifi_bill">
+                                <input type="number" class="form-control text-light" id="Wifi_bill" min="0" placeholder="Wifi Bill" name="wifi_bill">
                               </div>
 
 
                               <div class="form-group">
                                 <label for="expanse">Expanse</label>
-                                <input type="number" class="form-control text-light" id="expanse" placeholder="expanse" name="expanse">
+                                <input type="number" class="form-control text-light" id="expanse" min="0" placeholder="expanse" name="expanse">
                               </div>
                               <div class="form-group">
                                 <label for="personal">Personal</label>
-                                <input type="number" class="form-control text-light" id="personal" placeholder="personal" name="personal">
+                                <input type="number" class="form-control text-light" id="personal" min="0" placeholder="personal" name="personal">
                               </div>
 
                               <div class="form-group">
                                 <label for="a">A</label>
-                                <input type="number" class="form-control text-light" id="a" placeholder="A" name="a">
+                                <input type="number" class="form-control text-light" min="0" id="a" placeholder="A" name="a">
                               </div>
                               <div class="form-group">
                                 <label for="b">B</label>
-                                <input type="number" class="form-control text-light" id="b" placeholder="B" name="b">
+                                <input type="number" class="form-control text-light" min="0" id="b" placeholder="B" name="b">
                               </div>
                               <div class="form-group">
                                 <label for="c">C</label>
-                                <input type="number" class="form-control text-light" id="c" placeholder="C" name="c">
+                                <input type="number" class="form-control text-light" min="0" id="c" placeholder="C" name="c">
                               </div>
 
                               <div class="form-group">

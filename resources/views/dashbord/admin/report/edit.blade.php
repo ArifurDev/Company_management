@@ -42,15 +42,15 @@
                                 @csrf
                               <div class="form-group">
                                 <label for="house_rent">House Rent</label>
-                                <input type="number" class="form-control text-light" id="house_rent" placeholder="house_rent" name="house_rent" value="{{ $adminriports->house_rent }}">
+                                <input type="number" class="form-control text-light" id="house_rent" placeholder="house_rent" min="0" name="house_rent" value="{{ $adminriports->house_rent }}">
                               </div>
                               <div class="form-group">
                                 <label for="gard_bill">Gard Bill</label>
-                                <input type="number" class="form-control text-light" id="gard_bill" placeholder="gard_bill" name="gard_bill" value="{{ $adminriports->gard_bill }}">
+                                <input type="number" class="form-control text-light" id="gard_bill" placeholder="gard_bill" min="0" name="gard_bill" value="{{ $adminriports->gard_bill }}">
                               </div>
                               <div class="form-group">
                                 <label for="electricity_bill">Electricity Bill</label>
-                                <input type="number" class="form-control text-light" id="electricity_bill" placeholder="electricity_bill" name="electricity_bill" value="{{ $adminriports->electricity_bill }}">
+                                <input type="number" class="form-control text-light" id="electricity_bill" placeholder="electricity_bill" min="0" name="electricity_bill" value="{{ $adminriports->electricity_bill }}">
                               </div>
                               <div class="form-group">
                                 <label for="sewerage_bill">Sewerage Bill</label>
@@ -58,11 +58,11 @@
                               </div>
                               <div class="form-group">
                                 <label for="expanse">Expanse</label>
-                                <input type="number" class="form-control text-light" id="expanse" placeholder="expanse" name="expanse" value="{{ $adminriports->expanse }}">
+                                <input type="number" class="form-control text-light" id="expanse" placeholder="expanse" name="expanse" min="0" value="{{ $adminriports->expanse }}">
                               </div>
                               <div class="form-group">
                                 <label for="personal">Personal</label>
-                                <input type="number" class="form-control text-light" id="personal" placeholder="personal" name="personal" value="{{ $adminriports->personal }}">
+                                <input type="number" class="form-control text-light" id="personal" placeholder="personal" name="personal" min="0" value="{{ $adminriports->personal }}">
                               </div>
                               <button type="submit" class="btn btn-primary me-2">Update</button>
                             </form>

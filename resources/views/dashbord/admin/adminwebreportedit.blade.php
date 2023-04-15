@@ -92,7 +92,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="verifi_code">Verification Code</label>
-                                <input type="number" class="form-control text-light" id="verifi_code" placeholder="verifi_code" name="verifi_code" value="{{ $sitereports->verifi_code }}">
+                                <input type="text" class="form-control text-light" id="verifi_code" placeholder="verifi_code" name="verifi_code" value="{{ $sitereports->verifi_code }}">
                               </div>
                               <div class="form-group">
                                 <label for="payment_date">Payment Date</label>

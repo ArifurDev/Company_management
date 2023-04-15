@@ -75,7 +75,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="user_id">User Id</label>
-                                <input type="number" class="form-control text-light" id="user_id" placeholder="user_id" name="user_id">
+                                <input type="number" class="form-control text-light" id="user_id" min="0" placeholder="user_id" name="user_id">
                               </div>
                               <div class="form-group">
                                 <label for="password">Passeord</label>
@@ -92,13 +92,13 @@
                               </div>
                               <div class="form-group">
                                 <label for="Number">Number</label>
-                                <input type="text" class="form-control text-light" id="Number" placeholder="Number" name="number">
+                                <input type="text" class="form-control text-light" min="0" id="Number" placeholder="Number" name="number">
                               </div>
 
 
                               <div class="form-group">
                                 <label for="verifi_code">Verification Code</label>
-                                <input type="number" class="form-control text-light" id="verifi_code" placeholder="verifi_code" name="verifi_code">
+                                <input type="text" class="form-control text-light" id="verifi_code"  placeholder="verifi_code" name="verifi_code">
                               </div>
                               <div class="form-group">
                                 <label for="payment_date">Payment Date</label>

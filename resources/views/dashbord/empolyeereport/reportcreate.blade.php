@@ -51,16 +51,16 @@
                                 @csrf
                               <div class="form-group">
                                 <label for="exampleInputIncoming">Incoming card</label>
-                                <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Incoming card" name="incoming_card">
+                                <input type="number" class="form-control text-light" id="exampleInputIncoming" min="0" placeholder="Incoming card" name="incoming_card">
                               </div>
                               <div class="form-group">
                                 <label for="exampleInputIncoming">Incoming cash</label>
-                                <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Incoming cash" name="incoming_cash">
+                                <input type="number" class="form-control text-light" id="exampleInputIncoming" min="0" placeholder="Incoming cash" name="incoming_cash">
                               </div>
 
                               <div class="form-group">
                                 <label for="exampleInputIncoming">Outgoing</label>
-                                <input type="number" class="form-control text-light" id="exampleInputIncoming" placeholder="Outgoing" name="outgoing">
+                                <input type="number" class="form-control text-light" id="exampleInputIncoming" min="0" placeholder="Outgoing" name="outgoing">
                               </div>
 
 
