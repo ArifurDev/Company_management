@@ -11,6 +11,7 @@ use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LoanrecivesiduleController;
 use App\Http\Controllers\LoansendshiduleController;
 use App\Http\Controllers\ReciveloanController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*

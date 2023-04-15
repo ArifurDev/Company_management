@@ -55,7 +55,7 @@ class DashbordController extends Controller
         //     'to_date' => 'required',
         // ]);
 
-        $empolyees_reports = empolyeereport::when($request->filled('form_date') && $request->filled('to_daate'), function ($query) {
+        $empolyees_reports = empolyeereport::when($request->filled('form_date') && $request->filled('to_date'), function ($query) {
             return $query->whereBetween('created_at', [request()->form_date, request()->to_date]);
         })->when($request->filled('company'), function ($query) {
             return   $query->where('company', request()->company);
