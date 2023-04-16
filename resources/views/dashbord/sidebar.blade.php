@@ -31,6 +31,7 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+    @if (Auth::user()->role === 'admin')
     <li class="nav-item menu-items">
         <a class="nav-link" href="{{ route('company.create') }}">
           <span class="menu-icon">
@@ -39,6 +40,8 @@
           <span class="menu-title">Company</span>
         </a>
       </li>
+
+    @endif
 
 
     <li class="nav-item menu-items">
@@ -51,15 +54,19 @@
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyee') }}">Create Empolyee</a></li>
+            @if (Auth::user()->role === 'admin')
+            <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyee') }}">Create Empolyee</a></li>
+            @endif
+
           <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyeereport') }}">Daliy Report</a></li>
+          @if (Auth::user()->role === 'admin')
           <li class="nav-item"> <a class="nav-link" href="{{ route('show.empolyeereport') }}">Show Empolyees Report</a></li>
+          @endif
         </ul>
       </div>
     </li>
-
-
-      <li class="nav-item menu-items">
+    @if (Auth::user()->role === 'admin')
+    <li class="nav-item menu-items">
         <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
           <span class="menu-icon">
             <i class="mdi mdi-account-star"></i>
@@ -78,6 +85,10 @@
           </ul>
         </div>
       </li>
+    @endif
+
+
+      @if (Auth::user()->role === 'admin')
       <li class="nav-item menu-items">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-icon">
@@ -93,6 +104,9 @@
           </ul>
         </div>
       </li>
+      @endif
+
+      @if (Auth::user()->role === 'admin')
       <li class="nav-item menu-items">
         <a class="nav-link" href="{{ route('payment.date.edit') }}">
           <span class="menu-icon">
@@ -101,6 +115,8 @@
           <span class="menu-title">All Payment Date</span>
         </a>
       </li>
+      @endif
+
 
 
   </ul>

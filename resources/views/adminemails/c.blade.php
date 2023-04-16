@@ -4,5 +4,4 @@
   $to_day = $date->format('Y-m-d')
 @endphp
 <h1>today {{ $to_day }}</h1>
-<p> Have you paid your employees?
-        If you haven't yet, pay them urgently</p>
+<p> Have you paid -C</p>

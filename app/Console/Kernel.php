@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('users:sendmail')->cron('* * * * *');
-        $schedule->command('users:sendmail')->twiceDaily(10, 12);
+        $schedule->command('users:sendmail')->cron('* * * * *');
+        // $schedule->command('users:sendmail')->twiceDaily(10, 12);
         $schedule->command('admin:cardmail')->cron('* * * * *');
         $schedule->command('admin:bmail')->cron('* * * * *');
         $schedule->command('admin:amail')->cron('* * * * *');

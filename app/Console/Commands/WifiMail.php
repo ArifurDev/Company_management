@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Billdate;
+use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class WifiMail extends Command
 {
@@ -27,6 +30,20 @@ class WifiMail extends Command
      */
     public function handle()
     {
-        return Command::SUCCESS;
+        $today = now()->format('Y-m-d');
+        $empolyee = Billdate::whereDate('wifi_bill',$today);
+
+        if ($empolyee) {
+
+            $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.wifi', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid wifi bill?');
+            });
+
+        }
     }
 }

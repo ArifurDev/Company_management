@@ -103,16 +103,26 @@
                                       </div>
                                     </div>
                                     <div class="row">
-                                    
+
                                       <div class="col-md-6">
                                         <div class="form-group row">
                                           <label class="col-sm-3 col-form-label">Company</label>
                                           <div class="col-sm-9">
+                                            @if (Auth::user()->role === 'admin')
                                             <select class="form-control text-light" name="company">
+                                                <option value="">select company</option>
                                               @foreach ($componies as $compony)
                                                <option value="{{ $compony->compony_name }}">{{ $compony->compony_name }}</option>
                                               @endforeach
                                             </select>
+                                            @else
+                                            <select class="form-control text-light" name="company">
+
+                                              @foreach ($componies as $compony)
+                                               <option value="{{ $compony->compony_name }}">{{ $compony->compony_name }}</option>
+                                              @endforeach
+                                            </select>
+                                            @endif
                                           </div>
                                         </div>
                                       </div>
@@ -156,7 +166,7 @@
                                             <td> {{ $empolyee->incoming }} tk</td>
                                             <td> {{ $empolyee->outgoing }} tk</td>
                                             <td> {{ $empolyee->cash }} tk</td>
-                                            <td>{{ $empolyee->created_at->format('d/m/Y') }}</td>
+                                            <td>{{ $empolyee->created_at->format('m/d/Y') }}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="{{ route('details.empolyeereport',['id'=>$empolyee->id]) }}" title="details">
@@ -189,7 +199,7 @@
                                             <td>{{ $total_incoming_cash }} cash</td>
                                             <td>{{ $total_incoming }} tk</td>
                                             <td>{{ $total_outgoing }} tk</td>
-                                            <td></td>
+
                                             <td>{{ $total_cash }} tk</td>
                                             <td></td>
                                             <td></td>
