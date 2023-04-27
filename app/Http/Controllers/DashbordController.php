@@ -72,9 +72,9 @@ class DashbordController extends Controller
     }
     public function test()
     {
-        return $today = now()->format('d');
+        // return $today = now()->format('d');
     //     $empolyee = Billdate::whereDate('a',$today)
-        $a= Billdate::all()->value('a');
+        $a= Billdate::value('a')->format('d');
        return $a;
     }
 }
