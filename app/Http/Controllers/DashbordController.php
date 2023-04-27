@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\adminriports;
+use App\Models\Billdate;
 use App\Models\comopany;
 use App\Models\empolyeereport;
 use App\Models\User;
@@ -68,5 +69,12 @@ class DashbordController extends Controller
 
             //  $empolyees_reports = empolyeereport::where('company',$compony)->orWhere('card',$request->payment)->whereBetween('created_at',[$form_date."00:00:00",$to_date."23:59:59"])->get();
             return view('dashbord.showsearchresult', compact('empolyees_reports'));
+    }
+    public function test()
+    {
+        return $today = now()->format('d');
+    //     $empolyee = Billdate::whereDate('a',$today)
+        $a= Billdate::all()->value('a');
+       return $a;
     }
 }

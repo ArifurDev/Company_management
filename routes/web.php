@@ -138,7 +138,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
      * bill payment date
      */
         Route::controller(BilldateController::class)->middleware('RoleChecker')->group(function () {
-           
+
             Route::get('payment/date', 'edit')->name('payment.date.edit');
             Route::post('payment/date/{id}', 'update')->name('payment.date.update');
 
@@ -182,4 +182,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('admin/loan/recive/restor/{id}', 'restor')->name('adminLoanReportRecive.restor');
         Route::get('admin/loan/recive/delete/{id}', 'delete')->name('adminLoanReportRecive.delete');
     });
+    Route::get('/test',[DashbordController::class, 'test']);
 });

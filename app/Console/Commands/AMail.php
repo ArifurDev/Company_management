@@ -30,7 +30,7 @@ class AMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
+        $today = now()->format('d');
         $empolyee = Billdate::whereDate('a',$today);
 
         if ($empolyee) {
