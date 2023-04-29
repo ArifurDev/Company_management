@@ -30,20 +30,20 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('users:sendmail')->cron('* * * * *');
+        $schedule->command('users:sendmail')->twiceDaily(8, 10);
         // $schedule->command('users:sendmail')->twiceDaily(10, 12);
-        $schedule->command('admin:cardmail')->cron('* * * * *');
-        $schedule->command('admin:bmail')->cron('* * * * *');
-        $schedule->command('admin:amail')->cron('* * * * *');
+        $schedule->command('admin:cardmail')->twiceDaily(8, 10);
+        $schedule->command('admin:bmail')->twiceDaily(8, 10);
+        $schedule->command('admin:amail')->twiceDaily(8, 10);
 
-        $schedule->command('admin:fewamail')->cron('* * * * *');
-        $schedule->command('admin:electricitymail')->cron('* * * * *');
-        $schedule->command('admin:cmail')->cron('* * * * *');
+        $schedule->command('admin:fewamail')->twiceDaily(8, 10);
+        $schedule->command('admin:electricitymail')->twiceDaily(8, 10);
+        $schedule->command('admin:cmail')->twiceDaily(8, 10);
 
-        $schedule->command('admin:seweragemail')->cron('* * * * *');
-        $schedule->command('admin:housemail')->cron('* * * * *');
-        $schedule->command('admin:watermail')->cron('* * * * *');
-        $schedule->command('admin:wifimail')->cron('* * * * *');
+        $schedule->command('admin:seweragemail')->twiceDaily(8, 10);
+        $schedule->command('admin:housemail')->twiceDaily(8, 10);
+        $schedule->command('admin:watermail')->twiceDaily(8, 10);
+        $schedule->command('admin:wifimail')->twiceDaily(8, 10);
     }
 
     /**
