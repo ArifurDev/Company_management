@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('billdates', function (Blueprint $table) {
             $table->id();
-            $table->date('house_rent')->nullable();
-            $table->date('gard_bill')->nullable();
-            $table->date('electricity_bill')->nullable();
-            $table->date('sewerage_bill')->nullable();
-            $table->date('water_bill')->nullable();
-            $table->date('fewa_bill')->nullable();
-            $table->date('wifi_bill')->nullable();
-            $table->date('a')->nullable();
-            $table->date('b')->nullable();
-            $table->date('c')->nullable();
-            $table->date('empolyee')->nullable();
+            $table->string('house_rent')->nullable();
+            $table->string('gard_bill')->nullable();
+            $table->string('electricity_bill')->nullable();
+            $table->string('sewerage_bill')->nullable();
+            $table->string('water_bill')->nullable();
+            $table->string('fewa_bill')->nullable();
+            $table->string('wifi_bill')->nullable();
+            $table->string('a')->nullable();
+            $table->string('b')->nullable();
+            $table->string('c')->nullable();
+            $table->string('empolyee')->nullable();
 
             $table->timestamps();
         });
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('billdates');
+        Schema::dropIfExists('billstrings');
     }
 };

@@ -30,10 +30,10 @@ class HouseMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
-        $empolyee = Billdate::whereDate('house_rent',$today);
-
-        if ($empolyee) {
+        
+        $today = now()->format('d');
+        $house_rent= Billdate::value('house_rent');
+        if ($today === $house_rent) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];

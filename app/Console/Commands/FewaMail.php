@@ -30,10 +30,10 @@ class FewaMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
-        $empolyee = Billdate::whereDate('fewa_bill',$today);
 
-        if ($empolyee) {
+        $today = now()->format('d');
+        $fewa_bill= Billdate::value('fewa_bill');
+        if ($today === $fewa_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];

@@ -17,10 +17,10 @@ class paymentBillseeder extends Seeder
     {
          //payment bill bydefult
          Billdate::create([
-            'house_rent' => '2023-04-14',
+            'house_rent' => '14',
             'gard_bill' => null,
             'electricity_bill' => null,
-            'sewerage_bill' => null,
+            'sewerage_bill' => '14',
             'water_bill' => null,
             'fewa_bill' => null,
             'wifi_bill' => null,

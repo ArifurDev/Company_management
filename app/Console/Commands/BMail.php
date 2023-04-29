@@ -30,10 +30,11 @@ class BMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
-        $empolyee = Billdate::whereDate('b',$today);
 
-        if ($empolyee) {
+
+        $today = now()->format('d');
+        $b= Billdate::value('b');
+        if ($today === $b) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];

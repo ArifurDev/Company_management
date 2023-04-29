@@ -30,10 +30,10 @@ class ElectricityMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
-        $empolyee = Billdate::whereDate('electricity_bill',$today);
-
-        if ($empolyee) {
+        
+        $today = now()->format('d');
+        $electricity_bill= Billdate::value('electricity_bill');
+        if ($today === $electricity_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];

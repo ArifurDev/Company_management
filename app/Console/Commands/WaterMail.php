@@ -30,10 +30,9 @@ class WaterMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
-        $empolyee = Billdate::whereDate('water_bill',$today);
-
-        if ($empolyee) {
+        $today = now()->format('d');
+        $water_bill= Billdate::value('water_bill');
+        if ($today === $water_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];

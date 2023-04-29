@@ -56,7 +56,7 @@
                                         <div class="form-group row">
                                           <label class="col-sm-3 col-form-label">House Rent</label>
                                           <div class="col-sm-9">
-                                            <input type="date" class="form-control" name="house_rent" value="{{ $payment_date->house_rent }}">
+                                            <input type="number" min="1" max="31" class="form-control" name="house_rent" value="{{ $payment_date->house_rent }}">
                                           </div>
                                         </div>
                                       </div>
@@ -64,7 +64,7 @@
                                         <div class="form-group row">
                                           <label class="col-sm-3 col-form-label">Card Bill</label>
                                           <div class="col-sm-9">
-                                            <input type="date" class="form-control" name="gard_bill" value="{{ $payment_date->gard_bill }}">
+                                            <input type="number" min="1" max="31" class="form-control" name="gard_bill" value="{{ $payment_date->gard_bill }}">
                                           </div>
                                         </div>
                                       </div>
@@ -74,7 +74,7 @@
                                           <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Electricity Bill</label>
                                             <div class="col-sm-9">
-                                              <input type="date" class="form-control" name="electricity_bill" value="{{ $payment_date->electricity_bill }}">
+                                              <input type="number" min="1" max="31" class="form-control" name="electricity_bill" value="{{ $payment_date->electricity_bill }}">
                                             </div>
                                           </div>
                                         </div>
@@ -82,7 +82,7 @@
                                           <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sewerage Bill</label>
                                             <div class="col-sm-9">
-                                              <input type="date" class="form-control" name="sewerage_bill" value="{{ $payment_date->sewerage_bill }}">
+                                              <input type="number" min="1" max="31" class="form-control" name="sewerage_bill" value="{{ $payment_date->sewerage_bill }}">
                                             </div>
                                           </div>
                                         </div>
@@ -92,7 +92,7 @@
                                           <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Water Bill</label>
                                             <div class="col-sm-9">
-                                              <input type="date" class="form-control" name="water_bill" value="{{ $payment_date->water_bill }}">
+                                              <input type="number" min="1" max="31" class="form-control" name="water_bill" value="{{ $payment_date->water_bill }}">
                                             </div>
                                           </div>
                                         </div>
@@ -100,7 +100,7 @@
                                           <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">	Fewa Bill</label>
                                             <div class="col-sm-9">
-                                              <input type="date" class="form-control" name="fewa_bill" value="{{ $payment_date->fewa_bill }}">
+                                              <input type="number" min="1" max="31" class="form-control" name="fewa_bill" value="{{ $payment_date->fewa_bill }}">
                                             </div>
                                           </div>
                                         </div>
@@ -110,7 +110,7 @@
                                           <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Wifi Bill</label>
                                             <div class="col-sm-9">
-                                              <input type="date" class="form-control" name="wifi_bill" value="{{ $payment_date->wifi_bill }}">
+                                              <input type="number" min="1" max="31" class="form-control" name="wifi_bill" value="{{ $payment_date->wifi_bill }}">
                                             </div>
                                           </div>
                                         </div>
@@ -118,7 +118,7 @@
                                           <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">A</label>
                                             <div class="col-sm-9">
-                                              <input type="date" class="form-control" name="a" value="{{ $payment_date->a }}">
+                                              <input type="number" min="1" max="31" class="form-control" name="a" value="{{ $payment_date->a }}">
                                             </div>
                                           </div>
                                         </div>
@@ -128,7 +128,7 @@
                                           <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">B</label>
                                             <div class="col-sm-9">
-                                              <input type="date" class="form-control" name="b" value="{{ $payment_date->b }}">
+                                              <input type="number" min="1" max="31" class="form-control" name="b" value="{{ $payment_date->b }}">
                                             </div>
                                           </div>
                                         </div>
@@ -136,7 +136,7 @@
                                           <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">c</label>
                                             <div class="col-sm-9">
-                                              <input type="date" class="form-control" name="c" value="{{ $payment_date->c }}">
+                                              <input type="number" min="1" max="31" class="form-control" name="c" value="{{ $payment_date->c }}">
                                             </div>
                                           </div>
                                         </div>
@@ -146,7 +146,7 @@
                                           <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Empolyee</label>
                                             <div class="col-sm-9">
-                                              <input type="date" class="form-control" name="empolyee" value="{{ $payment_date->empolyee }}">
+                                              <input type="number" min="1" max="31" class="form-control" name="empolyee" value="{{ $payment_date->empolyee }}">
                                             </div>
                                           </div>
                                         </div>

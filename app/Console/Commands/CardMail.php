@@ -30,10 +30,11 @@ class CardMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
-        $empolyee = Billdate::whereDate('gard_bill',$today);
 
-        if ($empolyee) {
+
+        $today = now()->format('d');
+        $gard_bill= Billdate::value('gard_bill');
+        if ($today === $gard_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];

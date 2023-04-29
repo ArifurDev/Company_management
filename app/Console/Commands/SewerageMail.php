@@ -30,10 +30,9 @@ class SewerageMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
-        $empolyee = Billdate::whereDate('sewerage_bill',$today);
-
-        if ($empolyee) {
+        $today = now()->format('d');
+        $sewerage_bill= Billdate::value('sewerage_bill');
+        if ($today === $sewerage_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];

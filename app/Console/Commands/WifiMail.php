@@ -30,10 +30,9 @@ class WifiMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
-        $empolyee = Billdate::whereDate('wifi_bill',$today);
-
-        if ($empolyee) {
+        $today = now()->format('d');
+        $wifi_bill= Billdate::value('wifi_bill');
+        if ($today === $wifi_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];

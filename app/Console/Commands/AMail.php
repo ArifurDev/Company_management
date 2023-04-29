@@ -31,9 +31,8 @@ class AMail extends Command
     public function handle()
     {
         $today = now()->format('d');
-        $empolyee = Billdate::whereDate('a',$today);
-
-        if ($empolyee) {
+        $a= Billdate::value('a');
+        if ($today === $a) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];

@@ -20,6 +20,7 @@ class BilldateController extends Controller
     }
     public function update(Request $request,$id)
     {
+       
        Billdate::find($id)->update([
             'house_rent' => $request->house_rent,
             'gard_bill' => $request->gard_bill,

@@ -30,10 +30,10 @@ class CMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
-        $empolyee = Billdate::whereDate('c',$today);
-
-        if ($empolyee) {
+        
+        $today = now()->format('d');
+        $c= Billdate::value('c');
+        if ($today === $c) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];

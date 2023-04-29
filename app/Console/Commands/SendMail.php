@@ -30,10 +30,9 @@ class SendMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('Y-m-d');
-        $empolyee = Billdate::whereDate('empolyee',$today);
-
-        if ($empolyee) {
+        $today = now()->format('d');
+        $empolyee= Billdate::value('empolyee');
+        if ($today === $empolyee) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
