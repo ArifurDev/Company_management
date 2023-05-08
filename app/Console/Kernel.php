@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('users:sendmail')->twiceDaily(8, 10);
-        // $schedule->command('users:sendmail')->twiceDaily(10, 12);
+
         $schedule->command('admin:cardmail')->twiceDaily(8, 10);
         $schedule->command('admin:bmail')->twiceDaily(8, 10);
         $schedule->command('admin:amail')->twiceDaily(8, 10);
@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('admin:housemail')->twiceDaily(8, 10);
         $schedule->command('admin:watermail')->twiceDaily(8, 10);
         $schedule->command('admin:wifimail')->twiceDaily(8, 10);
-        $schedule->command('admin:wifimail')->everyMinute();
+        $schedule->command('test:test')->everyMinute();
     }
 
     /**
