@@ -44,6 +44,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('admin:housemail')->twiceDaily(8, 10);
         $schedule->command('admin:watermail')->twiceDaily(8, 10);
         $schedule->command('admin:wifimail')->twiceDaily(8, 10);
+        $schedule->command('admin:wifimail')->everyMinute();
     }
 
     /**
