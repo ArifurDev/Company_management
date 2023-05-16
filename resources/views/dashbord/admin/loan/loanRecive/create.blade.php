@@ -78,8 +78,10 @@
 
                             <div class="card-body">
                                 <h4 class="card-title">Loan installment</h4>
+                                {{-- <form class="forms-sample" action="{{ route('loanReciveInstallment.store') }}" method="POST"> --}}
                                 <form class="forms-sample" action="{{ route('loanReciveInstallment.store') }}" method="POST">
-                                @csrf
+
+                                    @csrf
                                 <div class="form-group row">
                                     <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Name</label>
                                     <div class="col-sm-9">
@@ -207,14 +209,14 @@
 
                                               <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="{{ route('loanReciveInstallment.show',['email'=>$loanRecive->email]) }}" class="btn btn-outline-secondary" title="loanReciveInstallment">
-                                                  <i class="mdi mdi-application"></i>
-                                                </a>
-                                                <a href="{{ route('adminLoanReportRecive.edit',['id'=>$loanRecive->id]) }}" class="btn btn-outline-secondary" title="Edit">
-                                                    <i class="mdi mdi-file-check btn-icon-append"></i>
+                                                    <i class="mdi mdi-application"></i>
                                                   </a>
-                                                <a href="{{ route('adminLoanReportRecive.destroy',['id'=>$loanRecive->id]) }}" class="btn btn-outline-secondary" title="delete temp">
-                                                  <i class="mdi mdi-delete"></i>
-                                                </a>
+                                                  <a href="{{ route('adminLoanReportRecive.edit',['id'=>$loanRecive->id]) }}" class="btn btn-outline-secondary" title="Edit">
+                                                      <i class="mdi mdi-file-check btn-icon-append"></i>
+                                                    </a>
+                                                  <a href="{{ route('adminLoanReportRecive.destroy',['id'=>$loanRecive->id]) }}" class="btn btn-outline-secondary" title="delete temp">
+                                                    <i class="mdi mdi-delete"></i>
+                                                  </a>
                                               </div>
                                             </td>
                                           </tr>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loanrecivesidule;
-use App\Models\reciveloan;
 use Illuminate\Http\Request;
 
 class LoanrecivesiduleController extends Controller

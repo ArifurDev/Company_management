@@ -11,6 +11,7 @@ use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LoanrecivesiduleController;
 use App\Http\Controllers\LoansendshiduleController;
 use App\Http\Controllers\ReciveloanController;
+use App\Models\Loanrecivesidule;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -175,12 +176,23 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::controller(ReciveloanController::class)->middleware('RoleChecker')->group(function () {
         Route::get('admin/loan/recive', 'create')->name('adminLoanReportRecive.create');
         Route::post('admin/loan/recive', 'store')->name('adminLoanReportRecive.store');
-        Route::get('admin/loan/recive/show', 'index')->name('adminLoanReportRecive.show');
+        // Route::get('admin/loan/recive/show', 'create')->name('adminLoanReportRecive.show');
         Route::get('admin/loan/recive/edit/{id}', 'edit')->name('adminLoanReportRecive.edit');
         Route::post('admin/loan/recive/edit/{id}', 'update')->name('adminLoanReportRecive.update');
         Route::get('admin/loan/recive/destroy/{id}', 'destroy')->name('adminLoanReportRecive.destroy');
         Route::get('admin/loan/recive/restor/{id}', 'restor')->name('adminLoanReportRecive.restor');
         Route::get('admin/loan/recive/delete/{id}', 'delete')->name('adminLoanReportRecive.delete');
     });
-    
+
+     //loan recive installment
+     Route::controller(LoanrecivesiduleController::class)->middleware('RoleChecker')->group(function () {
+        Route::post('admin/loan/recive/installment', 'store')->name('loanReciveInstallment.store');
+        Route::get('admin/loan/recive/installment/{email}', 'show')->name('loanReciveInstallment.show');
+        Route::get('recive/installment/edit/{id}', 'edit')->name('loanReciveInstallment.edit');
+        Route::post('recive/installment/edit/{id}', 'update')->name('loanReciveInstallment.update');
+        Route::get('recive/installment/destroy/{id}', 'destroy')->name('loanReciveInstallment.destroy');
+        Route::get('recive/installment/restor/{id}', 'restor')->name('loanReciveInstallment.restor');
+        Route::get('recive/installment/delete/{id}', 'delete')->name('loanReciveInstallment.delete');
+    });
+
 });
