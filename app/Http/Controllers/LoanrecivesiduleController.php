@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Billdate;
 use App\Models\Loanrecivesidule;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class LoanrecivesiduleController extends Controller
 {
@@ -60,4 +63,10 @@ class LoanrecivesiduleController extends Controller
         Loanrecivesidule::onlyTrashed()->find($id)->forceDelete();
         return back()->withSuccess('Delete forever!');
     }
+
+
+
+
+
+    
 }

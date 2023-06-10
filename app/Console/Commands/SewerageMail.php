@@ -32,7 +32,10 @@ class SewerageMail extends Command
     {
         $today = now()->format('d');
         $sewerage_bill= Billdate::value('sewerage_bill');
-        if ($today === $sewerage_bill) {
+
+        $b = $sewerage_bill-1;
+
+        if ($today == $sewerage_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
@@ -43,6 +46,16 @@ class SewerageMail extends Command
                 $message->to($emails)->subject('Have You Paid sewerage bill?');
             });
 
-        }
+        }elseif ($today == $b) {
+                 $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid sewerage bill?');
+            });
+         }
+        
     }
 }

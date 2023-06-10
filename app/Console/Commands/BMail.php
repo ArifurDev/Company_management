@@ -32,9 +32,13 @@ class BMail extends Command
     {
 
 
+
         $today = now()->format('d');
         $b= Billdate::value('b');
-        if ($today === $b) {
+
+        $a = $b-1;
+
+        if ($today == $b) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
@@ -45,6 +49,16 @@ class BMail extends Command
                 $message->to($emails)->subject('Have You Paid B bill?');
             });
 
-        }
+         }elseif ($today == $a) {
+                 $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid A bill?');
+            });
+         }
+
     }
 }

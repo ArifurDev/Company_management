@@ -32,7 +32,8 @@ class SendMail extends Command
     {
         $today = now()->format('d');
         $empolyee= Billdate::value('empolyee');
-        if ($today === $empolyee) {
+        $b = $empolyee-1;
+        if ($today == $empolyee) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
@@ -43,7 +44,17 @@ class SendMail extends Command
                 $message->to($emails)->subject('Have You Paid Your Employees?');
             });
 
-        }
+        }elseif ($today == $b) {
+                 $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid Your Employees?');
+            });
+         }
+
 
         // $adminMail = User::where('role', 'admin')->select('email')->get();
         // $emails = [];

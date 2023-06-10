@@ -30,9 +30,13 @@ class WifiMail extends Command
      */
     public function handle()
     {
+
         $today = now()->format('d');
         $wifi_bill= Billdate::value('wifi_bill');
-        if ($today === $wifi_bill) {
+
+        $b = $wifi_bill-1;
+
+        if ($today == $wifi_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
@@ -43,6 +47,16 @@ class WifiMail extends Command
                 $message->to($emails)->subject('Have You Paid wifi bill?');
             });
 
-        }
+        }elseif ($today == $b) {
+                 $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid wifi bill?');
+            });
+         }
+        
     }
 }

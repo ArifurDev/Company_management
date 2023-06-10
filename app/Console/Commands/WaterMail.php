@@ -30,9 +30,13 @@ class WaterMail extends Command
      */
     public function handle()
     {
+
         $today = now()->format('d');
         $water_bill= Billdate::value('water_bill');
-        if ($today === $water_bill) {
+
+        $b = $water_bill-1;
+
+        if ($today == $water_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
@@ -43,6 +47,15 @@ class WaterMail extends Command
                 $message->to($emails)->subject('Have You Paid water bill?');
             });
 
-        }
+        }elseif ($today == $b) {
+                 $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid water bill?');
+            });
+         }
     }
 }

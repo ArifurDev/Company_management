@@ -57,7 +57,7 @@
 
 
                                         <div class="col-sm-9">
-                                                    <input type="search" class="form-control" name="search" id="search" placeholder="search here......">
+                                                    <input type="search" class="form-control text-light" name="search" id="search" placeholder="search here......">
                                                 </div>
                                             </div>
                                         </div>
@@ -108,7 +108,7 @@
                                                                                     class="col-sm-3 col-form-label">Email</label>
                                                                                 <div class="col-sm-9">
                                                                                     <input type="email"
-                                                                                        class="form-control"
+                                                                                        class="form-control text-light"
                                                                                         name="email" >
                                                                                 </div>
                                                                             </div>
@@ -137,7 +137,7 @@
                                                                                 <label
                                                                                     class="col-sm-3 col-form-label">Number</label>
                                                                                 <div class="col-sm-9">
-                                                                                    <input type="number"
+                                                                                    <input type="text"
                                                                                         class="form-control text-light"
                                                                                         name="number" >
                                                                                 </div>
@@ -202,13 +202,13 @@
                                     <table class="table table-dark">
                                         <thead>
                                             <tr>
-                                                <th>Company </th>
-                                                <th>Name </th>
-                                                <th>Email</th>
-                                                <th>Role</th>
-                                                <th>Number</th>
-                                                <th>Created at </th>
-                                                <th>Acction</th>
+                                                <th  class="text-light">Company </th>
+                                                <th  class="text-light">Name </th>
+                                                <th  class="text-light">Email</th>
+                                                <th  class="text-light">Role</th>
+                                                <th  class="text-light">Number</th>
+                                                <th  class="text-light">Created at </th>
+                                                <th  class="text-light">Acction</th>
                                             </tr>
                                         </thead>
 
@@ -217,12 +217,12 @@
 
 
                                             <tr>
-                                                <td> {{ $empolyees->compony_name }} </td>
-                                                <td> {{ $empolyees->name }} </td>
-                                                <td> {{ $empolyees->email }}</td>
-                                                <td> {{ $empolyees->role }}</td>
-                                                <td> {{ $empolyees->number }}</td>
-                                                <td> {{ $empolyees->created_at->format('d/m/Y') }}  {{ $empolyees->created_at->format('g:i A') }}</td>
+                                                <td  class="text-light"> {{ $empolyees->compony_name }} </td>
+                                                <td  class="text-light"> {{ $empolyees->name }} </td>
+                                                <td  class="text-light"> {{ $empolyees->email }}</td>
+                                                <td  class="text-light"> {{ $empolyees->role }}</td>
+                                                <td  class="text-light"> {{ $empolyees->number }}</td>
+                                                <td  class="text-light"> {{ $empolyees->created_at->format('d/m/Y') }}  {{ $empolyees->created_at->format('g:i A') }}</td>
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
                                                         <a type="button" title="edit" class="btn btn-primary" href="{{ route('edit.empolyee',['id'=>$empolyees->id]) }}">

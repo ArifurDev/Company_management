@@ -30,10 +30,13 @@ class HouseMail extends Command
      */
     public function handle()
     {
-        
+
         $today = now()->format('d');
         $house_rent= Billdate::value('house_rent');
-        if ($today === $house_rent) {
+
+        $b = $house_rent-1;
+
+        if ($today == $house_rent) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
@@ -44,6 +47,15 @@ class HouseMail extends Command
                 $message->to($emails)->subject('Have You Paid House rent?');
             });
 
-        }
+        }elseif ($today == $b) {
+                 $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid House rent?');
+            });
+         }
     }
 }

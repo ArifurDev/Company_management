@@ -78,10 +78,6 @@
                                 <input type="number" class="form-control text-light" id="user_id" min="0" placeholder="user_id" name="user_id">
                               </div>
                               <div class="form-group">
-                                <label for="password">Passeord</label>
-                                <input type="text" class="form-control text-light" id="password" placeholder="password" name="password">
-                              </div>
-                              <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="text" class="form-control text-light" id="password" placeholder="password" name="password">
                               </div>
@@ -107,7 +103,7 @@
 
                               <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Note</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="note"></textarea>
+                                <textarea class="form-control text-light" id="exampleFormControlTextarea1" rows="3" name="note"></textarea>
                               </div>
                               <button type="submit" class="btn btn-primary me-2">Submit</button>
                             </form>

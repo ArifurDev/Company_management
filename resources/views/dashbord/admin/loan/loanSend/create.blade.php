@@ -34,36 +34,36 @@
 
                             <div class="card-body">
                               <h4 class="card-title">Loan Send</h4>
-                              <form class="forms-sample" action="{{ route('adminLoanReportSend.store') }}" method="POST">
+                              <form class="forms-sample text-light" action="{{ route('adminLoanReportSend.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group row">
                                   <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Name</label>
                                   <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Username" name="name">
+                                    <input type="text" class="form-control text-light" id="exampleInputUsername2" placeholder="Username" name="name">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                   <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
                                   <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email" name="email">
+                                    <input type="email" class="form-control text-light" id="exampleInputEmail2" placeholder="Email" name="email">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                   <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
                                   <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="exampleInputMobile" placeholder="Mobile number" name="number">
+                                    <input type="text" class="form-control text-light" id="exampleInputMobile" placeholder="Mobile number" name="number">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="amount" class="col-sm-3 col-form-label">Amount</label>
                                     <div class="col-sm-9">
-                                      <input type="text" class="form-control" id="amount" placeholder="Amount" name="amount">
+                                      <input type="text" class="form-control text-light" id="amount" placeholder="Amount" name="amount">
                                     </div>
                                   </div>
                                 <div class="form-group row">
                                     <label for="recive_date" class="col-sm-3 col-form-label">Loan Recive Date</label>
                                     <div class="col-sm-9">
-                                      <input type="date" class="form-control" id="recive_date" placeholder="Mobile number" name="recive_date">
+                                      <input type="date" class="form-control text-light" id="recive_date" placeholder="Mobile number" name="recive_date">
                                     </div>
                                   </div>
                                 <button type="submit" class="btn btn-primary me-2">Submit</button>
@@ -84,37 +84,37 @@
                                 <div class="form-group row">
                                     <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Name</label>
                                     <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="exampleInputUsername2" placeholder="name" name="name">
+                                    <input type="text" class="form-control text-light" id="exampleInputUsername2" placeholder="name" name="name">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
                                     <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email" name="email">
+                                    <input type="email" class="form-control text-light" id="exampleInputEmail2" placeholder="Email" name="email">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="exampleInputMobile" class="col-sm-3 col-form-label">Amount</label>
                                     <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="exampleInputMobile" placeholder="Amount" name="amount">
+                                    <input type="text" class="form-control text-light" id="exampleInputMobile" placeholder="Amount" name="amount">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="amount_due" class="col-sm-3 col-form-label">Amount Due</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="amount_due" placeholder="Amount Due" name="amount_due">
+                                        <input type="text" class="form-control text-light" id="amount_due" placeholder="Amount Due" name="amount_due">
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="installment" class="col-sm-3 col-form-label">Installment</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="installment" placeholder="Installment" name="installment">
+                                            <input type="text" class="form-control text-light" id="installment" placeholder="Installment" name="installment">
                                         </div>
                                         </div>
                                 <div class="form-group row">
                                     <label for="payment_date" class="col-sm-3 col-form-label">Payment Date</label>
                                     <div class="col-sm-9">
-                                        <input type="date" class="form-control" id="payment_date"  name="payment_date">
+                                        <input type="date" class="form-control text-light" id="payment_date"  name="payment_date">
                                     </div>
                                     </div>
                                 <button type="submit" class="btn btn-primary me-2">Submit</button>
@@ -148,22 +148,22 @@
 
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Email</th>
-                                                        <th>Number</th>
-                                                        <th>Amount</th>
-                                                        <th>Loan Recive Date</th>
-                                                        <th>Action</th>
+                                                        <th class="text-light">Name</th>
+                                                        <th class="text-light">Email</th>
+                                                        <th class="text-light">Number</th>
+                                                        <th class="text-light">Amount</th>
+                                                        <th class="text-light">Loan Recive Date</th>
+                                                        <th class="text-light">Action</th>
                                                       </tr>
                                                 </thead>
 
                                                     @foreach ($loanSend_trashed as $treshed_info)
                                                     <tr>
-                                                        <td>{{ $treshed_info->name }}</td>
-                                                        <td>{{ $treshed_info->email }}</td>
-                                                        <td>{{ $treshed_info->number }}</td>
-                                                        <td>{{ $treshed_info->amount }} tk</td>
-                                                        <td>{{ $treshed_info->recive_date }}</td>
+                                                        <td class="text-light">{{ $treshed_info->name }}</td>
+                                                        <td class="text-light">{{ $treshed_info->email }}</td>
+                                                        <td class="text-light">{{ $treshed_info->number }}</td>
+                                                        <td class="text-light">{{ $treshed_info->amount }} tk</td>
+                                                        <td class="text-light">{{ $treshed_info->recive_date }}</td>
                                                         <td>
                                                           <div class="btn-group" role="group" aria-label="Basic example">
 
@@ -189,22 +189,22 @@
                                   <table class="table table-hover">
                                     <thead>
                                       <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Number</th>
-                                        <th>Amount</th>
-                                        <th>Loan Recive Date</th>
-                                        <th>Action</th>
+                                        <th class="text-light">Name</th>
+                                        <th class="text-light">Email</th>
+                                        <th class="text-light">Number</th>
+                                        <th class="text-light">Amount</th>
+                                        <th class="text-light">Loan Recive Date</th>
+                                        <th class="text-light">Action</th>
                                       </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($loanSend as $loanSend)
                                         <tr>
-                                            <td>{{ $loanSend->name }}</td>
-                                            <td>{{ $loanSend->email }}</td>
-                                            <td>{{ $loanSend->number }}</td>
-                                            <td>{{ $loanSend->amount }} tk</td>
-                                            <td>{{ $loanSend->recive_date }}</td>
+                                            <td class="text-light">{{ $loanSend->name }}</td>
+                                            <td class="text-light">{{ $loanSend->email }}</td>
+                                            <td class="text-light">{{ $loanSend->number }}</td>
+                                            <td class="text-light">{{ $loanSend->amount }} tk</td>
+                                            <td class="text-light">{{ $loanSend->recive_date }}</td>
                                             <td>
                                               <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="{{ route('loanSendInstallment.show',['email'=>$loanSend->email]) }}" class="btn btn-outline-secondary" title="loanReciveInstallment">

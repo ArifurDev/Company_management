@@ -33,7 +33,10 @@ class FewaMail extends Command
 
         $today = now()->format('d');
         $fewa_bill= Billdate::value('fewa_bill');
-        if ($today === $fewa_bill) {
+
+        $b = $fewa_bill-1;
+
+        if ($today == $fewa_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
@@ -44,6 +47,15 @@ class FewaMail extends Command
                 $message->to($emails)->subject('Have You Paid fewa bill?');
             });
 
-        }
+        }elseif ($today == $b) {
+                 $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid fewa bill?');
+            });
+         }
     }
 }

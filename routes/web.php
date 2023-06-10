@@ -193,6 +193,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('recive/installment/destroy/{id}', 'destroy')->name('loanReciveInstallment.destroy');
         Route::get('recive/installment/restor/{id}', 'restor')->name('loanReciveInstallment.restor');
         Route::get('recive/installment/delete/{id}', 'delete')->name('loanReciveInstallment.delete');
+        
     });
 
 });

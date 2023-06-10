@@ -31,10 +31,12 @@ class CardMail extends Command
     public function handle()
     {
 
-
         $today = now()->format('d');
         $gard_bill= Billdate::value('gard_bill');
-        if ($today === $gard_bill) {
+
+        $b = $gard_bill-1;
+
+        if ($today == $gard_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
@@ -45,6 +47,15 @@ class CardMail extends Command
                 $message->to($emails)->subject('Have You Paid Card bill?');
             });
 
-        }
+        }elseif ($today == $b) {
+                 $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid A bill?');
+            });
+         }
     }
 }

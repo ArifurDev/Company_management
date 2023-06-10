@@ -63,17 +63,17 @@
                                     <table class="table">
                                       <thead>
                                         <tr>
-                                          <th> # </th>
-                                          <th> Company Name </th>
-                                          <th>Action</th>
+                                          <th  class="text-light"> # </th>
+                                          <th  class="text-light"> Company Name </th>
+                                          <th  class="text-light">Action</th>
 
                                         </tr>
                                       </thead>
                                       <tbody>
                                         @forelse ($comopanies as $company)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td> {{ $company->compony_name }} </td>
+                                            <td  class="text-light">{{ $loop->iteration }}</td>
+                                            <td  class="text-light"> {{ $company->compony_name }} </td>
                                             <td>
                                               <div class="btn-group" role="group" aria-label="Basic example">
 

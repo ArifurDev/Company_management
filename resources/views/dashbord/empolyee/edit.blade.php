@@ -83,7 +83,7 @@
                                             <label
                                                 class="col-sm-3 col-form-label">Number</label>
                                             <div class="col-sm-9">
-                                                <input type="number"
+                                                <input type="text"
                                                     class="form-control text-light"
                                                     name="number" value="{{ $empolyee->number }}">
                                             </div>

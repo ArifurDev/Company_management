@@ -88,31 +88,31 @@
 
                                                 <thead>
                                                     <tr>
-                                                        <th> House Rent </th>
-                                                        <th> Gard Bill </th>
-                                                        <th> Electricity Bill </th>
-                                                        <th> Sewerage Bill </th>
-                                                        <th> Expanse </th>
-                                                        <th> Personal </th>
-                                                        <th> Loan </th>
-                                                        <th> Total </th>
-                                                        <th> Date </th>
+                                                        <th class="text-light"> House Rent </th>
+                                                        <th class="text-light"> Gard Bill </th>
+                                                        <th class="text-light"> Electricity Bill </th>
+                                                        <th class="text-light"> Sewerage Bill </th>
+                                                        <th class="text-light"> Expanse </th>
+                                                        <th class="text-light"> Personal </th>
+                                                        <th class="text-light"> Loan </th>
+                                                        <th class="text-light"> Total </th>
+                                                        <th class="text-light"> Date </th>
 
-                                                        <th> Action </th>
+                                                        <th class="text-light"> Action </th>
                                                     </tr>
                                                 </thead>
 
                                                     @foreach ($adminriports_onlyTrashed as $treshed_info)
                                                     <tr>
-                                                        <td> {{ $treshed_info->house_rent }} tk</td>
-                                                        <td> {{ $treshed_info->gard_bill }} tk</td>
-                                                        <td> {{ $treshed_info->electricity_bill }} tk</td>
-                                                        <td> {{ $treshed_info->sewerage_bill }} tk</td>
-                                                        <td> {{ $treshed_info->expanse }} tk</td>
-                                                        <td> {{ $treshed_info->personal }} tk</td>
-                                                        <td> {{ $treshed_info->loan }} tk</td>
-                                                        <td> {{ $treshed_info->total }} tk</td>
-                                                        <td> {{ $treshed_info->created_at->format('d/m/Y')}}</td>
+                                                        <td class="text-light"> {{ $treshed_info->house_rent }} tk</td>
+                                                        <td class="text-light"> {{ $treshed_info->gard_bill }} tk</td>
+                                                        <td class="text-light"> {{ $treshed_info->electricity_bill }} tk</td>
+                                                        <td class="text-light"> {{ $treshed_info->sewerage_bill }} tk</td>
+                                                        <td class="text-light"> {{ $treshed_info->expanse }} tk</td>
+                                                        <td class="text-light"> {{ $treshed_info->personal }} tk</td>
+                                                        <td class="text-light"> {{ $treshed_info->loan }} tk</td>
+                                                        <td class="text-light"> {{ $treshed_info->total }} tk</td>
+                                                        <td class="text-light"> {{ $treshed_info->created_at->format('d/m/Y')}}</td>
                                                         <td>
                                                             <div class="btn-group" role="group" aria-label="Basic example">
 
@@ -138,44 +138,44 @@
                                   <table class="table table-dark">
                                     <thead>
                                       <tr>
-                                        <th> House Rent </th>
-                                        <th> Gard Bill </th>
-                                        <th> Electricity Bill </th>
-                                        <th> Sewerage Bill </th>
-                                        <th> Water Bill </th>
-                                        <th> Fewa Bill </th>
-                                        <th> Wifi Bill </th>
-                                        <th> Expanse </th>
-                                        <th> Personal </th>
-                                        <th> Loan </th>
-                                        <th> A </th>
-                                        <th> B </th>
-                                        <th> C </th>
-                                        <th> Total </th>
-                                        <th> Date </th>
-                                        <th> Note </th>
-                                        <th> Action </th>
+                                        <th class="text-light"> House Rent </th>
+                                        <th class="text-light"> Gard Bill </th>
+                                        <th class="text-light"> Electricity Bill </th>
+                                        <th class="text-light"> Sewerage Bill </th>
+                                        <th class="text-light"> Water Bill </th>
+                                        <th class="text-light"> Fewa Bill </th>
+                                        <th class="text-light"> Wifi Bill </th>
+                                        <th class="text-light"> Expanse </th>
+                                        <th class="text-light"> Personal </th>
+                                        <th class="text-light"> Loan </th>
+                                        <th class="text-light"> A </th>
+                                        <th class="text-light"> B </th>
+                                        <th class="text-light"> C </th>
+                                        <th class="text-light"> Total </th>
+                                        <th class="text-light"> Date </th>
+                                        <th class="text-light"> Note </th>
+                                        <th class="text-light"> Action </th>
                                       </tr>
                                     </thead>
                                     <tbody class="alldata">
                                         @foreach ($adminriports as $info)
                                         <tr>
-                                            <td> {{ $info->house_rent }} tk</td>
-                                            <td> {{ $info->gard_bill }} tk</td>
-                                            <td> {{ $info->electricity_bill }} tk</td>
-                                            <td> {{ $info->sewerage_bill }} tk</td>
-                                            <td> {{ $info->water_bill }} tk</td>
-                                            <td> {{ $info->fewa_bill }} tk</td>
-                                            <td> {{ $info->wifi_bill }} tk</td>
-                                            <td> {{ $info->expanse }} tk</td>
-                                            <td> {{ $info->personal }} tk</td>
-                                            <td> {{ $info->loan }} tk</td>
-                                            <td> {{ $info->a }} tk</td>
-                                            <td> {{ $info->b }} tk</td>
-                                            <td> {{ $info->c }} tk</td>
-                                            <td> {{ $info->total }} tk</td>
-                                            <td> {{ $info->created_at->format('d/m/Y')}}</td>
-                                            <td> {{ $info->note }} </td>
+                                            <td class="text-light"> {{ $info->house_rent }} tk</td>
+                                            <td class="text-light"> {{ $info->gard_bill }} tk</td>
+                                            <td class="text-light"> {{ $info->electricity_bill }} tk</td>
+                                            <td class="text-light"> {{ $info->sewerage_bill }} tk</td>
+                                            <td class="text-light"> {{ $info->water_bill }} tk</td>
+                                            <td class="text-light"> {{ $info->fewa_bill }} tk</td>
+                                             <td class="text-light"> {{ $info->wifi_bill }} tk</td>
+                                            <td class="text-light"> {{ $info->expanse }} tk</td>
+                                            <td class="text-light"> {{ $info->personal }} tk</td>
+                                            <td class="text-light"> {{ $info->loan }} tk</td>
+                                            <td class="text-light" > {{ $info->a }} tk</td>
+                                            <td class="text-light" > {{ $info->b }} tk</td>
+                                            <td class="text-light" > {{ $info->c }} tk</td>
+                                            <td class="text-light" > {{ $info->total }} tk</td>
+                                            <td class="text-light" > {{ $info->created_at->format('d/m/Y')}}</td>
+                                            <td class="text-light" > {{ $info->note }} </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
 

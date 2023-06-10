@@ -32,17 +32,29 @@ class AMail extends Command
     {
         $today = now()->format('d');
         $a= Billdate::value('a');
-        if ($today === $a) {
 
-            $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.a', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid A bill?');
-            });
+        $b = $a-1;
 
+        if ($today == $a) {
+
+           $adminMail = User::where('role', 'admin')->select('email')->get();
+           $emails = [];
+           foreach ($adminMail as $mail) {
+               $emails[] = $mail['email'];
+           }
+           Mail::send('adminemails.a', [], function ($message) use ($emails) {
+               $message->to($emails)->subject('Have You Paid A bill?');
+           });
+
+        }elseif ($today == $b) {
+                $adminMail = User::where('role', 'admin')->select('email')->get();
+           $emails = [];
+           foreach ($adminMail as $mail) {
+               $emails[] = $mail['email'];
+           }
+           Mail::send('adminemails.a', [], function ($message) use ($emails) {
+               $message->to($emails)->subject('Have You Paid A bill?');
+           });
         }
     }
 }

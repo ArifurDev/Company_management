@@ -93,28 +93,28 @@
                                                 <thead>
                                                     <tr>
 
-                                                        <th> Company </th>
-                                                        <th> Empolyee Email </th>
-                                                        <th> Incoming Card</th>
-                                                        <th> Incoming Cash</th>
-                                                        <th> Incoming </th>
-                                                        <th> Outgoing </th>
-                                                        <th> Cash </th>
-                                                        <th> Deleted at </th>
-                                                        <th> Acction </th>
+                                                        <th class="text-light"> Company </th>
+                                                        <th class="text-light"> Empolyee Email </th>
+                                                        <th class="text-light"> Incoming Card</th>
+                                                        <th class="text-light"> Incoming Cash</th>
+                                                        <th class="text-light"> Incoming </th>
+                                                        <th class="text-light"> Outgoing </th>
+                                                        <th class="text-light"> Cash </th>
+                                                        <th class="text-light"> Deleted at </th>
+                                                        <th class="text-light"> Acction </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
                                                     @foreach ($empolyeereport_onlyTrashed as $empolyeereport_Trashed)
                                                     <tr>
-                                                        <td> {{ $empolyeereport_Trashed->company }} </td>
-                                                        <td> {{ $empolyeereport_Trashed->empolyee }} </td>
-                                                        <td> {{ $empolyeereport_Trashed->incoming_card }} tk</td>
-                                                        <td> {{ $empolyeereport_Trashed->incoming_cash }} tk</td>
-                                                        <td> {{ $empolyeereport_Trashed->incoming }} tk</td>
-                                                        <td> {{ $empolyeereport_Trashed->outgoing }} tk</td>
-                                                        <td> {{ $empolyeereport_Trashed->cash }} tk</td>
-                                                        <td> {{ $empolyeereport_Trashed->deleted_at->format('d/m/Y') }} </td>
+                                                        <td class="text-light"> {{ $empolyeereport_Trashed->company }} </td>
+                                                        <td class="text-light"> {{ $empolyeereport_Trashed->empolyee }} </td>
+                                                        <td class="text-light"> {{ $empolyeereport_Trashed->incoming_card }} tk</td>
+                                                        <td class="text-light"> {{ $empolyeereport_Trashed->incoming_cash }} tk</td>
+                                                        <td class="text-light"> {{ $empolyeereport_Trashed->incoming }} tk</td>
+                                                        <td class="text-light"> {{ $empolyeereport_Trashed->outgoing }} tk</td>
+                                                        <td class="text-light"> {{ $empolyeereport_Trashed->cash }} tk</td>
+                                                        <td class="text-light"> {{ $empolyeereport_Trashed->deleted_at->format('d/m/Y') }} </td>
                                                         <td>
                                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                                 <a type="button" class="btn btn-primary"  href="{{ route('restor.empolyeereport',['id'=>$empolyeereport_Trashed->id]) }}" title="restore">
@@ -142,15 +142,15 @@
                                     <thead>
                                       <tr>
 
-                                        <th> Company </th>
-                                        <th> Empolyee Email </th>
-                                        <th> Incoming Card</th>
-                                        <th> Incoming Cash</th>
-                                        <th> Incoming </th>
-                                        <th> Outgoing </th>
-                                        <th> Cash </th>
-                                        <th> Date </th>
-                                        <th> Acction </th>
+                                        <th class="text-light"> Company </th>
+                                        <th class="text-light"> Empolyee Email </th>
+                                        <th class="text-light"> Incoming Card</th>
+                                        <th class="text-light"> Incoming Cash</th>
+                                        <th class="text-light"> Incoming </th>
+                                        <th class="text-light"> Outgoing </th>
+                                        <th class="text-light"> Cash </th>
+                                        <th class="text-light"> Date </th>
+                                        <th class="text-light"> Acction </th>
                                       </tr>
                                     </thead>
                                     @php
@@ -164,14 +164,14 @@
 
                                         @foreach ($empolyees as $empolyee)
                                         <tr>
-                                            <td> {{ $empolyee->company }} </td>
-                                            <td> {{ $empolyee->empolyee }} </td>
-                                            <td> {{ $empolyee->incoming_card }} tk</td>
-                                            <td> {{ $empolyee->incoming_cash }} tk</td>
-                                            <td> {{ $empolyee->incoming }} tk</td>
-                                            <td> {{ $empolyee->outgoing }} tk</td>
-                                            <td> {{ $empolyee->cash }} tk</td>
-                                            <td>{{ $empolyee->created_at->format('d/m/Y') }}  </td>
+                                            <td class="text-light"> {{ $empolyee->company }} </td>
+                                            <td class="text-light"> {{ $empolyee->empolyee }} </td>
+                                            <td class="text-light"> {{ $empolyee->incoming_card }} tk</td>
+                                            <td class="text-light"> {{ $empolyee->incoming_cash }} tk</td>
+                                            <td class="text-light"> {{ $empolyee->incoming }} tk</td>
+                                            <td class="text-light"> {{ $empolyee->outgoing }} tk</td>
+                                            <td class="text-light">  {{ $empolyee->cash }} tk</td>
+                                            <td class="text-light">{{ $empolyee->created_at->format('d/m/Y') }}  </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="{{ route('details.empolyeereport',['id'=>$empolyee->id]) }}" title="details">
@@ -201,11 +201,11 @@
                                           <tr>
                                             <td></td>
                                             <td></td>
-                                            <td>{{ $t_incoming_card }} tk</td>
-                                            <td>{{ $t_incoming_cash }} tk</td>
-                                            <td>{{ $total_incoming }} tk</td>
-                                            <td>{{ $total_outgoing }} tk</td>
-                                            <td>{{ $total_cash }} tk</td>
+                                            <td  class="text-light">{{ $t_incoming_card }} tk</td>
+                                            <td class="text-light">{{ $t_incoming_cash }} tk</td>
+                                            <td class="text-light">{{ $total_incoming }} tk</td>
+                                            <td class="text-light">{{ $total_outgoing }} tk</td>
+                                            <td class="text-light">{{ $total_cash }} tk</td>
                                             <td></td>
                                             <td></td>
                                           </tr>

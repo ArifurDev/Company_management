@@ -38,7 +38,7 @@
                                 </ul>
                         @endforeach
                      @endif
-                <form method="POST" action="{{ route('login') }}">
+                <form action="{{ route('login') }}" method="POST">
                    @csrf
                   <div class="form-group">
                     <label>Username or email *</label>
@@ -59,7 +59,7 @@
                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
                   </div>
 
-                  <p class="sign-up">Don't have an Account?<a href="{{ route('register') }}"> Sign Up</a></p>
+
                 </form>
               </div>
             </div>

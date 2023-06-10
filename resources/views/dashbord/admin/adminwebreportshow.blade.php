@@ -38,7 +38,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group row">
                                             <div class="col-sm-9">
-                                                <input type="search" class="form-control" name="search" id="search" placeholder="search here......">
+                                                <input type="search" class="form-control text-light" name="search" id="search" placeholder="search here......">
                                             </div>
                                         </div>
                                     </div>
@@ -63,32 +63,32 @@
 
                                                 <thead>
                                                     <tr>
-                                                        <th> Company </th>
-                                                        <th> Email </th>
-                                                        <th> Site Name </th>
-                                                        <th> URL </th>
-                                                        <th> U.N </th>
-                                                        <th> U.I </th>
-                                                        <th> Password </th>
-                                                        <th> Verifi Code </th>
-                                                        <th> Payment Date </th>
-                                                        <th> Save Date </th>
-                                                        <th> Acction </th>
+                                                        <th  class="text-light"> Company </th>
+                                                        <th  class="text-light"> Email </th>
+                                                        <th  class="text-light"> Site Name </th>
+                                                        <th  class="text-light"> URL </th>
+                                                        <th  class="text-light"> U.N </th>
+                                                        <th  class="text-light"> U.I </th>
+                                                        <th  class="text-light"> Password </th>
+                                                        <th  class="text-light"> Verifi Code </th>
+                                                        <th  class="text-light"> Payment Date </th>
+                                                        <th  class="text-light"> Save Date </th>
+                                                        <th  class="text-light"> Acction </th>
                                                     </tr>
                                                 </thead>
 
                                                     @foreach ($reportinfo_treshed as $treshed_info)
                                                     <tr>
-                                                        <td> {{ $treshed_info->company }} </td>
-                                                        <td> {{ $treshed_info->email }} </td>
-                                                        <td> {{ $treshed_info->site_name }} </td>
-                                                        <td> {{ $treshed_info->url }} </td>
-                                                        <td> {{ $treshed_info->user_name }} </td>
-                                                        <td> {{ $treshed_info->user_id }} </td>
-                                                        <td> {{ $treshed_info->password }} </td>
-                                                        <td> {{ $treshed_info->verifi_code }} </td>
-                                                        <td> {{ $treshed_info->payment_date }} </td>
-                                                        <td> {{ $treshed_info->created_at->format('d/m/Y')}}</td>
+                                                        <td  class="text-light"> {{ $treshed_info->company }} </td>
+                                                        <td  class="text-light"> {{ $treshed_info->email }} </td>
+                                                        <td  class="text-light"> {{ $treshed_info->site_name }} </td>
+                                                        <td  class="text-light"> {{ $treshed_info->url }} </td>
+                                                        <td  class="text-light"> {{ $treshed_info->user_name }} </td>
+                                                        <td  class="text-light"> {{ $treshed_info->user_id }} </td>
+                                                        <td  class="text-light"> {{ $treshed_info->password }} </td>
+                                                        <td  class="text-light"> {{ $treshed_info->verifi_code }} </td>
+                                                        <td  class="text-light"> {{ $treshed_info->payment_date }} </td>
+                                                        <td  class="text-light"> {{ $treshed_info->created_at->format('d/m/Y')}}</td>
                                                         <td>
                                                             <div class="btn-group" role="group" aria-label="Basic example">
 
@@ -115,20 +115,20 @@
                                     <thead>
                                       <tr>
 
-                                        <th> Company </th>
-                                        <th> Email </th>
-                                        <th> Site Name </th>
-                                        <th> URL </th>
-                                        <th> U.N </th>
-                                        <th> U.I </th>
-                                        <th> Password </th>
-                                        <th> Why create </th>
-                                        <th> Number </th>
-                                        <th> Verifi Code </th>
-                                        <th> Note </th>
-                                        <th> Payment Date </th>
-                                        <th> Save Date </th>
-                                        <th> Acction </th>
+                                        <th  class="text-light"> Company </th>
+                                        <th  class="text-light"> Email </th>
+                                        <th  class="text-light"> Site Name </th>
+                                        <th  class="text-light"> URL </th>
+                                        <th  class="text-light"> U.N </th>
+                                        <th  class="text-light"> U.I </th>
+                                        <th  class="text-light"> Password </th>
+                                        <th  class="text-light"> Why create </th>
+                                        <th  class="text-light"> Number </th>
+                                        <th  class="text-light"> Verifi Code </th>
+                                        <th  class="text-light"> Note </th>
+                                        <th  class="text-light"> Payment Date </th>
+                                        <th  class="text-light"> Save Date </th>
+                                        <th  class="text-light"> Acction </th>
                                       </tr>
                                     </thead>
 
@@ -136,19 +136,19 @@
 
                                         @foreach ($reportinfo as $info)
                                         <tr>
-                                            <td> {{ $info->company }} </td>
-                                            <td> {{ $info->email }} </td>
-                                            <td> {{ $info->site_name }} </td>
-                                            <td> {{ $info->url }} </td>
-                                            <td> {{ $info->user_name }} </td>
-                                            <td> {{ $info->user_id }} </td>
-                                            <td> {{ $info->password }} </td>
-                                            <td> {{ $info->why_create }} </td>
-                                            <td> {{ $info->number }} </td>
-                                            <td> {{ $info->verifi_code }} </td>
-                                            <td> {{ $info->note }} </td>
-                                            <td> {{ $info->payment_date }} </td>
-                                            <td> {{ $info->created_at->format('d/m/Y')}}</td>
+                                            <td  class="text-light"> {{ $info->company }} </td>
+                                            <td  class="text-light"> {{ $info->email }} </td>
+                                            <td  class="text-light"> {{ $info->site_name }} </td>
+                                            <td  class="text-light"> {{ $info->url }} </td>
+                                            <td  class="text-light"> {{ $info->user_name }} </td>
+                                            <td  class="text-light"> {{ $info->user_id }} </td>
+                                            <td  class="text-light"> {{ $info->password }} </td>
+                                            <td  class="text-light"> {{ $info->why_create }} </td>
+                                            <td  class="text-light"> {{ $info->number }} </td>
+                                            <td  class="text-light"> {{ $info->verifi_code }} </td>
+                                            <td  class="text-light"> {{ $info->note }} </td>
+                                            <td  class="text-light"> {{ $info->payment_date }} </td>
+                                            <td  class="text-light"> {{ $info->created_at->format('d/m/Y')}}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
 

@@ -104,7 +104,7 @@
 
                               <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Note</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="note"></textarea>
+                                <textarea class="form-control text-light" id="exampleFormControlTextarea1" rows="3" name="note"></textarea>
                               </div>
 
                               <button type="submit" class="btn btn-primary me-2">Submit</button>

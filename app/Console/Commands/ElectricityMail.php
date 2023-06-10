@@ -30,10 +30,13 @@ class ElectricityMail extends Command
      */
     public function handle()
     {
-        
+
         $today = now()->format('d');
         $electricity_bill= Billdate::value('electricity_bill');
-        if ($today === $electricity_bill) {
+
+        $b = $electricity_bill-1;
+
+        if ($today == $electricity_bill) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
@@ -44,6 +47,15 @@ class ElectricityMail extends Command
                 $message->to($emails)->subject('Have You Paid electricity bill?');
             });
 
-        }
+        }elseif ($today == $b) {
+                 $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid electricity bill?');
+            });
+         }
     }
 }

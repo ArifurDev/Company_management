@@ -30,10 +30,12 @@ class CMail extends Command
      */
     public function handle()
     {
-        
         $today = now()->format('d');
         $c= Billdate::value('c');
-        if ($today === $c) {
+
+        $b = $c-1;
+
+        if ($today == $c) {
 
             $adminMail = User::where('role', 'admin')->select('email')->get();
             $emails = [];
@@ -44,6 +46,15 @@ class CMail extends Command
                 $message->to($emails)->subject('Have You Paid C bill?');
             });
 
-        }
+        }elseif ($today == $b) {
+                 $adminMail = User::where('role', 'admin')->select('email')->get();
+            $emails = [];
+            foreach ($adminMail as $mail) {
+                $emails[] = $mail['email'];
+            }
+            Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                $message->to($emails)->subject('Have You Paid C bill?');
+            });
+         }
     }
 }
