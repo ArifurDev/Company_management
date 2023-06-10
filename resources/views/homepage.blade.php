@@ -42,16 +42,16 @@
                    @csrf
                   <div class="form-group">
                     <label>Username or email *</label>
-                    <input type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" class="form-control p_input">
+                    <input type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" class="form-control p_input text-light">
                   </div>
                   <div class="form-group">
                     <label>Password *</label>
-                    <input type="password" name="password" required autocomplete="current-password" class="form-control p_input">
+                    <input type="password" name="password" required autocomplete="current-password" class="form-control p_input text-light">
                   </div>
                   <div class="form-group d-flex align-items-center justify-content-between">
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" name="remember"> Remember me </label>
+                        <input type="checkbox" class="form-check-input text-light" name="remember"> Remember me </label>
                     </div>
                     <a href="{{ route('password.request') }}" class="forgot-pass">Forgot password</a>
                   </div>

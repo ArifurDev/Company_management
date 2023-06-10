@@ -80,6 +80,9 @@
                                                   <a href="{{ route('company.destroy',['id'=>$company->id]) }}" onclick="return confirm('are sure this company deleted forever')" class="btn btn-primary">
                                                     <i class="mdi mdi-delete"></i>
                                                   </a>
+                                                  <a href="{{ route('compoany.info',['id'=>$company->id]) }}" class="btn btn-primary">
+                                                    <i class="mdi mdi-eye"></i>
+                                                  </a>
                                                 </div>
                                             </td>
                                           </tr>

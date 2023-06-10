@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('number')->nullable();
             $table->string('role');
             $table->string('compony_name')->nullable();
+            $table->integer('compony_id')->nullable();
             $table->string('gender')->nullable();
         });
     }

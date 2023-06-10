@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('empolyeereports', function (Blueprint $table) {
             $table->id();
             $table->string('company');
+            $table->integer('compony_id')->nullable();
             $table->string('empolyee');
             $table->integer('incoming_card');
             $table->integer('incoming_cash');

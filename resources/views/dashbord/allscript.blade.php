@@ -19,3 +19,17 @@
 <!-- Custom js for this page -->
 <script src="{{ asset('dashbord/assets') }}/js/dashboard.js"></script>
 <!-- End custom js for this page -->
+
+
+  <!-- datatables JS -->
+  <script src="js/jquery.app.js"></script>
+
+  <script src="{{ asset('dashbord/assets') }}/datatables/jquery.dataTables.min.js"></script>
+  <script src="{{ asset('dashbord/assets') }}/datatables/dataTables.bootstrap.js"></script>
+
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $('#datatable').dataTable();
+      } );
+  </script>

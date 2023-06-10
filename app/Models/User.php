@@ -28,6 +28,7 @@ class User extends Authenticatable
         'password',
         'number',
         'compony_name',
+        'compony_id',
         'gender',
     ];
 

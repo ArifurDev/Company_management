@@ -79,7 +79,9 @@ class EmpolyeereportController extends Controller
         if ($compony_name == null) {
             return back()->withSuccess('Before add a Company to your profile After that submit data');
         } else {
+            $comopany_id =  comopany::where('compony_name',$compony_name)->value('id');
             empolyeereport::insert([
+                'compony_id' => $comopany_id,
                 'company' => $compony_name,
                 'empolyee' => $email,
                 'incoming' => $incoming,
@@ -131,7 +133,10 @@ class EmpolyeereportController extends Controller
 
         $total = $incoming + $request->outgoing;
         $cash = $incoming - $request->outgoing;
+
+        $comopany_id =  comopany::where('compony_name',$request->company)->value('id');
         empolyeereport::find($id)->update([
+            'compony_id' => $comopany_id,
             'company' => $request->company,
             'incoming' => $incoming,
             'incoming_card' => $request->incoming_card,

@@ -12,6 +12,7 @@ class empolyeereport extends Model
 
     protected $fillable = [
         'company',
+        'compony_id',
         'empolyee',
         'incoming',
         'outgoing',

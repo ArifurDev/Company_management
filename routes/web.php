@@ -61,6 +61,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('update/empolyee/{id}', [EmpolyeeController::class, 'update'])->name('update.empolyee')->middleware('RoleChecker');
     Route::post('delete/empolyee/{id}', [EmpolyeeController::class, 'destroy'])->name('delete.empolyee')->middleware('RoleChecker');
     Route::get('delete/empolyee/{id}', [EmpolyeeController::class, 'destroy'])->middleware('RoleChecker');
+
+
+    Route::get('compoany/empolyeereport/{id}', [EmpolyeeController::class, 'info'])->name('compoany.info')->middleware('RoleChecker');
+
     /**
      * live search
      */
@@ -193,7 +197,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('recive/installment/destroy/{id}', 'destroy')->name('loanReciveInstallment.destroy');
         Route::get('recive/installment/restor/{id}', 'restor')->name('loanReciveInstallment.restor');
         Route::get('recive/installment/delete/{id}', 'delete')->name('loanReciveInstallment.delete');
-        
+
     });
 
 });

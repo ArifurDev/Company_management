@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\comopany;
 use App\Models\empolyee;
+use App\Models\empolyeereport;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -79,7 +80,7 @@ class EmpolyeeController extends Controller
             'role' => 'required',
             'compony_name' => 'required',
         ]);
-
+        $comopany_id =  comopany::where('compony_name',$request->compony_name)->value('id');
         DB::table('users')->insert([
             'name' => $request->name,
             'email' => $request->email,
@@ -87,12 +88,13 @@ class EmpolyeeController extends Controller
             'number' => $request->number,
             'role' => $request->role,
             'compony_name' => $request->compony_name,
+            'compony_id' => $comopany_id,
             'password' => bcrypt('12345678'),
             'email_verified_at' => now(),
             'created_at' => now(),
         ]);
 
-        return back()->withSuccess('Empolyee Account Create Successfully');
+         return back()->withSuccess('Empolyee Account Create Successfully');
     }
 
     /**
@@ -127,12 +129,15 @@ class EmpolyeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $comopany_id =  comopany::where('compony_name',$request->compony_name)->value('id');
+
         User::find($id)->update([
             'name' => $request->name,
             'role' => $request->role,
             'gender' => $request->gender,
             'number' => $request->number,
             'compony_name' => $request->compony_name,
+            'compony_id' => $comopany_id,
         ]);
 
         return back()->withSuccess('Account Update Successfully');
@@ -149,5 +154,15 @@ class EmpolyeeController extends Controller
         User::find($id)->delete();
 
         return back()->withSuccess('Account delete Successfully');
+    }
+
+
+
+    public function info($id)
+    {
+      $empolyeereport = empolyeereport::where('compony_id',$id)->get();
+      $com_name = comopany::where('id',$id)->value('compony_name');
+      $empolyee_count = User::where('compony_id',$id)->count();
+      return view('dashbord.company.info',compact('empolyeereport','empolyee_count','com_name'));
     }
 }
