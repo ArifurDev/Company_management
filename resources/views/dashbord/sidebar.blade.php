@@ -110,7 +110,7 @@
 
 
 
-      @if (Auth::user()->role === 'admin')
+      {{-- @if (Auth::user()->role === 'admin')
       <li class="nav-item menu-items">
         <a class="nav-link" href="{{ route('payment.date.edit') }}">
           <span class="menu-icon">
@@ -118,7 +118,28 @@
           </span>
           <span class="menu-title">All Payment Date</span>
         </a>
+
       </li>
+      @endif --}}
+
+
+
+      @if (Auth::user()->role === 'admin')
+      <li class="nav-item menu-items">
+          <a class="nav-link" data-bs-toggle="collapse" href="#payment" aria-expanded="false" aria-controls="payment">
+            <span class="menu-icon">
+              <i class="mdi mdi-dns"></i>
+            </span>
+            <span class="menu-title">Payment Date</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="payment">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('billdate.create') }}">Company Billdate Create </a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('billdate.show') }}">Billdate Show</a></li>
+            </ul>
+          </div>
+        </li>
       @endif
 
 

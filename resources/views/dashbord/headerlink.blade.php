@@ -21,3 +21,7 @@
 
   <!-- DataTables -->
   <link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+  <!--toastr-->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
+  <script src="{{ asset('dashbord') }}/js/modernizr.min.js"></script>

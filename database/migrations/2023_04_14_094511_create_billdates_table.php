@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('billdates', function (Blueprint $table) {
             $table->id();
+            $table->integer('company_id')->nullable();
+            $table->string('company_name')->nullable();
             $table->string('house_rent')->nullable();
             $table->string('gard_bill')->nullable();
             $table->string('electricity_bill')->nullable();

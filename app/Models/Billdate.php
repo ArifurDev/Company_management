@@ -11,6 +11,8 @@ class Billdate extends Model
     protected $fillable = [
         'house_rent',
         'gard_bill',
+        'company_name',
+        'company_id',
         'electricity_bill',
         'sewerage_bill',
         'water_bill',

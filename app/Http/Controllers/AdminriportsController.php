@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\adminriports;
+use App\Models\Billdate;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminriportsController extends Controller
 {
@@ -172,5 +175,41 @@ class AdminriportsController extends Controller
         adminriports::onlyTrashed()->find($id)->forceDelete();
 
         return back()->withSuccess('Admin Daily Report Deleted Forever!');
+    }
+
+
+
+
+
+
+
+   public function test(){
+    $today = now()->format('d');
+    $a= Billdate::value('a');
+
+    $b = $a-1;
+
+
+    if ($today == $a) {
+
+       $adminMail = User::where('role', 'admin')->select('email')->get();
+       $emails = [];
+       foreach ($adminMail as $mail) {
+           $emails[] = $mail['email'];
+       }
+       Mail::send('adminemails.a', [], function ($message) use ($emails) {
+           $message->to($emails)->subject('Have You Paid A bill?');
+       });
+
+    }elseif ($today == $b) {
+            $adminMail = User::where('role', 'admin')->select('email')->get();
+       $emails = [];
+       foreach ($adminMail as $mail) {
+           $emails[] = $mail['email'];
+       }
+       Mail::send('adminemails.a', [], function ($message) use ($emails) {
+           $message->to($emails)->subject('Have You Paid A bill?');
+       });
+    }
     }
 }
