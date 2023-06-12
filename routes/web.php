@@ -106,6 +106,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('empolyee/report/destroy/{id}', [EmpolyeereportController::class, 'destroy'])->middleware('RoleChecker');
     Route::get('empolyee/report/restor/{id}', [EmpolyeereportController::class, 'restor'])->name('restor.empolyeereport')->middleware('RoleChecker');
     Route::get('empolyee/report/delete/{id}', [EmpolyeereportController::class, 'delete'])->name('delete.empolyeereport')->middleware('RoleChecker');
+    //download excel file
+    Route::get('empolyee/report/export', [EmpolyeereportController::class, 'export'])->name('export.empolyeereport')->middleware('RoleChecker');
+
+
+
     /**
      * live search
      */

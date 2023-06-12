@@ -78,6 +78,10 @@
                                        Trash Bin
                                      </button>
                                 </div>
+
+                                 <div class="d-flex justify-content-end align-items-center p-1">
+                                        <a href="{{ route('export.empolyeereport') }}" class="btn btn-primary">Download This Month Report</a>
+                                </div>
                                   <!-- Large Modal -->
                                 <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">

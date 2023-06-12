@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\empolyeereportsExport;
 use App\Models\comopany;
 use App\Models\empolyeereport;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmpolyeereportController extends Controller
 {
@@ -236,4 +238,12 @@ class EmpolyeereportController extends Controller
     // {
     //     return $request;
     // }
+
+
+
+    //download excel file
+    public function export(){
+
+        return Excel::download(new empolyeereportsExport, 'Report.xlsx');
+    }
 }
