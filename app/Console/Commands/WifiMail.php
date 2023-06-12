@@ -31,32 +31,63 @@ class WifiMail extends Command
     public function handle()
     {
 
-        $today = now()->format('d');
-        $wifi_bill= Billdate::value('wifi_bill');
+                        //new code
 
-        $b = $wifi_bill-1;
+                        $bill =  Billdate::all();
+                        $today = now()->format('d');
 
-        if ($today == $wifi_bill) {
+                         foreach ($bill as $bil) {
+                           $bil_wifi = $bil->wifi_bill;//select colum in database
+                           $ago = $bil_wifi-1;// decremrnt 1
 
-            $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.wifi', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid wifi bill?');
-            });
+                            if ($bil_wifi == $today) {
+                                       $adminMail = User::where('role', 'admin')->select('email')->get();
+                                        $emails = [];
+                                        foreach ($adminMail as $mail) {
+                                            $emails[] = $mail['email'];
+                                        }
+                                        Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                                            $message->to($emails)->subject('Have You Paid wifi bill?');
+                                        });
 
-        }elseif ($today == $b) {
-                 $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.a', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid wifi bill?');
-            });
-         }
-        
+                            }elseif ($ago == $today) {
+                                        $adminMail = User::where('role', 'admin')->select('email')->get();
+                                        $emails = [];
+                                        foreach ($adminMail as $mail) {
+                                            $emails[] = $mail['email'];
+                                        }
+                                        Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                                            $message->to($emails)->subject('Have You Paid wifi bill?');
+                                        });
+                            }
+                         }
+
+        // $today = now()->format('d');
+        // $wifi_bill= Billdate::value('wifi_bill');
+
+        // $b = $wifi_bill-1;
+
+        // if ($today == $wifi_bill) {
+
+        //     $adminMail = User::where('role', 'admin')->select('email')->get();
+        //     $emails = [];
+        //     foreach ($adminMail as $mail) {
+        //         $emails[] = $mail['email'];
+        //     }
+        //     Mail::send('adminemails.wifi', [], function ($message) use ($emails) {
+        //         $message->to($emails)->subject('Have You Paid wifi bill?');
+        //     });
+
+        // }elseif ($today == $b) {
+        //          $adminMail = User::where('role', 'admin')->select('email')->get();
+        //     $emails = [];
+        //     foreach ($adminMail as $mail) {
+        //         $emails[] = $mail['email'];
+        //     }
+        //     Mail::send('adminemails.a', [], function ($message) use ($emails) {
+        //         $message->to($emails)->subject('Have You Paid wifi bill?');
+        //     });
+        //  }
+
     }
 }

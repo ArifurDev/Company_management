@@ -30,32 +30,64 @@ class SewerageMail extends Command
      */
     public function handle()
     {
-        $today = now()->format('d');
-        $sewerage_bill= Billdate::value('sewerage_bill');
 
-        $b = $sewerage_bill-1;
+                        //new code
 
-        if ($today == $sewerage_bill) {
+                        $bill =  Billdate::all();
+                        $today = now()->format('d');
 
-            $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.sewerage', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid sewerage bill?');
-            });
+                         foreach ($bill as $bil) {
+                           $bil_sewerage = $bil->sewerage_bill;//select colum in database
+                           $ago = $bil_sewerage-1;// decremrnt 1
 
-        }elseif ($today == $b) {
-                 $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.a', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid sewerage bill?');
-            });
-         }
-        
+                            if ($bil_sewerage == $today) {
+                                       $adminMail = User::where('role', 'admin')->select('email')->get();
+                                        $emails = [];
+                                        foreach ($adminMail as $mail) {
+                                            $emails[] = $mail['email'];
+                                        }
+                                        Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                                            $message->to($emails)->subject('Have You Paid Sewerage Bill?');
+                                        });
+
+                            }elseif ($ago == $today) {
+                                        $adminMail = User::where('role', 'admin')->select('email')->get();
+                                        $emails = [];
+                                        foreach ($adminMail as $mail) {
+                                            $emails[] = $mail['email'];
+                                        }
+                                        Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                                            $message->to($emails)->subject('Have You Paid Sewerage Bill?');
+                                        });
+                            }
+                         }
+
+        // $today = now()->format('d');
+        // $sewerage_bill= Billdate::value('sewerage_bill');
+
+        // $b = $sewerage_bill-1;
+
+        // if ($today == $sewerage_bill) {
+
+        //     $adminMail = User::where('role', 'admin')->select('email')->get();
+        //     $emails = [];
+        //     foreach ($adminMail as $mail) {
+        //         $emails[] = $mail['email'];
+        //     }
+        //     Mail::send('adminemails.sewerage', [], function ($message) use ($emails) {
+        //         $message->to($emails)->subject('Have You Paid sewerage bill?');
+        //     });
+
+        // }elseif ($today == $b) {
+        //          $adminMail = User::where('role', 'admin')->select('email')->get();
+        //     $emails = [];
+        //     foreach ($adminMail as $mail) {
+        //         $emails[] = $mail['email'];
+        //     }
+        //     Mail::send('adminemails.a', [], function ($message) use ($emails) {
+        //         $message->to($emails)->subject('Have You Paid sewerage bill?');
+        //     });
+        //  }
+
     }
 }

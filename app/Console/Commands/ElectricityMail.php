@@ -30,32 +30,63 @@ class ElectricityMail extends Command
      */
     public function handle()
     {
+                //new code
 
-        $today = now()->format('d');
-        $electricity_bill= Billdate::value('electricity_bill');
+                $bill =  Billdate::all();
+                $today = now()->format('d');
 
-        $b = $electricity_bill-1;
+                 foreach ($bill as $bil) {
+                   $bil_electricity = $bil->electricity_bill;//select colum in database
+                   $ago = $bil_electricity-1;// decremrnt 1
 
-        if ($today == $electricity_bill) {
+                    if ($bil_electricity == $today) {
+                               $adminMail = User::where('role', 'admin')->select('email')->get();
+                                $emails = [];
+                                foreach ($adminMail as $mail) {
+                                    $emails[] = $mail['email'];
+                                }
+                                Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                                $message->to($emails)->subject('Have You Paid electricity bill?');
+                                });
 
-            $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.electricity', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid electricity bill?');
-            });
+                    }elseif ($ago == $today) {
+                                $adminMail = User::where('role', 'admin')->select('email')->get();
+                                $emails = [];
+                                foreach ($adminMail as $mail) {
+                                    $emails[] = $mail['email'];
+                                }
+                                Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                                $message->to($emails)->subject('Have You Paid electricity bill?');
+                            });
+                    }
+                 }
 
-        }elseif ($today == $b) {
-                 $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.a', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid electricity bill?');
-            });
-         }
+
+        // $today = now()->format('d');
+        // $electricity_bill= Billdate::value('electricity_bill');
+
+        // $b = $electricity_bill-1;
+
+        // if ($today == $electricity_bill) {
+
+        //     $adminMail = User::where('role', 'admin')->select('email')->get();
+        //     $emails = [];
+        //     foreach ($adminMail as $mail) {
+        //         $emails[] = $mail['email'];
+        //     }
+        //     Mail::send('adminemails.electricity', [], function ($message) use ($emails) {
+        //         $message->to($emails)->subject('Have You Paid electricity bill?');
+        //     });
+
+        // }elseif ($today == $b) {
+        //          $adminMail = User::where('role', 'admin')->select('email')->get();
+        //     $emails = [];
+        //     foreach ($adminMail as $mail) {
+        //         $emails[] = $mail['email'];
+        //     }
+        //     Mail::send('adminemails.a', [], function ($message) use ($emails) {
+        //         $message->to($emails)->subject('Have You Paid electricity bill?');
+        //     });
+        //  }
     }
 }

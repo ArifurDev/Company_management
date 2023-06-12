@@ -93,8 +93,12 @@ class EmpolyeeController extends Controller
             'email_verified_at' => now(),
             'created_at' => now(),
         ]);
+        $notification = array(
+            'message' => 'Empolyee Account Create Successfully',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
 
-         return back()->withSuccess('Empolyee Account Create Successfully');
     }
 
     /**
@@ -139,8 +143,12 @@ class EmpolyeeController extends Controller
             'compony_name' => $request->compony_name,
             'compony_id' => $comopany_id,
         ]);
+        $notification = array(
+            'message' => 'Account Update Successfully',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
 
-        return back()->withSuccess('Account Update Successfully');
     }
 
     /**
@@ -152,8 +160,11 @@ class EmpolyeeController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-
-        return back()->withSuccess('Account delete Successfully');
+        $notification = array(
+            'message' => 'Account delete Successfully',
+            'alert-type' => 'info'
+            );
+        return redirect()->back()->with($notification);
     }
 
 

@@ -73,7 +73,7 @@
                                                           <a href="{{ route('payment.date.edit',['id'=>$payment->id]) }}" class="btn btn-outline-secondary" title="Edit">
                                                               <i class="mdi mdi-file-check btn-icon-append"></i>
                                                             </a>
-                                                          <a href="" class="btn btn-outline-secondary" title="delete temp">
+                                                          <a href="{{ route('payment.date.distroy',['id'=>$payment->id]) }}" class="btn btn-outline-secondary" title="delete temp">
                                                             <i class="mdi mdi-delete"></i>
                                                           </a>
                                                       </div>

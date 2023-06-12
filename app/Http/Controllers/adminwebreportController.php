@@ -44,8 +44,11 @@ class adminwebreportController extends Controller
             'note' => $request->note,
             'created_at' => now(),
         ]);
-
-        return back()->withSuccess('Information submit Successfully');
+        $notification = array(
+            'message' => 'Information submit Successfully',
+            'alert-type' => 'success'
+            );
+       return redirect()->back()->with($notification);
     }
 
    public function edit($id)
@@ -73,29 +76,43 @@ class adminwebreportController extends Controller
                 'note' => $request->note,
             ]);
 
-            return back()->withSuccess('Information update Successfully');
+            $notification = array(
+                'message' => 'Information update Successfully',
+                'alert-type' => 'success'
+                );
+           return redirect()->back()->with($notification);
 
     }
 
     public function destroy($id)
     {
         siteriports::find($id)->delete();
-
-        return back()->withSuccess('Information tem delete ');
+        $notification = array(
+            'message' => 'Information tem delete',
+            'alert-type' => 'success'
+            );
+       return redirect()->back()->with($notification);
     }
 
     public function restor($id)
     {
         siteriports::onlyTrashed()->find($id)->restore();
-
-        return back()->withSuccess('Information restore Successfully');
+        $notification = array(
+            'message' => 'Information restore Successfully',
+            'alert-type' => 'info'
+            );
+       return redirect()->back()->with($notification);
     }
 
     public function delete($id)
     {
         siteriports::onlyTrashed()->find($id)->forceDelete();
+        $notification = array(
+            'message' => 'Site info Deleted Forever!',
+            'alert-type' => 'success'
+            );
+       return redirect()->back()->with($notification);
 
-        return back()->withSuccess('Site info Deleted Forever!');
     }
 
     /**

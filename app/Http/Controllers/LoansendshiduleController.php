@@ -43,22 +43,41 @@ class LoansendshiduleController extends Controller
             'installment' => $request->installment,
             'payment_date' => $request->payment_date,
         ]);
+        $notification = array(
+            'message' => 'update successfull',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
 
-        return back()->withSuccess('update successfull');
     }
     public function destroy($id)
     {
         Loansendshidule::find($id)->delete();
-        return back()->withSuccess('info temp deleted!');
+        $notification = array(
+            'message' => 'info temp deleted!',
+            'alert-type' => 'info'
+            );
+        return redirect()->back()->with($notification);
+
     }
     public function restor($id)
     {
         Loansendshidule::onlyTrashed()->find($id)->restore();
-        return back()->withSuccess('Restor Successfully');
+        $notification = array(
+            'message' => 'Restor Successfully',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
+
     }
     public function delete($id)
     {
         Loansendshidule::onlyTrashed()->find($id)->forceDelete();
-        return back()->withSuccess('Delete forever!');
+        $notification = array(
+            'message' => 'Delete forever!',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
+
     }
 }

@@ -31,31 +31,61 @@ class WaterMail extends Command
     public function handle()
     {
 
-        $today = now()->format('d');
-        $water_bill= Billdate::value('water_bill');
+                        //new code
 
-        $b = $water_bill-1;
+                        $bill =  Billdate::all();
+                        $today = now()->format('d');
 
-        if ($today == $water_bill) {
+                         foreach ($bill as $bil) {
+                           $bil_water = $bil->water_bill;//select colum in database
+                           $ago = $bil_water-1;// decremrnt 1
 
-            $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.water', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid water bill?');
-            });
+                            if ($bil_water == $today) {
+                                       $adminMail = User::where('role', 'admin')->select('email')->get();
+                                        $emails = [];
+                                        foreach ($adminMail as $mail) {
+                                            $emails[] = $mail['email'];
+                                        }
+                                        Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                                            $message->to($emails)->subject('Have You Paid water bill?');
+                                        });
 
-        }elseif ($today == $b) {
-                 $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.a', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid water bill?');
-            });
-         }
+                            }elseif ($ago == $today) {
+                                        $adminMail = User::where('role', 'admin')->select('email')->get();
+                                        $emails = [];
+                                        foreach ($adminMail as $mail) {
+                                            $emails[] = $mail['email'];
+                                        }
+                                        Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                                            $message->to($emails)->subject('Have You Paid water bill?');
+                                        });
+                            }
+                         }
+        // $today = now()->format('d');
+        // $water_bill= Billdate::value('water_bill');
+
+        // $b = $water_bill-1;
+
+        // if ($today == $water_bill) {
+
+        //     $adminMail = User::where('role', 'admin')->select('email')->get();
+        //     $emails = [];
+        //     foreach ($adminMail as $mail) {
+        //         $emails[] = $mail['email'];
+        //     }
+        //     Mail::send('adminemails.water', [], function ($message) use ($emails) {
+        //         $message->to($emails)->subject('Have You Paid water bill?');
+        //     });
+
+        // }elseif ($today == $b) {
+        //          $adminMail = User::where('role', 'admin')->select('email')->get();
+        //     $emails = [];
+        //     foreach ($adminMail as $mail) {
+        //         $emails[] = $mail['email'];
+        //     }
+        //     Mail::send('adminemails.a', [], function ($message) use ($emails) {
+        //         $message->to($emails)->subject('Have You Paid water bill?');
+        //     });
+        //  }
     }
 }

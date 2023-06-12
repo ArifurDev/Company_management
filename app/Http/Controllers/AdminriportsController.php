@@ -41,10 +41,18 @@ class AdminriportsController extends Controller
 
                 return view('dashbord.admin.report.search_result_data', compact('search_result_data'));
             } else {
-                return back()->withSuccess('You Not Select Today Data');
+                $notification = array(
+                    'message' => 'You Not Select Today Data',
+                    'alert-type' => 'warning'
+                    );
+               return redirect()->back()->with($notification);
             }
         } else {
-            return back()->withSuccess('You Not Select Fromdate Data');
+            $notification = array(
+                'message' => 'You Not Select Fromdate Data',
+                'alert-type' => 'warning'
+                );
+           return redirect()->back()->with($notification);
         }
     }
 
@@ -90,8 +98,12 @@ class AdminriportsController extends Controller
             'total' => $total,
             'created_at' => now(),
         ]);
+        $notification = array(
+            'message' => 'Admin Daily Report submit Successfully',
+            'alert-type' => 'success'
+            );
+       return redirect()->back()->with($notification);
 
-        return back()->withSuccess('Admin Daily Report submit Successfully');
     }
 
     /**
@@ -147,7 +159,12 @@ class AdminriportsController extends Controller
             'total' => $total,
         ]);
 
-        return back()->withSuccess('Admin Daily Report update Successfully');
+        $notification = array(
+            'message' => 'Admin Daily Report update Successfully',
+            'alert-type' => 'success'
+            );
+       return redirect()->back()->with($notification);
+
     }
 
     /**
@@ -160,56 +177,34 @@ class AdminriportsController extends Controller
     {
         adminriports::find($id)->delete();
 
-        return back()->withSuccess('Admin Daily Report Tmp Deleted Successfully');
+        $notification = array(
+            'message' => 'Admin Daily Report Tmp Deleted Successfully',
+            'alert-type' => 'info'
+            );
+       return redirect()->back()->with($notification);
+
     }
 
     public function restor($id)
     {
         adminriports::onlyTrashed()->find($id)->restore();
 
-        return back()->withSuccess('Admin Daily Report Restor Successfully');
+        $notification = array(
+            'message' => 'Admin Daily Report Restor Successfully',
+            'alert-type' => 'success'
+            );
+       return redirect()->back()->with($notification);
     }
 
     public function delete($id)
     {
         adminriports::onlyTrashed()->find($id)->forceDelete();
 
-        return back()->withSuccess('Admin Daily Report Deleted Forever!');
+        $notification = array(
+            'message' => 'Admin Daily Report Deleted Forever!',
+            'alert-type' => 'success'
+            );
+       return redirect()->back()->with($notification);
     }
 
-
-
-
-
-
-
-   public function test(){
-    $today = now()->format('d');
-    $a= Billdate::value('a');
-
-    $b = $a-1;
-
-
-    if ($today == $a) {
-
-       $adminMail = User::where('role', 'admin')->select('email')->get();
-       $emails = [];
-       foreach ($adminMail as $mail) {
-           $emails[] = $mail['email'];
-       }
-       Mail::send('adminemails.a', [], function ($message) use ($emails) {
-           $message->to($emails)->subject('Have You Paid A bill?');
-       });
-
-    }elseif ($today == $b) {
-            $adminMail = User::where('role', 'admin')->select('email')->get();
-       $emails = [];
-       foreach ($adminMail as $mail) {
-           $emails[] = $mail['email'];
-       }
-       Mail::send('adminemails.a', [], function ($message) use ($emails) {
-           $message->to($emails)->subject('Have You Paid A bill?');
-       });
-    }
-    }
 }

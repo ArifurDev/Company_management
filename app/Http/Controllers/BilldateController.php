@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Billdate;
 use App\Models\comopany;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BilldateController extends Controller
 {
@@ -43,7 +45,11 @@ class BilldateController extends Controller
         $payment_date->empolyee = $request->empolyee;
 
         $payment_date->save();
-        return back()->withSuccess('Payment date insert Successfull');
+        $notification = array(
+            'message' => 'Payment date insert Successfull',
+            'alert-type' => 'success'
+            );
+       return redirect()->back()->with($notification);
 
     }
 
@@ -76,18 +82,58 @@ class BilldateController extends Controller
              'empolyee' => $request->empolyee,
         ]);
             $notification = array(
-                'message' => 'please try again',
-                'alert-type' => 'warning'
+                'message' => 'Bill Date Updated',
+                'alert-type' => 'success'
                 );
            return redirect()->back()->with($notification);
     }
 
-
-    public function test(){
-      $bill =  Billdate::all();
-      dd($bill);
-    //   foreach ($bill as $bil) {
-    //       echo  $bil;
-    //   }
+    public function distroy($id){
+        Billdate::find($id)->delete();
+        $notification = array(
+            'message' => 'Bill Date Deleted',
+            'alert-type' => 'info'
+            );
+       return redirect()->back()->with($notification);
     }
+
+
+    //testing parpas
+    // public function test(){
+
+    // }
+
+
+    //
+
+
+
+    // $today = now()->format('d');
+    // $a= Billdate::value('a');
+
+    // $b = $a-1;
+
+    // if ($today == $a) {
+
+        // $adminMail = User::where('role', 'admin')->select('email')->get();
+        // $emails = [];
+        // foreach ($adminMail as $mail) {
+        //     $emails[] = $mail['email'];
+        // }
+        // Mail::send('adminemails.a', [], function ($message) use ($emails) {
+        //     $message->to($emails)->subject('Have You Paid A bill?');
+        // });
+
+    // }elseif ($today == $b) {
+    //         $adminMail = User::where('role', 'admin')->select('email')->get();
+    //    $emails = [];
+    //    foreach ($adminMail as $mail) {
+    //        $emails[] = $mail['email'];
+    //    }
+    //    Mail::send('adminemails.a', [], function ($message) use ($emails) {
+    //        $message->to($emails)->subject('Have You Paid A bill?');
+    //    });
+    // }
+
+    //
 }

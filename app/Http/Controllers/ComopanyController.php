@@ -44,7 +44,11 @@ class ComopanyController extends Controller
         $comopany->compony_name = $request->compony_name;
         $comopany->save();
 
-        return redirect()->back()->withSuccess('Company Create successfuliy');
+        $notification = array(
+            'message' => 'Company Create successfuliy',
+            'alert-type' => 'success'
+            );
+       return redirect()->back()->with($notification);
     }
 
     /**
@@ -86,7 +90,10 @@ class ComopanyController extends Controller
     public function destroy($id)
     {
         comopany::find($id)->delete();
-
-        return redirect()->back()->withSuccess('Company Deleted!');
+        $notification = array(
+            'message' => 'Company Deleted!',
+            'alert-type' => 'info'
+            );
+       return redirect()->back()->with($notification);
     }
 }

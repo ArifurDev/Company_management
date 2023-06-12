@@ -77,7 +77,12 @@ class EmpolyeereportController extends Controller
         $email = Auth::user()->email;
 
         if ($compony_name == null) {
-            return back()->withSuccess('Before add a Company to your profile After that submit data');
+            $notification = array(
+                'message' => 'Before add a Company to your profile After that submit data',
+                'alert-type' => 'info'
+                );
+            return redirect()->back()->with($notification);
+
         } else {
             $comopany_id =  comopany::where('compony_name',$compony_name)->value('id');
             empolyeereport::insert([
@@ -93,8 +98,12 @@ class EmpolyeereportController extends Controller
                 'note' => $request->note,
                 'created_at' => now(),
             ]);
+            $notification = array(
+                'message' => 'Empolyee Report submit Successfully',
+                'alert-type' => 'success'
+                );
+            return redirect()->back()->with($notification);
 
-            return back()->withSuccess('Empolyee Report submit Successfully');
         }
     }
 
@@ -146,8 +155,11 @@ class EmpolyeereportController extends Controller
             'cash' => $cash,
             'note' => $request->note,
         ]);
-
-        return back()->withSuccess('Empolyee Report updated Successfully');
+        $notification = array(
+            'message' => 'Empolyee Report updated Successfully',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -159,22 +171,32 @@ class EmpolyeereportController extends Controller
     public function destroy($id)
     {
         empolyeereport::find($id)->delete();
+        $notification = array(
+            'message' => 'Empolyee Report Tmp Deleted Successfully',
+            'alert-type' => 'info'
+            );
+        return redirect()->back()->with($notification);
 
-        return back()->withSuccess('Empolyee Report Tmp Deleted Successfully');
     }
 
     public function restor($id)
     {
         empolyeereport::onlyTrashed()->find($id)->restore();
-
-        return back()->withSuccess('Empolyee Report Restore Successfully');
+        $notification = array(
+            'message' => 'Empolyee Report Restore Successfully',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
     }
 
     public function delete($id)
     {
         empolyeereport::onlyTrashed()->find($id)->forceDelete();
-
-        return back()->withSuccess('Empolyee Report Deleted Forever!');
+        $notification = array(
+            'message' => 'Empolyee Report Deleted Forever!',
+            'alert-type' => 'info'
+            );
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -210,8 +232,8 @@ class EmpolyeereportController extends Controller
         return response($output);
     }
 
-    public function datesearch(Request $request)
-    {
-        return $request;
-    }
+    // public function datesearch(Request $request)
+    // {
+    //     return $request;
+    // }
 }

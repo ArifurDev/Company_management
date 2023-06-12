@@ -27,8 +27,12 @@ class ReciveloanController extends Controller
         $loanSend->amount = $request->amount;
         $loanSend->recive_date = $request->recive_date;
         $loanSend->save();
+        $notification = array(
+            'message' => 'Send Loan info submit successfull',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
 
-        return back()->withSuccess('Send Loan info submit successfull');
     }
 
     public function edit($id)
@@ -46,22 +50,40 @@ class ReciveloanController extends Controller
             'amount' => $request->amount,
             'recive_date' => $request->recive_date,
         ]);
+        $notification = array(
+            'message' => 'Send Loan info update successfull',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
 
-        return back()->withSuccess('Send Loan info update successfull');
     }
     public function destroy($id)
     {
         reciveloan::find($id)->delete();
-        return back()->withSuccess('Send Loan info Temp Delete');
+        $notification = array(
+            'message' => 'Send Loan info Temp Delete',
+            'alert-type' => 'info'
+            );
+        return redirect()->back()->with($notification);
+
     }
     public function restor($id)
     {
         reciveloan::onlyTrashed()->find($id)->restore();
-        return back()->withSuccess('Send Loan info Restor Successfully');
+        $notification = array(
+            'message' => 'Send Loan info Restor Successfully',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
+
     }
     public function delete($id)
     {
        reciveloan::onlyTrashed()->find($id)->forceDelete();
-        return back()->withSuccess('Send Loan info Delete forever');
+       $notification = array(
+        'message' => 'Send Loan info Delete forever',
+        'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }

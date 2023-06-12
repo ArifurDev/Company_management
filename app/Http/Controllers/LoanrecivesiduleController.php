@@ -20,8 +20,12 @@ class LoanrecivesiduleController extends Controller
         $loanInstallment->installment = $request->installment;
         $loanInstallment->payment_date = $request->payment_date;
         $loanInstallment->save();
+        $notification = array(
+            'message' => 'loan  Installment info submit successfull',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
 
-        return back()->withSuccess('loan  Installment info submit successfull');
     }
     public function show($email)
     {
@@ -45,28 +49,45 @@ class LoanrecivesiduleController extends Controller
             'installment' => $request->installment,
             'payment_date' => $request->payment_date,
         ]);
-
-        return back()->withSuccess('update successfull');
+        $notification = array(
+            'message' => 'update successfull',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
     }
     public function destroy($id)
     {
         Loanrecivesidule::find($id)->delete();
-        return back()->withSuccess('info temp deleted!');
+        $notification = array(
+            'message' => 'info temp deleted!',
+            'alert-type' => 'info'
+            );
+        return redirect()->back()->with($notification);
     }
     public function restor($id)
     {
         Loanrecivesidule::onlyTrashed()->find($id)->restore();
-        return back()->withSuccess('Restor Successfully');
+        $notification = array(
+            'message' => 'Restor Successfully',
+            'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
+
     }
     public function delete($id)
     {
         Loanrecivesidule::onlyTrashed()->find($id)->forceDelete();
-        return back()->withSuccess('Delete forever!');
+        $notification = array(
+            'message' => 'Delete forever!',
+            'alert-type' => 'info'
+            );
+        return redirect()->back()->with($notification);
+
     }
 
 
 
 
 
-    
+
 }

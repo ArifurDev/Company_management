@@ -30,32 +30,63 @@ class HouseMail extends Command
      */
     public function handle()
     {
+                //new code
 
-        $today = now()->format('d');
-        $house_rent= Billdate::value('house_rent');
+                $bill =  Billdate::all();
+                $today = now()->format('d');
 
-        $b = $house_rent-1;
+                 foreach ($bill as $bil) {
+                   $bil_house = $bil->house_rent;//select colum in database
+                   $ago = $bil_house-1;// decremrnt 1
 
-        if ($today == $house_rent) {
+                    if ($bil_house == $today) {
+                               $adminMail = User::where('role', 'admin')->select('email')->get();
+                                $emails = [];
+                                foreach ($adminMail as $mail) {
+                                    $emails[] = $mail['email'];
+                                }
+                                Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                                    $message->to($emails)->subject('Have You Paid House Rent?');
+                                });
 
-            $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.hous', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid House rent?');
-            });
+                    }elseif ($ago == $today) {
+                                $adminMail = User::where('role', 'admin')->select('email')->get();
+                                $emails = [];
+                                foreach ($adminMail as $mail) {
+                                    $emails[] = $mail['email'];
+                                }
+                                Mail::send('adminemails.a', [], function ($message) use ($emails) {
+                                    $message->to($emails)->subject('Have You Paid House Rent?');
+                                });
+                    }
+                 }
 
-        }elseif ($today == $b) {
-                 $adminMail = User::where('role', 'admin')->select('email')->get();
-            $emails = [];
-            foreach ($adminMail as $mail) {
-                $emails[] = $mail['email'];
-            }
-            Mail::send('adminemails.a', [], function ($message) use ($emails) {
-                $message->to($emails)->subject('Have You Paid House rent?');
-            });
-         }
+
+        // $today = now()->format('d');
+        // $house_rent= Billdate::value('house_rent');
+
+        // $b = $house_rent-1;
+
+        // if ($today == $house_rent) {
+
+        //     $adminMail = User::where('role', 'admin')->select('email')->get();
+        //     $emails = [];
+        //     foreach ($adminMail as $mail) {
+        //         $emails[] = $mail['email'];
+        //     }
+        //     Mail::send('adminemails.hous', [], function ($message) use ($emails) {
+        //         $message->to($emails)->subject('Have You Paid House rent?');
+        //     });
+
+        // }elseif ($today == $b) {
+        //          $adminMail = User::where('role', 'admin')->select('email')->get();
+        //     $emails = [];
+        //     foreach ($adminMail as $mail) {
+        //         $emails[] = $mail['email'];
+        //     }
+        //     Mail::send('adminemails.a', [], function ($message) use ($emails) {
+        //         $message->to($emails)->subject('Have You Paid House rent?');
+        //     });
+        //  }
     }
 }

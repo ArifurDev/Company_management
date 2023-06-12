@@ -149,9 +149,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
             Route::get('payment/date/{id}', 'edit')->name('payment.date.edit');
             Route::post('payment/date/{id}', 'update')->name('payment.date.update');
+            Route::get('payment/date/distroy/{id}', 'distroy')->name('payment.date.distroy');
 
 
-            Route::get('test','test');//test notic
 
         });
 
