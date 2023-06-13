@@ -21,6 +21,5 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([adminseeder::class]); //call adminseeder
-        $this->call([paymentBillseeder::class]);//call payment bill seeder
     }
 }
