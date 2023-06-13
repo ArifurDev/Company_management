@@ -37,6 +37,10 @@ class EmpolyeereportController extends Controller
 
     public function getdate(Request $request)
     {
+        $request->validate([
+            '*'=>'required'
+        ]);
+
         $startDate = Carbon::createFromFormat('Y-m-d', $request->fromdate)->startOfDay();
         $endDate = Carbon::createFromFormat('Y-m-d', $request->today)->endOfDay();
 
