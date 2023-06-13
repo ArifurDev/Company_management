@@ -79,8 +79,21 @@
                                      </button>
                                 </div>
 
-                                 <div class="d-flex justify-content-end align-items-center p-1">
+                                 {{-- <div class="d-flex justify-content-end align-items-center p-1">
                                         <a href="{{ route('export.empolyeereport') }}" class="btn btn-primary">Download This Month Report</a>
+                                        <a href="{{ route('all.export.empolyeereport') }}" class="btn btn-danger">Download Reports</a>
+
+                                </div> --}}
+                                <div class="d-flex justify-content-end align-items-center p-1">
+                                      <div class="dropdown">
+                                        <button type="button" class="btn btn-outline-info dropdown-toggle" id="dropdownMenuIconButton3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                         Download Report <i class="mdi mdi-briefcase-download"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton3" style="">
+                                            <a href="{{ route('all.export.empolyeereport') }}" class="btn btn-danger mb-2">All Reports</a>
+                                            <a href="{{ route('export.empolyeereport') }}" class="btn btn-primary">This Month reports</a>
+                                        </div>
+                                      </div>
                                 </div>
                                   <!-- Large Modal -->
                                 <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">

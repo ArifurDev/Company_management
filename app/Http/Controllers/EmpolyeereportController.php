@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AllreportsExport;
 use App\Exports\empolyeereportsExport;
 use App\Models\comopany;
 use App\Models\empolyeereport;
@@ -241,9 +242,14 @@ class EmpolyeereportController extends Controller
 
 
 
-    //download excel file
+    //download this month report excel file
     public function export(){
+        return Excel::download(new empolyeereportsExport, 'This month Report.xlsx');
+    }
 
-        return Excel::download(new empolyeereportsExport, 'Report.xlsx');
+
+    //download all reports excel file
+    public function all_export(){
+        return Excel::download(new AllreportsExport, 'All Report.xlsx');
     }
 }
