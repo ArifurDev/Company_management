@@ -98,7 +98,22 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('admindailyraport.create') }}">Create Report</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('admindailyraport.show') }}">Reports</a></li>
+          </ul>
+        </div>
+      </li>
+    @endif
 
+    @if (Auth::user()->role === 'admin')
+    <li class="nav-item menu-items">
+        <a class="nav-link" data-bs-toggle="collapse" href="#loan" aria-expanded="false" aria-controls="loan">
+          <span class="menu-icon">
+            <i class="mdi mdi mdi-bank"></i>
+          </span>
+          <span class="menu-title">Loan</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="loan">
+          <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('adminLoanReportSend.create') }}">Loan Send</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('adminLoanReportRecive.create') }}">Loan Recive</a></li>
 

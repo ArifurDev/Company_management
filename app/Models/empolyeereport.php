@@ -14,11 +14,11 @@ class empolyeereport extends Model
         'company',
         'compony_id',
         'empolyee',
+        'incoming_card',
+        'incoming_cash',
         'incoming',
         'outgoing',
-        'total',
         'cash',
-        'card',
         'note',
     ];
 }

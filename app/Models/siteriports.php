@@ -20,7 +20,6 @@ class siteriports extends Model
         'password',
         'verifi_code',
         'payment_date',
-
         'why_create',
         'number',
         'note',

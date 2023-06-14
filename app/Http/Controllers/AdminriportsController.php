@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AdminreportExport;
+use App\Exports\AdminreportthismonthExport;
 use App\Models\adminriports;
 use App\Models\Billdate;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminriportsController extends Controller
 {
@@ -74,7 +77,6 @@ class AdminriportsController extends Controller
     public function store(Request $request)
     {
 
-
         $total = $request->house_rent + $request->gard_bill + $request->electricity_bill + $request->sewerage_bill + $request->expanse + $request->personal + $request->water_bill + $request->fewa_bill + $request->wifi_bill + $request->a + $request->b + $request->c;
 
         adminriports::insert([
@@ -84,17 +86,13 @@ class AdminriportsController extends Controller
             'sewerage_bill' => $request->sewerage_bill,
             'expanse' => $request->expanse,
             'personal' => $request->personal,
-
             'water_bill' => $request->water_bill,
             'fewa_bill' => $request->fewa_bill,
             'wifi_bill' => $request->wifi_bill,
-
             'a' => $request->a,
             'b' => $request->b,
             'c' => $request->c,
-
             'note' => $request->note,
-
             'total' => $total,
             'created_at' => now(),
         ]);
@@ -207,4 +205,15 @@ class AdminriportsController extends Controller
        return redirect()->back()->with($notification);
     }
 
+
+        //download this month report excel file
+        public function export(){
+            return Excel::download(new AdminreportthismonthExport, 'This month Admin Report.xlsx');
+        }
+
+
+        //download all reports excel file
+        public function all_export(){
+            return Excel::download(new AdminreportExport, 'All Admin Report.xlsx');
+        }
 }

@@ -18,7 +18,6 @@ class adminriports extends Model
         'expanse',
         'personal',
         'total',
-
         'water_bill',
         'fewa_bill',
         'wifi_bill',

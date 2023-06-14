@@ -78,7 +78,7 @@ class EmpolyeereportController extends Controller
         ]);
         $incoming = $request->incoming_card + $request->incoming_cash;
 
-        $total = $incoming + $request->outgoing;
+
         $cash = $incoming - $request->outgoing;
         $compony_name = Auth::user()->compony_name;
         $email = Auth::user()->email;
@@ -145,9 +145,8 @@ class EmpolyeereportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $incoming = $request->incoming_card + $request->incoming_cash;
+      $incoming = $request->incoming_card + $request->incoming_cash;
 
-        $total = $incoming + $request->outgoing;
         $cash = $incoming - $request->outgoing;
 
         $comopany_id =  comopany::where('compony_name',$request->company)->value('id');
@@ -158,7 +157,6 @@ class EmpolyeereportController extends Controller
             'incoming_card' => $request->incoming_card,
             'incoming_cash' => $request->incoming_cash,
             'outgoing' => $request->outgoing,
-
             'cash' => $cash,
             'note' => $request->note,
         ]);

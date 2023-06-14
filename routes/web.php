@@ -62,7 +62,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('delete/empolyee/{id}', [EmpolyeeController::class, 'destroy'])->name('delete.empolyee')->middleware('RoleChecker');
     Route::get('delete/empolyee/{id}', [EmpolyeeController::class, 'destroy'])->middleware('RoleChecker');
 
-
+    // selected company show information
     Route::get('compoany/empolyeereport/{id}', [EmpolyeeController::class, 'info'])->name('compoany.info')->middleware('RoleChecker');
 
     /**
@@ -85,6 +85,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('destroy/admin/daily/report/{id}', 'destroy')->name('admindailyraport.destroy');
         Route::get('restor/admin/daily/report/{id}', 'restor')->name('admindailyraport.restor');
         Route::get('delete/admin/daily/report/{id}', 'delete')->name('admindailyraport.delete');
+
+        //download this month report excel file
+        Route::get('admin/report/export', 'export')->name('export.adminreport')->middleware('RoleChecker');
+
+        //download all report excel file
+        Route::get('admin/report/all/export', 'all_export')->name('all.export.adminreport')->middleware('RoleChecker');
+
         /**
          * date search
          */

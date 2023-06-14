@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\comopany;
 use App\Models\empolyee;
 use App\Models\empolyeereport;
+use App\Models\siteriports;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -168,12 +169,17 @@ class EmpolyeeController extends Controller
     }
 
 
-
+    /**
+     *selected company all information show
+     */
     public function info($id)
     {
       $empolyeereport = empolyeereport::where('compony_id',$id)->get();
       $com_name = comopany::where('id',$id)->value('compony_name');
       $empolyee_count = User::where('compony_id',$id)->count();
-      return view('dashbord.company.info',compact('empolyeereport','empolyee_count','com_name'));
+
+     $com_site_reports = siteriports::where('company',$com_name )->get();
+
+      return view('dashbord.company.info',compact('empolyeereport','empolyee_count','com_name','com_site_reports'));
     }
 }
