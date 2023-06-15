@@ -17,7 +17,7 @@
  <!-- Layout styles -->
  <link rel="stylesheet" href="{{ asset('dashbord/assets') }}/css/style.css">
  <!-- End layout styles -->
- <link rel="shortcut icon" href="{{ asset('dashbord/assets') }}/images/favicon.png" />
+ <link rel="shortcut icon" href="{{ asset('dashbord/assets/images/manicon.jpg') }}" />
 
   <!-- DataTables -->
   <link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
