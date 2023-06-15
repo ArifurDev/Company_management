@@ -64,6 +64,23 @@
                                 <label for="personal">Personal</label>
                                 <input type="number" class="form-control text-light" id="personal" placeholder="personal" name="personal" min="0" value="{{ $adminriports->personal }}">
                               </div>
+                              <div class="form-group">
+                                <label for="a">A</label>
+                                <input type="number" class="form-control text-light" min="0" id="a" placeholder="A" name="a" value="{{ $adminriports->a }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="b">B</label>
+                                <input type="number" class="form-control text-light" min="0" id="b" placeholder="B" name="b" value="{{ $adminriports->b }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="c">C</label>
+                                <input type="number" class="form-control text-light" min="0" id="c" placeholder="C" name="c" value="{{ $adminriports->c }}">
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Note</label>
+                                <textarea class="form-control text-light" id="exampleFormControlTextarea1" rows="3" name="note">{{ $adminriports->note }}</textarea>
+                              </div>
                               <button type="submit" class="btn btn-primary me-2">Update</button>
                             </form>
                           </div>

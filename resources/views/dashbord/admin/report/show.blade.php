@@ -105,7 +105,7 @@
                                                         <th class="text-light"> Sewerage Bill </th>
                                                         <th class="text-light"> Expanse </th>
                                                         <th class="text-light"> Personal </th>
-                                                        <th class="text-light"> Loan </th>
+                                                        {{-- <th class="text-light"> Loan </th> --}}
                                                         <th class="text-light"> Total </th>
                                                         <th class="text-light"> Date </th>
 
@@ -121,7 +121,7 @@
                                                         <td class="text-light"> {{ $treshed_info->sewerage_bill }} tk</td>
                                                         <td class="text-light"> {{ $treshed_info->expanse }} tk</td>
                                                         <td class="text-light"> {{ $treshed_info->personal }} tk</td>
-                                                        <td class="text-light"> {{ $treshed_info->loan }} tk</td>
+                                                        {{-- <td class="text-light"> {{ $treshed_info->loan }} tk</td> --}}
                                                         <td class="text-light"> {{ $treshed_info->total }} tk</td>
                                                         <td class="text-light"> {{ $treshed_info->created_at->format('d/m/Y')}}</td>
                                                         <td>
@@ -158,7 +158,7 @@
                                         <th class="text-light"> Wifi Bill </th>
                                         <th class="text-light"> Expanse </th>
                                         <th class="text-light"> Personal </th>
-                                        <th class="text-light"> Loan </th>
+                                        {{-- <th class="text-light"> Loan </th> --}}
                                         <th class="text-light"> A </th>
                                         <th class="text-light"> B </th>
                                         <th class="text-light"> C </th>
@@ -180,7 +180,7 @@
                                              <td class="text-light"> {{ $info->wifi_bill }} tk</td>
                                             <td class="text-light"> {{ $info->expanse }} tk</td>
                                             <td class="text-light"> {{ $info->personal }} tk</td>
-                                            <td class="text-light"> {{ $info->loan }} tk</td>
+                                            {{-- <td class="text-light"> {{ $info->loan }} tk</td> --}}
                                             <td class="text-light" > {{ $info->a }} tk</td>
                                             <td class="text-light" > {{ $info->b }} tk</td>
                                             <td class="text-light" > {{ $info->c }} tk</td>
