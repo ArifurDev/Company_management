@@ -45,6 +45,13 @@
     @endif
 </script>
 
+    <!-- datatables JS -->
+    <script src="{{ asset('dashbord/assets/js/datatable.js') }}"></script>
+
+    <script src="{{ asset('dashbord/assets/js/responsive.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('dashbord/assets/js/dataTables.responsive.min.js') }}"></script>
+
+
   <!-- datatables JS -->
   <script src="js/jquery.app.js"></script>
 
@@ -55,5 +62,17 @@
   <script type="text/javascript">
       $(document).ready(function() {
           $('#datatable').dataTable();
+
+
+        //   $('#example').DataTable();
+          var table = $('#example').DataTable( {
+                responsive: true
+            } );
+
+            new $.fn.dataTable.FixedHeader( table );
       } );
+
+
+
   </script>
+

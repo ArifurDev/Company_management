@@ -16,6 +16,16 @@
  <!-- endinject -->
  <!-- Layout styles -->
  <link rel="stylesheet" href="{{ asset('dashbord/assets') }}/css/style.css">
+
+  <!-- datatable styles -->
+  <link rel="stylesheet" href="{{ asset('dashbord/assets/css/datatable.css') }}">
+
+  <link rel="stylesheet" href="{{ asset('dashbord/assets/css/responsive.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('dashbord/assets/css/fixedHeader.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('dashbord/assets/css/dataTables.bootstrap.min.css') }}">
+
+
+
  <!-- End layout styles -->
  <link rel="shortcut icon" href="{{ asset('dashbord/assets/images/manicon.jpg') }}" />
 

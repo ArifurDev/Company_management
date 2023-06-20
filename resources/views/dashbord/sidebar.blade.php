@@ -78,13 +78,36 @@
             <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyee') }}">Create Empolyee</a></li>
             @endif
 
-          <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyeereport') }}">Daliy Report</a></li>
-          @if (Auth::user()->role === 'admin')
-          <li class="nav-item"> <a class="nav-link" href="{{ route('show.empolyeereport') }}">Show Empolyees Report</a></li>
-          @endif
+            @if (Auth::user()->role === 'admin')
+            <li class="nav-item"> <a class="nav-link" href="{{ route('empolyeeinfo.create') }}">Create Information</a></li>
+
+            <li class="nav-item"> <a class="nav-link" href="{{ route('empolyeeinfo.index') }}">Show Information</a></li>
+           @endif
         </ul>
       </div>
     </li>
+
+
+    <li class="nav-item menu-items">
+        <a class="nav-link" data-bs-toggle="collapse" href="#daily-report" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-icon">
+            <i class="mdi mdi-file-document"></i>
+          </span>
+          <span class="menu-title">Empolyee Reports</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="daily-report">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyeereport') }}">Daliy Report</a></li>
+            @if (Auth::user()->role === 'admin')
+            <li class="nav-item"> <a class="nav-link" href="{{ route('show.empolyeereport') }}">Show Empolyees Report</a></li>
+            @endif
+          </ul>
+        </div>
+      </li>
+
+
+
     @if (Auth::user()->role === 'admin')
     <li class="nav-item menu-items">
         <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">

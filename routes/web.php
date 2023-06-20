@@ -6,13 +6,15 @@ use App\Http\Controllers\BilldateController;
 use App\Http\Controllers\ComopanyController;
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\EmpolyeeController;
+use App\Http\Controllers\EmpolyeeinfoController;
 use App\Http\Controllers\EmpolyeereportController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LoanrecivesiduleController;
 use App\Http\Controllers\LoansendshiduleController;
 use App\Http\Controllers\ReciveloanController;
+
 use App\Models\Loanrecivesidule;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -136,6 +138,22 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     /**
      *  end date search route
      */
+
+
+     /**
+     * Empolyee information
+     */
+     Route::resource('empolyeeinfo', EmpolyeeinfoController::class)->middleware('RoleChecker');
+     Route::get('empolyee/info/restore/{id}', [EmpolyeeinfoController::class,'restore'])->name('empolyee.info.restore')->middleware('RoleChecker');
+     Route::get('empolyee/info/delete/{id}', [EmpolyeeinfoController::class,'delete'])->name('empolyee.info.delete')->middleware('RoleChecker');
+
+     /**
+     * Empolyee information  end
+     */
+
+
+
+
 
     /**
      * Admin daily reports end
