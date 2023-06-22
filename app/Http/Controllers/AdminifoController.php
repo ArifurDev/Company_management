@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adminifo;
 use App\Models\empolyee;
-use App\Models\Empolyeeinfo;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
-class EmpolyeeinfoController extends Controller
+
+class AdminifoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class EmpolyeeinfoController extends Controller
      */
     public function index()
     {
-        $trashed_info = Empolyeeinfo::onlyTrashed()->get();
-        $empolyeeinfo = Empolyeeinfo::all();
-        return view('dashbord.empolyeeinfo.index',compact('empolyeeinfo','trashed_info'));
+         $trashed_info = Adminifo::onlyTrashed()->get();
+        $information = Adminifo::all();
+        return view('dashbord.admin.report.information.index',compact('information','trashed_info'));
     }
 
     /**
@@ -28,8 +28,8 @@ class EmpolyeeinfoController extends Controller
      */
     public function create()
     {
-        $empolyee =  User::where('role','empolyees')->get();
-        return view('dashbord.empolyeeinfo.create',compact('empolyee'));
+        $empolyee =  User::where('role','admin')->get();
+        return view('dashbord.admin.report.information.create',compact('empolyee'));
     }
 
     /**
@@ -40,18 +40,21 @@ class EmpolyeeinfoController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'email' =>"required|email",
         ]);
 
-        $data =new Empolyeeinfo;
+        $data =new Adminifo;
         $data['salary_raised'] = $request->salary_raised;
         $data['salary_receivable'] = $request->salary_receivable;
         $data['loan_taken'] = $request->loan_taken;
         $data['loan_repaid'] = $request->loan_repaid;
         $data['visa_url'] = $request->visa_url;
         $data['password'] = $request->password;
+        $data['card_holder_name'] = $request->card_holder_name;
+        $data['card_number'] = $request->card_number;
+        $data['currency'] = $request->currency;
+        $data['expairy_date'] = $request->expairy_date;
         $data['bank_name'] = $request->bank_name;
         $data['bank_account_number'] = $request->bank_account_number;
         $data['exchange_name'] = $request->exchange_name;
@@ -59,16 +62,10 @@ class EmpolyeeinfoController extends Controller
         $data['bank_card_number'] = $request->bank_card_number;
         $data['Pin'] = $request->Pin;
         $data['online_transfer_Password'] = $request->online_transfer_Password;
-        $data['a'] = $request->a;
-        $data['b'] = $request->b;
-        $data['c'] = $request->c;
-        $data['d'] = $request->d;
-        $data['e'] = $request->e;
         $data['email'] = $request->email;
-
         $data->save();
         $notification = array(
-            'message' => 'Empolyee information Added',
+            'message' => 'Admin information Added',
             'alert-type' => 'success'
             );
         return redirect()->back()->with($notification);
@@ -77,10 +74,10 @@ class EmpolyeeinfoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Empolyeeinfo  $empolyeeinfo
+     * @param  \App\Models\Adminifo  $adminifo
      * @return \Illuminate\Http\Response
      */
-    public function show(Empolyeeinfo $empolyeeinfo)
+    public function show(Adminifo $adminifo)
     {
         //
     }
@@ -88,31 +85,37 @@ class EmpolyeeinfoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Empolyeeinfo  $empolyeeinfo
+     * @param  \App\Models\Adminifo  $adminifo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empolyeeinfo $empolyeeinfo)
+    public function edit($id)
     {
-        $empolyee =  User::where('role','empolyees')->get();
-        return view('dashbord.empolyeeinfo.edit',compact('empolyeeinfo','empolyee'));
+
+       $information = Adminifo::find($id);
+       $empolyee =  User::where('role','admin')->get();
+       return view("dashbord.admin.report.information.edit",compact('information','empolyee'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Empolyeeinfo  $empolyeeinfo
+     * @param  \App\Models\Adminifo  $adminifo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empolyeeinfo $empolyeeinfo)
+    public function update(Request $request,$id)
     {
-        $empolyeeinfo->update([
+        Adminifo::find($id)->update([
             'salary_raised' => $request->salary_raised,
             'salary_receivable' => $request->salary_receivable,
             'loan_taken' => $request->loan_taken,
             'loan_repaid' => $request->loan_repaid,
             'visa_url' => $request->visa_url,
             'password' => $request->password,
+            'card_holder_name' => $request->card_holder_name,
+            'card_number' => $request->card_number,
+            'currency' => $request->currency,
+            'expairy_date' => $request->expairy_date,
             'bank_name' => $request->bank_name,
             'bank_account_number' => $request->bank_account_number,
             'exchange_name' => $request->exchange_name,
@@ -120,62 +123,53 @@ class EmpolyeeinfoController extends Controller
             'bank_card_number' => $request->bank_card_number,
             'Pin' => $request->Pin,
             'online_transfer_Password' => $request->online_transfer_Password,
-            'a' => $request->a,
-            'b' => $request->b,
-            'c' => $request->c,
-            'd' => $request->d,
-            'e' => $request->e,
             'email' => $request->email,
-
         ]);
-
         $notification = array(
-            'message' => 'Empolyee information Update',
+            'message' => 'Admin information Updated',
             'alert-type' => 'success'
             );
         return redirect()->back()->with($notification);
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Empolyeeinfo  $empolyeeinfo
+     * @param  \App\Models\Adminifo  $adminifo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empolyeeinfo $empolyeeinfo)
+    public function destroy($id)
     {
-        $empolyeeinfo->delete();
+        Adminifo::find($id)->delete();
+
         $notification = array(
-            'message' => 'Empolyee information temp Deleted',
+            'message' => 'Admin information deleted',
             'alert-type' => 'success'
             );
         return redirect()->back()->with($notification);
-
     }
-
 
     public function restore($id)
     {
-      Empolyeeinfo::onlyTrashed()->find($id)->restore();
+        Adminifo::onlyTrashed()->find($id)->restore();
+
         $notification = array(
-            'message' => 'Empolyee information restore success',
+            'message' => 'Admin information restore',
             'alert-type' => 'success'
             );
         return redirect()->back()->with($notification);
-
     }
+
 
 
     public function delete($id)
     {
-      Empolyeeinfo::onlyTrashed()->find($id)->forceDelete();
+        Adminifo::onlyTrashed()->find($id)->forceDelete();
+
         $notification = array(
-            'message' => 'Empolyee information Deleted',
-            'alert-type' => 'info'
+            'message' => 'Admin information Deleted Forever',
+            'alert-type' => 'success'
             );
         return redirect()->back()->with($notification);
-
     }
-
 }

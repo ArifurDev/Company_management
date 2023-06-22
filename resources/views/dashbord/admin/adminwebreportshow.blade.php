@@ -151,7 +151,9 @@
                                             <td  class="text-light"> {{ $info->created_at->format('d/m/Y')}}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-
+                                                    <a type="button" class="btn btn-primary" href="{{ route('view.adminwebreport',['id'=>$info->id]) }}" title="single view">
+                                                        <i class="mdi mdi-eye"></i>
+                                                    </a>
                                                     <a type="button" class="btn btn-primary" href="{{ route('adminwebreport.edit',['id'=>$info->id]) }}" title="edit">
                                                         <i class="mdi mdi-border-color"></i>
                                                     </a>

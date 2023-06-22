@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Empolyeeinfo extends Model
+class Adminifo extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable = [
@@ -23,11 +23,10 @@ class Empolyeeinfo extends Model
         'bank_card_number',
         'Pin',
         'online_transfer_Password',
-        'a',
-        'b',
-        'c',
-        'd',
-        'e',
+        'card_holder_name',
+        'card_number',
+        'currency',
+        'expairy_date',
         'email'
     ];
 }

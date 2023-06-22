@@ -25,6 +25,7 @@ class adminwebreportController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             $request->url => 'url',
         ]);
@@ -41,6 +42,17 @@ class adminwebreportController extends Controller
             'payment_date' => $request->payment_date,
             'why_create' => $request->why_create,
             'number' => $request->number,
+            'card_holder_name' => $request->card_holder_name,
+            'card_number' => $request->card_number,
+            'currency' => $request->currency,
+            'expairy_date' => $request->expairy_date,
+            'bank_name' => $request->bank_name,
+            'bank_account_number' => $request->bank_account_number,
+            'exchange_name' => $request->exchange_name,
+            'exchange_account_number' => $request->exchange_account_number,
+            'bank_card_number' => $request->bank_card_number,
+            'Pin' => $request->Pin,
+            'online_transfer_Password' => $request->online_transfer_Password,
             'note' => $request->note,
             'created_at' => now(),
         ]);
@@ -73,6 +85,17 @@ class adminwebreportController extends Controller
                 'payment_date' => $request->payment_date,
                 'why_create' => $request->why_create,
                 'number' => $request->number,
+                'card_holder_name' => $request->card_holder_name,
+                'card_number' => $request->card_number,
+                'currency' => $request->currency,
+                'expairy_date' => $request->expairy_date,
+                'bank_name' => $request->bank_name,
+                'bank_account_number' => $request->bank_account_number,
+                'exchange_name' => $request->exchange_name,
+                'exchange_account_number' => $request->exchange_account_number,
+                'bank_card_number' => $request->bank_card_number,
+                'Pin' => $request->Pin,
+                'online_transfer_Password' => $request->online_transfer_Password,
                 'note' => $request->note,
             ]);
 
@@ -151,5 +174,10 @@ class adminwebreportController extends Controller
         }
 
         return response($output);
+    }
+
+    public function view($id){
+      $single_view =  siteriports::find($id);
+      return view('dashbord.admin.singleview',compact('single_view'));
     }
 }

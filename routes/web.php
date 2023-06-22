@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminifoController;
 use App\Http\Controllers\AdminriportsController;
 use App\Http\Controllers\adminwebreportController;
 use App\Http\Controllers\BilldateController;
@@ -48,7 +49,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('create/company', 'create')->name('company.create');
         Route::post('create/company', 'store')->name('company.store');
         Route::get('destroy/company/{id}', 'destroy')->name('company.destroy');
-    });
+    })->middleware('RoleChecker');
 
     /**
      * companycontroller  END
@@ -102,6 +103,17 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
          *  end date search route
          */
     });
+
+    Route::resource('admininfo', AdminifoController::class)->middleware('RoleChecker');
+    Route::controller(AdminifoController::class)->middleware('RoleChecker')->group(function () {
+        Route::get('admin/information/restore/{id}','restore')->name('admin.info.restore');
+        Route::get('admin/information/destroy/{id}','destroy')->name('admin.info.distroy');
+        Route::get('admin/information/edit/{id}','edit')->name('admin.info.edit');
+        Route::post('admin/information/update/{id}','update')->name('admin.info.update');
+        Route::get('admin/information/delete/{id}','delete')->name('admin.info.delete');
+    });
+
+
     /**
      * Empolyee daily reports
      */
@@ -167,6 +179,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('adminwebreport/destroy/{id}', 'destroy')->name('adminwebreport.destroy');
         Route::get('adminwebreport/restor/{id}', 'restor')->name('restor.adminwebreport');
         Route::get('adminwebreport/delete/{id}', 'delete')->name('delete.adminwebreport');
+        //
+        Route::get('adminwebreport/single/view/{id}', 'view')->name('view.adminwebreport');
 
         /**
          * live search

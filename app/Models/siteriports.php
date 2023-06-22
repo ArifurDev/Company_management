@@ -23,5 +23,16 @@ class siteriports extends Model
         'why_create',
         'number',
         'note',
+        'card_holder_name',
+        'card_number',
+        'currency',
+        'expairy_date',
+        'bank_name',
+        'bank_account_number',
+        'exchange_name',
+        'exchange_account_number',
+        'bank_card_number',
+        'Pin',
+        'online_transfer_Password',
     ];
 }

@@ -99,6 +99,55 @@
                                 <input type="date" class="form-control text-light" id="payment_date" placeholder="payment_date" name="payment_date" value="{{ $sitereports->payment_date }}">
                               </div>
                               <div class="form-group">
+                                <label for="card_holder_name">Card Holder Name</label>
+                                <input type="text" class="form-control text-light" id="card_holder_name"  placeholder="Card Holder Name" name="card_holder_name" value="{{ $sitereports->card_holder_name }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="card_number">Card Number</label>
+                                <input type="text" class="form-control text-light" id="card_number" placeholder="Card Number" name="card_number" value="{{ $sitereports->card_number }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="currency">Currency</label>
+                                <input type="text" class="form-control text-light" id="currency"  placeholder="Currency" name="currency" value="{{ $sitereports->currency }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="expairy_date">Expairy Date</label>
+                                <input type="date" class="form-control text-light" id="expairy_date" placeholder="Expairy Date" name="expairy_date" value="{{ $sitereports->expairy_date }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="verifi_code">Bank Name</label>
+                                <input type="text" class="form-control text-light" id="bank_name"  placeholder="Bank Name" name="bank_name" value="{{ $sitereports->bank_name }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="bank_account_number">Bank Account Number</label>
+                                <input type="text" class="form-control text-light" id="bank_account_number" placeholder="Bank Account Number" name="bank_account_number" value="{{ $sitereports->bank_account_number }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="bank_card_number">Bank Card Number</label>
+                                <input type="text" class="form-control text-light" id="bank_card_number" placeholder="Bank Card Number" name="bank_card_number" value="{{ $sitereports->bank_card_number }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="exchange_name">Exchange Name</label>
+                                <input type="text" class="form-control text-light" id="exchange_name"  placeholder="exchange_name" name="exchange_name" value="{{ $sitereports->exchange_name }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="payment_date">Exchange Account Number</label>
+                                <input type="text" class="form-control text-light" id="exchange_account_number" placeholder="Exchange Account Number" name="exchange_account_number" value="{{ $sitereports->exchange_account_number }}">
+                              </div>
+
+                              <div class="form-group">
+                                <label for="bank_account_number">Bank Account Number</label>
+                                <input type="text" class="form-control text-light" id="bank_account_number" placeholder="Bank Account Number" name="bank_account_number" value="{{ $sitereports->bank_account_number }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="Pin">Pin</label>
+                                <input type="text" class="form-control text-light" id="Pin"  placeholder="Pin" name="Pin" value="{{ $sitereports->Pin }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="online_transfer_Password">Online Transfer Password</label>
+                                <input type="text" class="form-control text-light" id="online_transfer_Password" placeholder="Online Transfer Password" name="online_transfer_Password" value="{{ $sitereports->online_transfer_Password }}">
+                              </div>
+                              <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Note</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="note" >{{ $sitereports->note }}</textarea>
                               </div>

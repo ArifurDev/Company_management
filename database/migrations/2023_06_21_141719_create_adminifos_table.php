@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('empolyeeinfos', function (Blueprint $table) {
+        Schema::create('adminifos', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('salary_raised')->nullable();
             $table->string('salary_receivable')->nullable();
             $table->string('loan_taken')->nullable();
@@ -29,11 +29,10 @@ return new class extends Migration
             $table->string('bank_card_number')->nullable();
             $table->string('Pin')->nullable();
             $table->string('online_transfer_Password')->nullable();
-            $table->string('a')->nullable();
-            $table->string('b')->nullable();
-            $table->string('c')->nullable();
-            $table->string('d')->nullable();
-            $table->string('e')->nullable();
+            $table->string('card_holder_name')->nullable();
+            $table->string('card_number')->nullable();
+            $table->string('currency')->nullable();
+            $table->string('expairy_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -46,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empolyeeinfos');
+        Schema::dropIfExists('adminifos');
     }
 };

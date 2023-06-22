@@ -63,7 +63,7 @@
 
     @endif
 
-
+    @if (Auth::user()->role === 'admin')
     <li class="nav-item menu-items">
       <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
@@ -74,18 +74,19 @@
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-            @if (Auth::user()->role === 'admin')
-            <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyee') }}">Create Empolyee</a></li>
-            @endif
 
-            @if (Auth::user()->role === 'admin')
+            <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyee') }}">Create Empolyee</a></li>
+
+
+
             <li class="nav-item"> <a class="nav-link" href="{{ route('empolyeeinfo.create') }}">Create Information</a></li>
 
             <li class="nav-item"> <a class="nav-link" href="{{ route('empolyeeinfo.index') }}">Show Information</a></li>
-           @endif
+
         </ul>
       </div>
     </li>
+    @endif
 
 
     <li class="nav-item menu-items">
@@ -121,6 +122,10 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('admindailyraport.create') }}">Create Report</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('admindailyraport.show') }}">Reports</a></li>
+            <hr>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admininfo.create') }}">Add Information</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admininfo.index') }}">Show Information</a></li>
+
           </ul>
         </div>
       </li>
@@ -148,17 +153,7 @@
 
 
 
-      {{-- @if (Auth::user()->role === 'admin')
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="{{ route('payment.date.edit') }}">
-          <span class="menu-icon">
-            <i class="mdi mdi-dns"></i>
-          </span>
-          <span class="menu-title">All Payment Date</span>
-        </a>
 
-      </li>
-      @endif --}}
 
 
 
