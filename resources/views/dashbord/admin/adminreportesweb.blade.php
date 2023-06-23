@@ -52,6 +52,7 @@
                                 <div class="form-group">
                                     <label for="email">Company</label>
                                     <select class="form-control text-light" name="company">
+                                        <option value=" ">Select company</option>
                                         @foreach ($componies as $compony)
                                          <option value="{{ $compony->compony_name }}">{{ $compony->compony_name }}</option>
                                         @endforeach
@@ -137,10 +138,6 @@
                                 <input type="text" class="form-control text-light" id="exchange_account_number" placeholder="Exchange Account Number" name="exchange_account_number">
                               </div>
 
-                              <div class="form-group">
-                                <label for="bank_account_number">Bank Account Number</label>
-                                <input type="text" class="form-control text-light" id="bank_account_number" placeholder="Bank Account Number" name="bank_account_number">
-                              </div>
                               <div class="form-group">
                                 <label for="Pin">Pin</label>
                                 <input type="text" class="form-control text-light" id="Pin"  placeholder="Pin" name="Pin">

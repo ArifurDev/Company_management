@@ -98,9 +98,8 @@
                                                 class="col-sm-3 col-form-label">Company</label>
                                             <div class="col-sm-9 ">
                                                 <select class="form-control text-light" name="compony_name" required>
-                                                    <option value="{{ $empolyee->compony_name }}" selected >{{ $empolyee->compony_name }}</option>
                                                     @foreach ($comopanies as $comopany)
-                                                    <option value="{{ $comopany->compony_name }}">{{ $comopany->compony_name }}</option>
+                                                    <option value="{{ $comopany->compony_name }}" @selected($empolyee->compony_name === $comopany->compony_name)>{{ $comopany->compony_name }}</option>
                                                   @endforeach
                                                 </select>
                                             </div>

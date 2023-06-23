@@ -172,7 +172,7 @@
                                                                                     <select
                                                                                         class="form-control text-light"
                                                                                         name="compony_name">
-                                                                                        <option >Select company name</option>
+                                                                                        <option value=" ">Select company name</option>
                                                                                         @foreach ($comopanies as $comopany)
                                                                                           <option value="{{ $comopany->compony_name }}">{{ $comopany->compony_name }}</option>
                                                                                         @endforeach
