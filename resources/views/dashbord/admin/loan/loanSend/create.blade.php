@@ -207,7 +207,7 @@
                                             <td class="text-light">{{ $loanSend->recive_date }}</td>
                                             <td>
                                               <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="{{ route('loanSendInstallment.show',['email'=>$loanSend->email]) }}" class="btn btn-outline-secondary" title="loanReciveInstallment">
+                                                <a href="{{ route('loanSendInstallment.show',['number'=>$loanSend->number]) }}" class="btn btn-outline-secondary" title="loanReciveInstallment">
                                                     <i class="mdi mdi-application"></i>
                                                   </a>
                                                 <a href="{{ route('adminLoanReportSend.edit',['id'=>$loanSend->id]) }}" class="btn btn-outline-secondary" title="Edit">

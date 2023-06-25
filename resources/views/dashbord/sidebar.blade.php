@@ -151,10 +151,24 @@
     @endif
 
 
-
-
-
-
+    @if (Auth::user()->role === 'admin')
+    <li class="nav-item menu-items">
+        <a class="nav-link" data-bs-toggle="collapse" href="#loan" aria-expanded="false" aria-controls="loan">
+          <span class="menu-icon">
+            <i class="mdi mdi mdi-bank"></i>
+          </span>
+          <span class="menu-title">Loan Managment</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="loan">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('mainloan.create') }}">Add Loan</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('mainloan.index') }}">Show Loan List</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('mainloan.complete') }}">Complete Loan List</a></li>
+          </ul>
+        </div>
+      </li>
+    @endif
 
 
       @if (Auth::user()->role === 'admin')

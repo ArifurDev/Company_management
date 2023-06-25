@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('email');
-            $table->text('number');
-            $table->string('amount');
-            $table->date('recive_date');
+            $table->text('email')->nullable();
+            $table->text('number')->nullable();
+            $table->string('amount')->nullable();
+            $table->date('recive_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

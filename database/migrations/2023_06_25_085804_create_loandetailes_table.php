@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reciveloans', function (Blueprint $table) {
+        Schema::create('loandetailes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('email')->nullable();
-            $table->text('number')->nullable();
-            $table->string('amount')->nullable();
-            $table->date('recive_date')->nullable();
+            $table->string("mainloan_id");
+            $table->string("installment")->nullable();
+            $table->string("amount")->nullable();
+            $table->string("date")->nullable();
+            $table->string("status")->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reciveloans');
+        Schema::dropIfExists('loandetailes');
     }
 };

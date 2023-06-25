@@ -58,7 +58,20 @@
   <script src="{{ asset('dashbord/assets') }}/datatables/jquery.dataTables.min.js"></script>
   <script src="{{ asset('dashbord/assets') }}/datatables/dataTables.bootstrap.js"></script>
 
+    <!-- image code -->
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#image')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
+    </script>
   <script type="text/javascript">
       $(document).ready(function() {
           $('#datatable').dataTable();

@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('loansendshidules', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->text('amount');
-            $table->text('amount_due');
-            $table->text('installment');
-            $table->date('payment_date');
+            $table->string('email')->nullable();
+            $table->text('amount')->nullable();
+            $table->text('amount_due')->nullable();
+            $table->text('installment')->nullable();
+            $table->date('payment_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

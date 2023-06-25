@@ -27,9 +27,9 @@ class LoanrecivesiduleController extends Controller
         return redirect()->back()->with($notification);
 
     }
-    public function show($email)
+    public function show($number)
     {
-       $loan_recive_installment_shidule = Loanrecivesidule::where('email',$email)->latest()->get();
+       $loan_recive_installment_shidule = Loanrecivesidule::where('number',$number)->latest()->get();
        $recive_installment_trashed = Loanrecivesidule::onlyTrashed()->get();
        return view('dashbord.admin.loan.loanRecive.installment',compact('loan_recive_installment_shidule','recive_installment_trashed'));
 

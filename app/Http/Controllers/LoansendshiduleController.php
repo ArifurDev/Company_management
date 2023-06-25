@@ -20,10 +20,10 @@ class LoansendshiduleController extends Controller
 
         return back()->withSuccess('loan  Installment info submit successfull');
     }
-    public function show($email)
+    public function show($number)
     {
 
-       $loan_send_installment_shidule = Loansendshidule::where('email',$email)->latest()->get();
+       $loan_send_installment_shidule = Loansendshidule::where('number',$number)->latest()->get();
        $send_installment_trashed = Loansendshidule::onlyTrashed()->latest()->get();
        return view('dashbord.admin.loan.loanSend.installment',compact('loan_send_installment_shidule','send_installment_trashed'));
 
