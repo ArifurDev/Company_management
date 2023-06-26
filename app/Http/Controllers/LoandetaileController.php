@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Loandetaile;
 use App\Models\Mainloan;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Sum;
 
 class LoandetaileController extends Controller
 {
@@ -51,13 +52,12 @@ class LoandetaileController extends Controller
 
          $installment_check =  Loandetaile::where('mainloan_id',$request->mainloan_id)->where('installment',$request->installment)->first();
 
-         $pay_installment_count = Loandetaile::where('mainloan_id',$request->mainloan_id)->count();
+       return  $pay_installment_count = Loandetaile::where('mainloan_id',$request->mainloan_id)->sum('');
+       die();
 
          $main_loan =  Mainloan::where('id',$request->mainloan_id)->first();
 
          $total_installment =$main_loan->installment;
-
-         $total_installment =$main_loan->installment -1 ;
 
          $per_installment = $main_loan->per_installment;//per installment price get
 
@@ -89,17 +89,7 @@ class LoandetaileController extends Controller
                             'alert-type' => 'success'
                         );
                         return redirect()->back()->with($notification);
-                        if ($pay_installment_count == $total_installment) {
-                            $id =$request->mainloan_id;
-                            Mainloan::find($id)->update([
-                                'status' =>'complete'
-                            ]);
-                            $notification = array(
-                                'message' => 'Complete Loan installment',
-                                'alert-type' => 'success'
-                            );
-                            return redirect()->route('mainloan.index')->with($notification);
-                        }
+
 
                     }
              }else{
