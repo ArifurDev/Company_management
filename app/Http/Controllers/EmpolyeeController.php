@@ -95,7 +95,7 @@ class EmpolyeeController extends Controller
             'created_at' => now(),
         ]);
         $notification = array(
-            'message' => 'Empolyee Account Create Successfully',
+            'message' => 'Account Create Successfully',
             'alert-type' => 'success'
             );
         return redirect()->back()->with($notification);

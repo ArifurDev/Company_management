@@ -155,10 +155,9 @@
                                                                                     <select
                                                                                         class="form-control text-light"
                                                                                         name="role">
-                                                                                        <option value="admin">Admin
-                                                                                        </option>
-                                                                                        <option value="empolyees">
-                                                                                            Empolyee</option>
+                                                                                        <option value="admin">Admin</option>
+                                                                                        <option value="empolyees">Empolyee</option>
+                                                                                        <option value="assistant">Assistant</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>

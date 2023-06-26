@@ -57,6 +57,7 @@
                                                     name="role">
                                                     <option value="admin" @selected($empolyee->role === 'admin')>Admin</option>
                                                     <option value="empolyees" @selected($empolyee->role === 'empolyees')>Empolyee</option>
+                                                    <option value="assistant" @selected($empolyee->role === 'assistant')>Assistant</option>
                                                 </select>
                                             </div>
                                         </div>

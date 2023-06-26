@@ -65,6 +65,7 @@
                                         <tr>
                                           <th  class="text-light"> # </th>
                                           <th  class="text-light"> Company Name </th>
+
                                           <th  class="text-light">Action</th>
 
                                         </tr>
@@ -74,6 +75,7 @@
                                         <tr>
                                             <td  class="text-light">{{ $loop->iteration }}</td>
                                             <td  class="text-light"> {{ $company->compony_name }} </td>
+                                            
                                             <td>
                                               <div class="btn-group" role="group" aria-label="Basic example">
 
@@ -85,6 +87,7 @@
                                                   </a>
                                                 </div>
                                             </td>
+
                                           </tr>
                                         @empty
 

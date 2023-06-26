@@ -24,6 +24,7 @@
     <li class="nav-item nav-category">
       <span class="nav-link">Navigation</span>
     </li>
+    @if (Auth::user()->role != 'assistant')
     <li class="nav-item menu-items">
       <a class="nav-link" href="{{ route('dashboard') }}">
         <span class="menu-icon">
@@ -32,6 +33,7 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+    @endif
 
     @if (Auth::user()->role === 'admin')
     <li class="nav-item menu-items">
@@ -44,7 +46,9 @@
       </a>
       <div class="collapse" id="ui-basic1">
         <ul class="nav flex-column sub-menu">
+
           <li class="nav-item"> <a class="nav-link" href="{{ route('adminwebreport.create') }}"> Save site info </a></li>
+
           <li class="nav-item"> <a class="nav-link" href="{{ route('adminwebreport.show') }}"> site info </a></li>
         </ul>
       </div>
@@ -53,12 +57,14 @@
 
     @if (Auth::user()->role === 'admin')
     <li class="nav-item menu-items">
+
         <a class="nav-link" href="{{ route('company.create') }}">
           <span class="menu-icon">
             <i class="mdi mdi-grid"></i>
           </span>
           <span class="menu-title">Company</span>
         </a>
+
       </li>
 
     @endif
@@ -88,7 +94,7 @@
     </li>
     @endif
 
-
+    @if (Auth::user()->role != 'assistant')
     <li class="nav-item menu-items">
         <a class="nav-link" data-bs-toggle="collapse" href="#daily-report" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-icon">
@@ -99,14 +105,16 @@
         </a>
         <div class="collapse" id="daily-report">
           <ul class="nav flex-column sub-menu">
+            @if (Auth::user()->role === 'empolyees')
             <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyeereport') }}">Daliy Report</a></li>
+            @endif
             @if (Auth::user()->role === 'admin')
             <li class="nav-item"> <a class="nav-link" href="{{ route('show.empolyeereport') }}">Show Empolyees Report</a></li>
             @endif
           </ul>
         </div>
       </li>
-
+      @endif
 
 
     @if (Auth::user()->role === 'admin')
@@ -131,7 +139,7 @@
       </li>
     @endif
 
-   
+
 
     @if (Auth::user()->role === 'admin')
     <li class="nav-item menu-items">
@@ -171,6 +179,120 @@
         </li>
       @endif
 
+        {{-- Assistant  access this section--}}
+        @if( Auth::user()->role == 'assistant')
 
+
+
+
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-icon">
+              <i class="mdi mdi-laptop"></i>
+            </span>
+            <span class="menu-title">Site</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic1">
+            <ul class="nav flex-column sub-menu">
+
+              <li class="nav-item"> <a class="nav-link" href="{{ route('adminwebreport.create') }}"> Save site info </a></li>
+            </ul>
+          </div>
+        </li>
+
+
+
+        <li class="nav-item menu-items">
+
+            <a class="nav-link" href="{{ route('company.create') }}">
+              <span class="menu-icon">
+                <i class="mdi mdi-grid"></i>
+              </span>
+              <span class="menu-title">Company</span>
+            </a>
+
+          </li>
+
+
+
+
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-icon">
+              <i class="mdi mdi-account-multiple"></i>
+            </span>
+            <span class="menu-title">Empolyee</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('empolyeeinfo.create') }}">Create Information</a></li>
+            </ul>
+          </div>
+        </li>
+
+
+
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <span class="menu-icon">
+                <i class="mdi mdi-account-star"></i>
+              </span>
+              <span class="menu-title">Admin</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('admindailyraport.create') }}">Create Report</a></li>
+                <hr>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('admininfo.create') }}">Add Information</a></li>
+              </ul>
+            </div>
+          </li>
+
+
+
+
+
+        {{-- <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#loan" aria-expanded="false" aria-controls="loan">
+              <span class="menu-icon">
+                <i class="mdi mdi mdi-bank"></i>
+              </span>
+              <span class="menu-title">Loan Managment</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="loan">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('mainloan.create') }}">Add Loan</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('mainloan.index') }}">Show Loan List</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('mainloan.complete') }}">Complete Loan List</a></li>
+              </ul>
+            </div>
+          </li> --}}
+
+
+
+
+          <li class="nav-item menu-items">
+              <a class="nav-link" data-bs-toggle="collapse" href="#payment" aria-expanded="false" aria-controls="payment">
+                <span class="menu-icon">
+                  <i class="mdi mdi-dns"></i>
+                </span>
+                <span class="menu-title">Payment Date</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="payment">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('billdate.create') }}">Company Billdate Create </a></li>
+                </ul>
+              </div>
+            </li>
+
+
+
+
+        @endif
 
   </ul>

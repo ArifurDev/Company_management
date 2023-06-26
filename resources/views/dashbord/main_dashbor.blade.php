@@ -193,8 +193,7 @@
 @endif
 
 
-
-
+@if (Auth::user()->role != 'assistant')
   <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -214,5 +213,22 @@
       </div>
     </div>
   </div>
+  @endif
 
+  @if (Auth::user()->role == 'assistant')
+  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-9">
+            <div class="d-flex align-items-center align-self-start">
 
+            </div>
+          </div>
+          
+        </div>
+        <h6 class="text-muted font-weight-normal">welcome Assistant</h6>
+      </div>
+    </div>
+  </div>
+  @endif
