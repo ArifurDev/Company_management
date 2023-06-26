@@ -59,9 +59,10 @@
                                         <p> Per Installment: {{ $main_loan_info->per_installment }} </p>
                                         <p> Payment Date: {{ $main_loan_info->payment_date }} </p>
 
-
                                         <p> Pay installment : {{ $installment_count }} </p>
+
                                       </address>
+
                                     </div>
                                   </div>
                                 </div>
@@ -79,6 +80,9 @@
                                       <th>Date</th>
                                     </tr>
                                   </thead>
+                                    @php
+                                        $total_amount = 0;
+                                    @endphp
                                   <tbody>
                                       @foreach ($loan_installment as $installment)
                                         <tr>
@@ -87,7 +91,17 @@
                                           <td>{{ $installment->amount }}</td>
                                           <td>{{ $installment->date }}</td>
                                         </tr>
+                                        @php
+                                                $total_amount = $total_amount + $installment->amount;
+                                         @endphp
                                       @endforeach
+                                      <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total = {{ $total_amount }}</td>
+                                        <td></td>
+                                        <td></td>
+                                      </tr>
                                   </tbody>
                                 </table>
                               </div>

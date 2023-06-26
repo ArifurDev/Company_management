@@ -264,6 +264,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('main/loan/delete/{id}', 'delete')->name('mainloan.delete');
         //complete loan
         Route::get('main/loan/complete/', 'complete_loan')->name('mainloan.complete');
+        //loan status change
+        Route::post('status/change/{id}', 'status_change')->name('status.change');
+         //download complete loan pdf pag
+         Route::get('complete/loan/pdf/{id}', 'download_pdf')->name('download.pdf');
     });
     // new Loan detailes controller
     Route::controller(LoandetaileController::class)->middleware('RoleChecker')->group(function () {

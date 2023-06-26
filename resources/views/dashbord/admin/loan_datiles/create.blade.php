@@ -48,9 +48,25 @@
                                       <address>
                                         <p> Phone: {{ $main_loan_info->phone }}</p>
                                         <p> Email: {{ $main_loan_info->email }} </p>
-                                        <p>Status: <label class="badge badge-danger"> {{ $main_loan_info->status }}</label></p>
-                                        <p>Loan Type: <label class="badge badge-primary mt-2"> {{ $main_loan_info->loan_type }}</label></p>
+                                        <p>Loan Type: <label  @if ($main_loan_info->loan_type === 'send')
+                                            class="badge badge-primary mt-2"
+                                        @else
+                                          class="badge badge-danger mt-2"
+                                        @endif> {{ $main_loan_info->loan_type }}</label></p>
+                                        <p>Status: <label class="badge badge-danger mt-2"> {{ $main_loan_info->status }}</label></p>
                                       </address>
+                                      <div class=""  >
+
+                                        <form action="{{ route('status.change',$main_loan_info->id) }}" method="post">
+                                            @csrf
+                                            <p class="card-description">if your complete loan payment just click this</p>
+                                            <input type="hidden" value="complete" name="status">
+                                              <button type="submit" class="btn btn-primary"> <i class="mdi mdi-comment-check"></i></button>
+                                          </form>
+
+
+                                      </div>
+
                                     </div>
                                     <div class="col-md-6">
                                       <address >
@@ -59,8 +75,9 @@
                                         <p> Per Installment: {{ $main_loan_info->per_installment }} </p>
                                         <p> Payment Date: {{ $main_loan_info->payment_date }} </p>
 
-
                                         <p> Pay installment : {{ $installment_count }} </p>
+                                        <p> Pay Amount : {{ $pay_installment }} </p>
+                                        <p> Due Amount : {{ $main_loan_info->amount - $pay_installment }} </p>
                                       </address>
                                     </div>
                                   </div>

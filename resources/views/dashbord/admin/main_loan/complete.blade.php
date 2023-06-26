@@ -29,7 +29,7 @@
                               <div class="card-body">
                                 <h4 class="card-title">Loan information</h4>
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-description"> Important <code>Documents</code></p>
+                                        <p class="card-description"> Complete <code>Documents</code></p>
                                         <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#largeModal">
                                             Trashed Bin
                                          </button>
@@ -126,11 +126,18 @@
                                             <td>{{ $item->amount }}</td>
                                             <td>{{ $item->installment }}</td>
                                             <td>{{ $item->per_installment }}</td>
-                                            <td><label class="badge badge-primary">{{ $item->loan_type }}</label></td>
+                                            <td><label @if ($item->loan_type === 'send')
+                                                class="badge badge-primary"
+                                            @else
+                                                class="badge badge-danger"
+                                            @endif>{{ $item->loan_type }}</label></td>
                                             <td>{{ $item->payment_date }}</td>
                                             <td><label class="badge badge-primary">{{ $item->status }}</label></td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <a href="{{ route('download.pdf',$item->id) }}" type="button" class="btn btn-danger" title="download">
+                                                        <i class="mdi mdi-printer"></i>
+                                                      </a>
                                                     <a href="{{ route('loaninstallment.show',$item->id) }}" type="button" class="btn btn-primary" title="show">
                                                       <i class="mdi mdi-eye"></i>
                                                     </a>

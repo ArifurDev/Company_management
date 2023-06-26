@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Loandetaile;
 use App\Models\Mainloan;
+
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-
+use PDF;
 class MainloanController extends Controller
 {
     /**
@@ -203,5 +205,38 @@ class MainloanController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
+    }
+    //status change
+    public function status_change(Request $request,$id)
+    {
+        $main_loan_info =  Mainloan::where('id',$id)->first();
+        $pay_installment = Loandetaile::where('mainloan_id',$id)->sum('amount');
+        if ($main_loan_info->amount == $pay_installment) {
+            Mainloan::find($id)->update([
+                'status' =>$request->status
+            ]);
+            $notification = array(
+                'message' => 'Complete loan',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('mainloan.complete')->with($notification);
+        }else{
+            $notification = array(
+                'message' => 'something wrong',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    //download pdf
+    public function download_pdf($id)
+    {
+       $main_loan_info = Mainloan::find($id);
+       $installment_info = Loandetaile::where('mainloan_id',$id)->get();
+
+       $pdf = PDF::loadView('dashbord.admin.main_loan.download',compact('main_loan_info','installment_info'));
+       //    $pdf = PDF::loadView('dashbord.admin.main_loan.pdf',);
+       return $pdf->download('complete.pdf');
     }
 }

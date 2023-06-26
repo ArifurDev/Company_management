@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Loandetaile;
 use App\Models\Mainloan;
 use Illuminate\Http\Request;
-use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Sum;
 
 class LoandetaileController extends Controller
 {
@@ -29,8 +28,9 @@ class LoandetaileController extends Controller
         $main_loan_id =$id;
         $main_loan_info =  Mainloan::where('id',$main_loan_id)->first();
         $installment_count = Loandetaile::where('mainloan_id',$main_loan_id)->count();
+        $pay_installment = Loandetaile::where('mainloan_id',$main_loan_id)->sum('amount');
 
-        return view('dashbord.admin.loan_datiles.create',compact('main_loan_id','main_loan_info','installment_count'));
+        return view('dashbord.admin.loan_datiles.create',compact('main_loan_id','main_loan_info','installment_count','pay_installment'));
 
     }
 
@@ -52,8 +52,10 @@ class LoandetaileController extends Controller
 
          $installment_check =  Loandetaile::where('mainloan_id',$request->mainloan_id)->where('installment',$request->installment)->first();
 
-       return  $pay_installment_count = Loandetaile::where('mainloan_id',$request->mainloan_id)->sum('');
-       die();
+         $pay_installment_count = Loandetaile::where('mainloan_id',$request->mainloan_id)->count();
+
+         $pay_installment_amount = Loandetaile::where('mainloan_id',$request->mainloan_id)->sum('amount');
+
 
          $main_loan =  Mainloan::where('id',$request->mainloan_id)->first();
 
@@ -64,7 +66,7 @@ class LoandetaileController extends Controller
         if (!$installment_check) {
              if($per_installment == $request->amount){ // check per installment amount is equal  or not to main loan
 
-                    if ($pay_installment_count ==  $total_installment) {
+                    if ($main_loan->amount ==  $pay_installment_amount) {
                         $id =$request->mainloan_id;
                         Mainloan::find($id)->update([
                             'status' =>'complete'
@@ -94,7 +96,7 @@ class LoandetaileController extends Controller
                     }
              }else{
                 $notification = array(
-                    'message' => 'something wrong || Per installment and enter installment not same',
+                    'message' => 'something wrong || Per installment and enter installment amount not same',
                     'alert-type' => 'error'
                 );
                 return redirect()->back()->with($notification);

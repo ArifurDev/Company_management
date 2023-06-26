@@ -126,7 +126,11 @@
                                             <td>{{ $item->amount }}</td>
                                             <td>{{ $item->installment }}</td>
                                             <td>{{ $item->per_installment }}</td>
-                                            <td><label class="badge badge-primary">{{ $item->loan_type }}</label></td>
+                                            <td><label @if ($item->loan_type === 'send')
+                                                class="badge badge-primary"
+                                            @else
+                                                class="badge badge-danger"
+                                            @endif>{{ $item->loan_type }}</label></td>
                                             <td>{{ $item->payment_date }}</td>
                                             <td><label class="badge badge-danger">{{ $item->status }}</label></td>
                                             <td>
