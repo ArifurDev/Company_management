@@ -143,18 +143,18 @@
                                         $total_amount = 0;
                                     @endphp
                                   <tbody>
-                                      @foreach ($loan_installment as $installment)
+                                      @foreach ($loan_installment as $installment_item)
                                         <tr>
-                                          <td>{{ $installment->mainloan_id }}</td>
-                                          <td>{{ $installment->installment }}</td>
-                                          <td>{{ $installment->amount }}</td>
-                                          <td>{{ $installment->date }}</td>
+                                          <td>{{ $installment_item->mainloan_id }}</td>
+                                          <td>{{ $installment_item->installment }}</td>
+                                          <td>{{ $installment_item->amount }}</td>
+                                          <td>{{ $installment_item->date }}</td>
                                           <td>
-                                            <a href="{{ route('loandetaile.destroy',$installment->id) }}" class="btn btn-danger"> <i class="mdi mdi-delete"></i></a>
+                                            <a href="{{ route('loandetaile.destroy',$installment_item->id) }}" class="btn btn-danger"> <i class="mdi mdi-delete"></i></a>
                                           </td>
                                         </tr>
                                         @php
-                                                $total_amount = $total_amount + $installment->amount;
+                                                $total_amount = $total_amount + $installment_item->amount;
                                          @endphp
                                       @endforeach
                                       <tr>
