@@ -84,7 +84,7 @@
                                 </div>
                               </div>
 
-
+                           
 
                               <form class="forms-sample" action="{{ route('loandetaile.store') }}" method="POST">
                                 @csrf

@@ -275,6 +275,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::controller(LoandetaileController::class)->middleware('RoleChecker')->group(function () {
         Route::get('loandetaile/create/{id}', 'create')->name('loandetaile.create');
         Route::post('loandetaile/store', 'store')->name('loandetaile.store');
+        Route::get('loandetaile/destroy/{id}', 'destroy')->name('loandetaile.destroy');
+        Route::get('loandetaile/delete/forever/{id}', 'delete')->name('loandetaile.delete');
+        Route::get('loandetaile/restore/{id}', 'restore')->name('loandetaile.restore');
         //selected mainloan installment show
         Route::get('loan/installment/show/{id}', 'show')->name('loaninstallment.show')->middleware('AssistantChecker');
     });

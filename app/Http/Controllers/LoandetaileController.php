@@ -123,8 +123,12 @@ class LoandetaileController extends Controller
        $main_loan_info =  Mainloan::where('id',$id)->first();
        $loan_installment = Loandetaile::where('mainloan_id',$id)->get();
        $installment_count = Loandetaile::where('mainloan_id',$id)->count();
+       $Trashed_installment = Loandetaile::withTrashed()->where('mainloan_id',$id)->get();//onlyTrashed
+    //    $Trashed_installment = Loandetaile::onlyTrashed()->find();
+//    return  $Trashed_installment;
+//         die();
 
-       return view('dashbord.admin.main_loan.installment',compact('main_loan_info','loan_installment','installment_count'));
+       return view('dashbord.admin.main_loan.installment',compact('main_loan_info','loan_installment','installment_count','Trashed_installment'));
     }
 
     /**
@@ -156,8 +160,70 @@ class LoandetaileController extends Controller
      * @param  \App\Models\Loandetaile  $loandetaile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Loandetaile $loandetaile)
+    public function destroy($id)
     {
-        //
+
+            Loandetaile::find($id)->delete();
+            $notification = array(
+                'message' => 'Loan Installment Temp Delete',
+                'alert-type' => 'info'
+            );
+            return redirect()->back()->with($notification);
+
+
+
+    }
+
+    public function restore($id)
+    {
+        // $main_id  = Loandetaile::onlyTrashed()->find($id);
+
+        // $mainloan_null_check = Mainloan::withTrashed()->where('id',$main_id->id)->first();
+
+        // if ($mainloan_null_check->deleted_at == null) {
+
+        //         Loandetaile::onlyTrashed()->find($id)->restore();
+        //         $notification = array(
+        //             'message' => 'Loan Installment Temp Delete',
+        //             'alert-type' => 'info'
+        //         );
+        //         return redirect()->back()->with($notification);
+        // } else {
+        //     $notification = array(
+        //         'message' => 'something wrong',
+        //         'alert-type' => 'error'
+        //     );
+        //     return redirect()->back()->with($notification);
+
+        // }
+
+        $parent_id = Loandetaile::onlyTrashed()->find($id)->mainloan_id;
+        $parent_deleted_at_check = Mainloan::withTrashed()->find($parent_id)->deleted_at;
+
+        if ($parent_deleted_at_check == null) {
+            Loandetaile::onlyTrashed()->find($id)->restore();
+                 $notification = array(
+                    'message' => 'Loan Installment Temp Delete',
+                    'alert-type' => 'info'
+                );
+                return redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+                'message' => 'something wrong',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function delete($id)
+    {
+       $selected_installment = Loandetaile::onlyTrashed()->find($id);
+       $selected_installment->forceDelete();
+        $notification = array(
+            'message' => 'Loan Installment Delete Forever',
+            'alert-type' => 'info'
+        );
+        return redirect()->back()->with($notification);
     }
 }

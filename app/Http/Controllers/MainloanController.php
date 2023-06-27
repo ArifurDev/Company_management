@@ -54,14 +54,20 @@ class MainloanController extends Controller
             'amount' =>'required',
             'loan_type' =>'required',
             'payment_date' =>'required',
+            'image' =>'required'
         ],[
             'name' => 'Enter Name please',
             'phone'=>'Enter Phone number please',
             'amount' =>'Enter Amount please',
             'payment_date' =>'Select Payment Date please',
+            'image' =>'Select Image'
         ]);
 
         $par_install =   $request->amount / $request->installment;
+        //image upload image
+        $file_name = auth()->id() . '-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $img = Image::make($request->file('image'));
+        $img->save(base_path('public/upload/loan_image/' . $file_name), 80);
 
         $data =new Mainloan;
         $data->name = $request->name;
@@ -73,15 +79,8 @@ class MainloanController extends Controller
         $data->loan_type = $request->loan_type;
         $data->payment_date = $request->payment_date;
         $data->status = 'processing';
+        $data->image=$file_name;
 
-        if ($request->image) {
-            //image upload image
-            $file_name = auth()->id() . '-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $img = Image::make($request->file('image'));
-            $img->save(base_path('public/upload/loan_image/' . $file_name), 80);
-
-            $data->image=$file_name;
-        }
         $data->save();
         $notification = array(
             'message' => 'Loan information Added',
@@ -172,12 +171,21 @@ class MainloanController extends Controller
      */
     public function destroy(Mainloan $mainloan)
     {
-         $mainloan->delete();
+       $id = $mainloan->id;
+       $loan_installments = Loandetaile::where('mainloan_id',$id)->get();
+       foreach ($loan_installments as $installments ) {
+        // $installments->delete();
+        $installment = $installments->id;
+        Loandetaile::where('id',$installment)->delete();
+       }
+        $mainloan->delete();
          $notification = array(
-            'message' => 'Loan information temp Deleted',
+            'message' => 'Loan information & loan installment temp Deleted',
             'alert-type' => 'warning'
         );
         return redirect()->back()->with($notification);
+
+
     }
 
 

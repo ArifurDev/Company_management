@@ -68,7 +68,65 @@
                                 </div>
                               </div>
 
+                              <div class="d-flex justify-content-between m-2">
+                                <p class="card-description"> Pay Loan <code>installment</code></p>
+                                <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#largeModal">
+                                    Trashed Bin
+                                 </button>
+                              </div>
+                              <!-- Large Modal -->
+                              <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content  bg-dark">
+                                        <div class="modal-header ">
+                                            <h5 class="modal-title" id="exampleModalLabel3">Loan Installment
+                                            </h5>
+                                            <button
+                                                type="button"class="btn-close"data-bs-dismiss="modal"aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body m-1">
+                                            <div class="table-responsive">
+                                                <table class="table table-dark">
+                                                  <thead>
+                                                    <tr>
+                                                        <th>Main Loan Id</th>
+                                                        <th>Installment</th>
+                                                        <th>Amount</th>
+                                                        <th>Date</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                    @foreach ($Trashed_installment as $Trashed_item)
+                                                    <tr>
+                                                    <td>{{ $Trashed_item->mainloan_id }}</td>
+                                                    <td>{{ $Trashed_item->installment }}</td>
+                                                    <td>{{ $Trashed_item->amount }}</td>
+                                                    <td>{{ $Trashed_item->date }}</td>
+                                                    <td>
+                                                        <button type="submit" class="btn btn-danger"> <i class="mdi mdi-delete"></i></button>
+                                                    </td>
+                                                      <td>
+                                                          <div class="btn-group" role="group" aria-label="Basic example">
+                                                              <a href="{{ route('loandetaile.restore',$Trashed_item->id) }}" type="button" class="btn btn-primary" title="show">
+                                                                <i class="mdi mdi-restore"></i>
+                                                              </a>
+                                                              <a href="{{ route('loandetaile.delete',$Trashed_item->id) }}" class="btn btn-primary" title="edit">
+                                                                <i class="mdi mdi-delete-forever"></i>
+                                                              </a>
+                                                            </div>
+                                                      </td>
+                                                    </tr>
+                                                  @endforeach
+                                                  </tbody>
+                                                </table>
+                                              </div>
 
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
 
                               <div class="table-responsive">
                                 <table class="table">
@@ -78,6 +136,7 @@
                                       <th>Installment</th>
                                       <th>Amount</th>
                                       <th>Date</th>
+                                      <th>Action</th>
                                     </tr>
                                   </thead>
                                     @php
@@ -90,6 +149,9 @@
                                           <td>{{ $installment->installment }}</td>
                                           <td>{{ $installment->amount }}</td>
                                           <td>{{ $installment->date }}</td>
+                                          <td>
+                                            <a href="{{ route('loandetaile.destroy',$installment->id) }}" class="btn btn-danger"> <i class="mdi mdi-delete"></i></a>
+                                          </td>
                                         </tr>
                                         @php
                                                 $total_amount = $total_amount + $installment->amount;
