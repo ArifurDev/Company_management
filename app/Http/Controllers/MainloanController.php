@@ -171,19 +171,31 @@ class MainloanController extends Controller
      */
     public function destroy(Mainloan $mainloan)
     {
-       $id = $mainloan->id;
-       $loan_installments = Loandetaile::where('mainloan_id',$id)->get();
-       foreach ($loan_installments as $installments ) {
-        // $installments->delete();
-        $installment = $installments->id;
-        Loandetaile::where('id',$installment)->delete();
-       }
-        $mainloan->delete();
-         $notification = array(
-            'message' => 'Loan information & loan installment temp Deleted',
-            'alert-type' => 'warning'
-        );
-        return redirect()->back()->with($notification);
+
+        if ($mainloan->status == 'complete') {
+            $notification = array(
+                'message' => "You can't delete this Loan info because loan complete",
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }else{
+            $id = $mainloan->id;
+            $loan_installments = Loandetaile::where('mainloan_id',$id)->get();
+            foreach ($loan_installments as $installments ) {
+             // $installments->delete();
+             $installment = $installments->id;
+             Loandetaile::where('id',$installment)->delete();
+            }
+             $mainloan->delete();
+              $notification = array(
+                 'message' => 'Loan information & loan installment temp Deleted',
+                 'alert-type' => 'warning'
+             );
+             return redirect()->back()->with($notification);
+        }
+
+
+
 
 
     }

@@ -160,6 +160,18 @@ class LoandetaileController extends Controller
      */
     public function destroy($id)
     {
+
+       $main_id = Loandetaile::where('id',$id)->first();
+        $status_check =  Mainloan::where('id',$main_id->mainloan_id)->first();
+
+        if ($status_check->status == 'complete') {
+            $notification = array(
+                'message' => "You can't delete this installment because loan  complete",
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+
+        }else{
             Loandetaile::find($id)->delete();
             $notification = array(
                 'message' => 'Loan Installment Temp Delete',
@@ -167,6 +179,7 @@ class LoandetaileController extends Controller
             );
             return redirect()->back()->with($notification);
 
+        }
 
     }
 
