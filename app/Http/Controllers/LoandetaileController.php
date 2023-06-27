@@ -124,9 +124,7 @@ class LoandetaileController extends Controller
        $loan_installment = Loandetaile::where('mainloan_id',$id)->get();
        $installment_count = Loandetaile::where('mainloan_id',$id)->count();
        $Trashed_installment = Loandetaile::onlyTrashed()->where('mainloan_id',$id)->get();//onlyTrashed
-    //    $Trashed_installment = Loandetaile::onlyTrashed()->find();
-//    return  $Trashed_installment;
-//         die();
+
 
        return view('dashbord.admin.main_loan.installment',compact('main_loan_info','loan_installment','installment_count','Trashed_installment'));
     }
