@@ -144,11 +144,9 @@ class AdminriportsController extends Controller
             'sewerage_bill' => $request->sewerage_bill,
             'expanse' => $request->expanse,
             'personal' => $request->personal,
-
             'water_bill' => $request->water_bill,
             'fewa_bill' => $request->fewa_bill,
             'wifi_bill' => $request->wifi_bill,
-
             'a' => $request->a,
             'b' => $request->b,
             'c' => $request->c,

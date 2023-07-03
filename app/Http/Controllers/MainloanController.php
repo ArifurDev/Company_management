@@ -18,14 +18,14 @@ class MainloanController extends Controller
     public function index()
     {
        $onlyTrashed = Mainloan::onlyTrashed()->where('status','processing')->get();
-       $loan_information =  Mainloan::where('status','processing')->get();
+       $loan_information =  Mainloan::where('status','processing')->latest()->get();
        return view('dashbord.admin.main_loan.show',compact('loan_information','onlyTrashed'));
     }
 
     public function complete_loan()
     {
        $onlyTrashed = Mainloan::onlyTrashed()->where('status','complete')->get();
-       $loan_information =  Mainloan::where('status','complete')->get();
+       $loan_information =  Mainloan::where('status','complete')->latest()->get();
        return view('dashbord.admin.main_loan.complete',compact('loan_information','onlyTrashed'));
     }
 
@@ -54,13 +54,13 @@ class MainloanController extends Controller
             'amount' =>'required',
             'loan_type' =>'required',
             'payment_date' =>'required',
-            'image' =>'required'
+            'image' =>'required|mimes:jpeg,png,jpg',
         ],[
             'name' => 'Enter Name please',
             'phone'=>'Enter Phone number please',
             'amount' =>'Enter Amount please',
             'payment_date' =>'Select Payment Date please',
-            'image' =>'Select Image'
+            'image' =>'Select Image | supported image jpeg,png,jpg'
         ]);
 
         $par_install =   $request->amount / $request->installment;

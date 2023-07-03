@@ -135,7 +135,7 @@
 
                                                              <td >
                                                               <a href="{{ route('empolyee.info.restore',$trashed->id) }}" class="btn btn-outline-success btn-fw">Restore</a>
-                                                              <a href="{{ route('empolyee.info.delete',$trashed->id) }}" class="btn btn-outline-danger btn-fw">Delete</a> --}}
+                                                              <a href="{{ route('empolyee.info.delete',$trashed->id) }}" class="btn btn-outline-danger btn-fw">Delete</a> 
 
                                                               {{-- <form action="{{ route('empolyeeinfo.destroy',$trashed->id) }}" method="post">
                                                               @csrf
@@ -183,7 +183,7 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($information as $info)
+                                    @foreach ($empolyeeinfo as $info)
                                     <tr>
                                        <td  class="text-light">{{ $info->email }}</td>
                                        <td  class="text-light">{{ $info->salary_raised }}</td>

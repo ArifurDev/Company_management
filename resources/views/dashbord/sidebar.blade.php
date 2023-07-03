@@ -109,6 +109,9 @@
             <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyeereport') }}">Daliy Report</a></li>
             @endif
             @if (Auth::user()->role === 'admin')
+            <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyeereport') }}">Daliy Report</a></li>
+            @endif
+            @if (Auth::user()->role === 'admin')
             <li class="nav-item"> <a class="nav-link" href="{{ route('show.empolyeereport') }}">Show Empolyees Report</a></li>
             @endif
           </ul>

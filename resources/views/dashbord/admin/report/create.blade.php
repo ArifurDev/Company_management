@@ -65,8 +65,6 @@
                                 <label for="sewerage_bill">Sewerage Bill</label>
                                 <input type="number" class="form-control text-light" id="sewerage_bill" min="0" placeholder="Sewerage Bill" name="sewerage_bill">
                               </div>
-
-
                               <div class="form-group">
                                 <label for="Water_bill">Water Bill</label>
                                 <input type="number" class="form-control text-light" id="Water_bill" min="0" placeholder="Water Bill" name="water_bill">
@@ -78,8 +76,6 @@
                                 <label for="Wifi_bill">Wifi Bill</label>
                                 <input type="number" class="form-control text-light" id="Wifi_bill" min="0" placeholder="Wifi Bill" name="wifi_bill">
                               </div>
-
-
                               <div class="form-group">
                                 <label for="expanse">Expanse</label>
                                 <input type="number" class="form-control text-light" id="expanse" min="0" placeholder="expanse" name="expanse">
