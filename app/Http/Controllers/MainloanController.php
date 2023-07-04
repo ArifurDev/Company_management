@@ -54,39 +54,60 @@ class MainloanController extends Controller
             'amount' =>'required',
             'loan_type' =>'required',
             'payment_date' =>'required',
-            'image' =>'required|mimes:jpeg,png,jpg',
         ],[
             'name' => 'Enter Name please',
             'phone'=>'Enter Phone number please',
             'amount' =>'Enter Amount please',
             'payment_date' =>'Select Payment Date please',
-            'image' =>'Select Image | supported image jpeg,png,jpg'
         ]);
 
         $par_install =   $request->amount / $request->installment;
-        //image upload image
-        $file_name = auth()->id() . '-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-        $img = Image::make($request->file('image'));
-        $img->save(base_path('public/upload/loan_image/' . $file_name), 80);
 
-        $data =new Mainloan;
-        $data->name = $request->name;
-        $data->phone = $request->phone;
-        $data->email = $request->email;
-        $data->amount = $request->amount;
-        $data->installment = $request->installment;
-        $data->per_installment = $par_install;
-        $data->loan_type = $request->loan_type;
-        $data->payment_date = $request->payment_date;
-        $data->status = 'processing';
-        $data->image=$file_name;
 
-        $data->save();
-        $notification = array(
-            'message' => 'Loan information Added',
-            'alert-type' => 'success'
-        );
-        return redirect()->back()->with($notification);
+        if ($request->hasFile('image')) {
+             //image upload image
+            $file_name = auth()->id() . '-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $img = Image::make($request->file('image'));
+            $img->save(base_path('public/upload/loan_image/' . $file_name), 80);
+
+            $data =new Mainloan;
+            $data->name = $request->name;
+            $data->phone = $request->phone;
+            $data->email = $request->email;
+            $data->amount = $request->amount;
+            $data->installment = $request->installment;
+            $data->per_installment = $par_install;
+            $data->loan_type = $request->loan_type;
+            $data->payment_date = $request->payment_date;
+            $data->status = 'processing';
+            $data->image=$file_name;
+
+            $data->save();
+            $notification = array(
+                'message' => 'Loan information Added',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        }else{
+            $data =new Mainloan;
+            $data->name = $request->name;
+            $data->phone = $request->phone;
+            $data->email = $request->email;
+            $data->amount = $request->amount;
+            $data->installment = $request->installment;
+            $data->per_installment = $par_install;
+            $data->loan_type = $request->loan_type;
+            $data->payment_date = $request->payment_date;
+            $data->status = 'processing';
+            $data->save();
+            $notification = array(
+                'message' => 'Loan information Added',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+
+
     }
 
     /**
@@ -147,14 +168,26 @@ class MainloanController extends Controller
             "status" =>'processing',
         ]);
         if ($request->hasFile('image')) {
-            unlink(base_path('public/upload/loan_image/'.$mainloan->image));
-             //image upload image
-             $file_name = auth()->id() . '-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-             $img = Image::make($request->file('image'));
-             $img->save(base_path('public/upload/loan_image/' . $file_name), 80);
-             $mainloan->update([
-                "image" => $file_name,
-             ]);
+            if ($mainloan->image == null) {
+                 //image upload image
+                 $file_name = auth()->id() . '-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+                 $img = Image::make($request->file('image'));
+                 $img->save(base_path('public/upload/loan_image/' . $file_name), 80);
+                 $mainloan->update([
+                    "image" => $file_name,
+                 ]);
+            }else {
+                unlink(base_path('public/upload/loan_image/'.$mainloan->image));
+                 //image upload image
+                 $file_name = auth()->id() . '-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+                 $img = Image::make($request->file('image'));
+                 $img->save(base_path('public/upload/loan_image/' . $file_name), 80);
+                 $mainloan->update([
+                    "image" => $file_name,
+                 ]);
+            }
+
+
         }
          $notification = array(
             'message' => 'Loan information Updated',
@@ -215,11 +248,13 @@ class MainloanController extends Controller
 
 
     public function delete($id){
-       $trash_info = Mainloan::onlyTrashed($id)->first();
-       unlink(base_path('public/upload/loan_image/'.$trash_info->image));
-
-       Mainloan::onlyTrashed($id)->forceDelete();
-
+          $trash_info = Mainloan::onlyTrashed()->find($id);
+            if ($trash_info->image == null) {
+                   Mainloan::onlyTrashed()->find($id)->forceDelete();
+            }else {
+                   unlink(base_path('public/upload/loan_image/'.$trash_info->image));
+                   Mainloan::onlyTrashed($id)->forceDelete();
+            }
         $notification = array(
             'message' => 'Loan information Delete Forever',
             'alert-type' => 'success'

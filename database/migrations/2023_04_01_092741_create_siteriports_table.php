@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('site_name')->nullable();
             $table->longText('url')->nullable();
             $table->string('user_name')->nullable();
-            $table->integer('user_id')->default('0')->nullable();
+            $table->text('user_id')->nullable();
             $table->text('password')->nullable();
             $table->longText('why_create')->nullable();
             $table->text('number')->nullable();

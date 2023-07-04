@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("name");
             $table->string("phone")->nullable();
             $table->string("email")->nullable();
-            $table->string("image")->default('default.jpg');
+            $table->string("image")->nullable();
             $table->integer("amount")->nullable();
             $table->integer("installment")->nullable();
             $table->integer("per_installment")->nullable();

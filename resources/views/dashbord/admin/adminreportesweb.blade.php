@@ -72,11 +72,11 @@
                               </div>
                               <div class="form-group">
                                 <label for="user_name">User Name</label>
-                                <input type="text" class="form-control text-light" id="user_name" placeholder="user_name" name="user_name">
+                                <input type="text" class="form-control text-light" id="user_name" placeholder="user name" name="user_name">
                               </div>
                               <div class="form-group">
                                 <label for="user_id">User Id</label>
-                                <input type="number" class="form-control text-light" id="user_id" min="0" placeholder="user_id" name="user_id">
+                                <input type="text" class="form-control text-light" id="user_id"  placeholder="user id" name="user_id">
                               </div>
                               <div class="form-group">
                                 <label for="password">Password</label>
@@ -89,17 +89,17 @@
                               </div>
                               <div class="form-group">
                                 <label for="Number">Number</label>
-                                <input type="text" class="form-control text-light" min="0" id="Number" placeholder="Number" name="number">
+                                <input type="text" class="form-control text-light"  id="Number" placeholder="Number" name="number">
                               </div>
 
 
                               <div class="form-group">
                                 <label for="verifi_code">Verification Code</label>
-                                <input type="text" class="form-control text-light" id="verifi_code"  placeholder="verifi_code" name="verifi_code">
+                                <input type="text" class="form-control text-light" id="verifi_code"  placeholder="verifi code" name="verifi_code">
                               </div>
                               <div class="form-group">
                                 <label for="payment_date">Payment Date</label>
-                                <input type="date" class="form-control text-light" id="payment_date" placeholder="payment_date" name="payment_date">
+                                <input type="date" class="form-control text-light" id="payment_date" placeholder="payment date" name="payment_date">
                               </div>
                               <div class="form-group">
                                 <label for="card_holder_name">Card Holder Name</label>
@@ -131,7 +131,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="exchange_name">Exchange Name</label>
-                                <input type="text" class="form-control text-light" id="exchange_name"  placeholder="exchange_name" name="exchange_name">
+                                <input type="text" class="form-control text-light" id="exchange_name"  placeholder="exchange name" name="exchange_name">
                               </div>
                               <div class="form-group">
                                 <label for="payment_date">Exchange Account Number</label>

@@ -76,7 +76,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="user_id">User Id</label>
-                                <input type="number" class="form-control text-light" id="user_id" placeholder="user_id" name="user_id" value="{{ $sitereports->user_id }}">
+                                <input type="text" class="form-control text-light" id="user_id" placeholder="user id" name="user_id" value="{{ $sitereports->user_id }}">
                               </div>
                               <div class="form-group">
                                 <label for="password">Password</label>
@@ -92,11 +92,11 @@
                               </div>
                               <div class="form-group">
                                 <label for="verifi_code">Verification Code</label>
-                                <input type="text" class="form-control text-light" id="verifi_code" placeholder="verifi_code" name="verifi_code" value="{{ $sitereports->verifi_code }}">
+                                <input type="text" class="form-control text-light" id="verifi_code" placeholder="verifi code" name="verifi_code" value="{{ $sitereports->verifi_code }}">
                               </div>
                               <div class="form-group">
                                 <label for="payment_date">Payment Date</label>
-                                <input type="date" class="form-control text-light" id="payment_date" placeholder="payment_date" name="payment_date" value="{{ $sitereports->payment_date }}">
+                                <input type="date" class="form-control text-light" id="payment_date" placeholder="payment date" name="payment_date" value="{{ $sitereports->payment_date }}">
                               </div>
                               <div class="form-group">
                                 <label for="card_holder_name">Card Holder Name</label>
