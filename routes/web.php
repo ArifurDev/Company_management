@@ -15,6 +15,7 @@ use App\Http\Controllers\LoandetaileController;
 use App\Http\Controllers\LoanrecivesiduleController;
 use App\Http\Controllers\LoansendshiduleController;
 use App\Http\Controllers\MainloanController;
+use App\Http\Controllers\PersonalInfoController;
 use App\Http\Controllers\ReciveloanController;
 
 use App\Models\Loanrecivesidule;
@@ -116,7 +117,24 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('admin/information/delete/{id}','delete')->name('admin.info.delete')->middleware('AssistantChecker');
     });
 
+    /**
+     * admin personal information
+     */
 
+
+    //  Route::resource('personalinfo',PersonalInfoController::class);
+     Route::controller(PersonalInfoController::class)->middleware('RoleChecker')->group(function () {
+        Route::get('admin/personalinfo/show','index')->name('personalinfo.index');
+        Route::get('admin/personalinfo','create')->name('personalinfo.create');
+        Route::post('admin/personalinfo','store')->name('personalinfo.store');
+        Route::get('admin/personalinfo/edit/{id}','edit')->name('personalinfo.edit');
+        Route::post('admin/personalinfo/edit/{id}','update')->name('personalinfo.update');
+        Route::get('admin/personalinfo/destroy/{id}','destroy')->name('personalinfo.destroy');
+     });
+
+      /**
+     * admin personal information END
+     */
 
     /**
      * Empolyee daily reports

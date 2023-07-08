@@ -122,7 +122,7 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->Email }}</td>
                                             <td>{{ $item->phone }}</td>
-                                            <td><img src="{{ asset('upload/loan_image') }}/{{ $item->image }}" alt=""></td>
+                                            <td><img src="@if($item->image == null ) {{ asset('upload/loan_image') }}/{{ "demo.png" }} @else {{ asset('upload/loan_image') }}/{{ $item->image }} @endif" alt=""></td>
                                             <td>{{ $item->amount }}</td>
                                             <td>{{ $item->installment }}</td>
                                             <td>{{ $item->per_installment }}</td>

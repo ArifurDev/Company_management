@@ -26,11 +26,6 @@
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
-                                @if (Session::has('success'))
-                                <div class="alert alert-primary" role="alert">
-                                    {{ session::get('success') }}
-                                </div>
-                            @endif
                               <div class="card-body">
                                 <h4 class="card-title">Site info</h4>
 

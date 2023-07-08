@@ -30,7 +30,7 @@
         <span class="menu-icon">
           <i class="mdi mdi-speedometer"></i>
         </span>
-        <span class="menu-title">Dashboard</span>
+        <span class="menu-title text-light">Dashboard</span>
       </a>
     </li>
     @endif
@@ -41,15 +41,15 @@
         <span class="menu-icon">
           <i class="mdi mdi-laptop"></i>
         </span>
-        <span class="menu-title">Site</span>
+        <span class="menu-title text-light">Site</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="ui-basic1">
         <ul class="nav flex-column sub-menu">
 
-          <li class="nav-item"> <a class="nav-link" href="{{ route('adminwebreport.create') }}"> Save site info </a></li>
+          <li class="nav-item"> <a class="nav-link text-light" href="{{ route('adminwebreport.create') }}"> Save site info </a></li>
 
-          <li class="nav-item"> <a class="nav-link" href="{{ route('adminwebreport.show') }}"> site info </a></li>
+          <li class="nav-item"> <a class="nav-link text-light" href="{{ route('adminwebreport.show') }}"> site info </a></li>
         </ul>
       </div>
     </li>
@@ -62,7 +62,7 @@
           <span class="menu-icon">
             <i class="mdi mdi-grid"></i>
           </span>
-          <span class="menu-title">Company</span>
+          <span class="menu-title text-light">Company</span>
         </a>
 
       </li>
@@ -75,19 +75,19 @@
         <span class="menu-icon">
           <i class="mdi mdi-account-multiple"></i>
         </span>
-        <span class="menu-title">Empolyee</span>
+        <span class="menu-title text-light">Empolyee</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
 
-            <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyee') }}">Create Empolyee</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('cerate.empolyee') }}">Create Empolyee</a></li>
 
 
 
-            <li class="nav-item"> <a class="nav-link" href="{{ route('empolyeeinfo.create') }}">Create Information</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('empolyeeinfo.create') }}">Create Information</a></li>
 
-            <li class="nav-item"> <a class="nav-link" href="{{ route('empolyeeinfo.index') }}">Show Information</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('empolyeeinfo.index') }}">Show Information</a></li>
 
         </ul>
       </div>
@@ -100,19 +100,19 @@
           <span class="menu-icon">
             <i class="mdi mdi-file-document"></i>
           </span>
-          <span class="menu-title">Empolyee Reports</span>
+          <span class="menu-title text-light">Empolyee Reports</span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="daily-report">
           <ul class="nav flex-column sub-menu">
             @if (Auth::user()->role === 'empolyees')
-            <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyeereport') }}">Daliy Report</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('cerate.empolyeereport') }}">Daliy Report</a></li>
             @endif
             @if (Auth::user()->role === 'admin')
-            <li class="nav-item"> <a class="nav-link" href="{{ route('cerate.empolyeereport') }}">Daliy Report</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('cerate.empolyeereport') }}">Daliy Report</a></li>
             @endif
             @if (Auth::user()->role === 'admin')
-            <li class="nav-item"> <a class="nav-link" href="{{ route('show.empolyeereport') }}">Show Empolyees Report</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('show.empolyeereport') }}">Show Empolyees Report</a></li>
             @endif
           </ul>
         </div>
@@ -126,16 +126,19 @@
           <span class="menu-icon">
             <i class="mdi mdi-account-star"></i>
           </span>
-          <span class="menu-title">Admin</span>
+          <span class="menu-title text-light">Admin</span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="auth">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('admindailyraport.create') }}">Create Report</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('admindailyraport.show') }}">Reports</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('admindailyraport.create') }}">Create Report</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('admindailyraport.show') }}">Reports</a></li>
             <hr>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('admininfo.create') }}">Add Information</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('admininfo.index') }}">Show Information</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('personalinfo.create') }}">Site Info</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('personalinfo.index') }}">Show Site Info</a></li>
+            <hr>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('admininfo.create') }}">Add Information</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('admininfo.index') }}">Show Information</a></li>
 
           </ul>
         </div>
@@ -150,14 +153,14 @@
           <span class="menu-icon">
             <i class="mdi mdi mdi-bank"></i>
           </span>
-          <span class="menu-title">Loan Managment</span>
+          <span class="menu-title text-light">Loan Managment</span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="loan">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('mainloan.create') }}">Add Loan</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('mainloan.index') }}">Show Loan List</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('mainloan.complete') }}">Complete Loan List</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('mainloan.create') }}">Add Loan</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('mainloan.index') }}">Show Loan List</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('mainloan.complete') }}">Complete Loan List</a></li>
           </ul>
         </div>
       </li>
@@ -170,13 +173,13 @@
             <span class="menu-icon">
               <i class="mdi mdi-dns"></i>
             </span>
-            <span class="menu-title">Payment Date</span>
+            <span class="menu-title text-light">Payment Date</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="payment">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{ route('billdate.create') }}">Company Billdate Create </a></li>
-              <li class="nav-item"> <a class="nav-link" href="{{ route('billdate.show') }}">Billdate Show</a></li>
+              <li class="nav-item"> <a class="nav-link text-light" href="{{ route('billdate.create') }}">Company Billdate Create </a></li>
+              <li class="nav-item"> <a class="nav-link text-light" href="{{ route('billdate.show') }}">Billdate Show</a></li>
             </ul>
           </div>
         </li>
@@ -193,13 +196,13 @@
             <span class="menu-icon">
               <i class="mdi mdi-laptop"></i>
             </span>
-            <span class="menu-title">Site</span>
+            <span class="menu-title text-light">Site</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="ui-basic1">
             <ul class="nav flex-column sub-menu">
 
-              <li class="nav-item"> <a class="nav-link" href="{{ route('adminwebreport.create') }}"> Save site info </a></li>
+              <li class="nav-item"> <a class="nav-link text-light" href="{{ route('adminwebreport.create') }}"> Save site info </a></li>
             </ul>
           </div>
         </li>
@@ -212,7 +215,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-grid"></i>
               </span>
-              <span class="menu-title">Company</span>
+              <span class="menu-title text-light">Company</span>
             </a>
 
           </li>
@@ -225,12 +228,12 @@
             <span class="menu-icon">
               <i class="mdi mdi-account-multiple"></i>
             </span>
-            <span class="menu-title">Empolyee</span>
+            <span class="menu-title text-light">Empolyee</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('empolyeeinfo.create') }}">Create Information</a></li>
+                <li class="nav-item"> <a class="nav-link text-light" href="{{ route('empolyeeinfo.create') }}">Create Information</a></li>
             </ul>
           </div>
         </li>
@@ -242,14 +245,14 @@
               <span class="menu-icon">
                 <i class="mdi mdi-account-star"></i>
               </span>
-              <span class="menu-title">Admin</span>
+              <span class="menu-title text-light">Admin</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('admindailyraport.create') }}">Create Report</a></li>
-                <hr>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('admininfo.create') }}">Add Information</a></li>
+                <li class="nav-item"> <a class="nav-link text-light" href="{{ route('admindailyraport.create') }}">Create Report</a></li>
+                <li class="nav-item"> <a class="nav-link text-light" href="{{ route('personalinfo.create') }}">Site Info</a></li>
+                <li class="nav-item"> <a class="nav-link text-light " href="{{ route('admininfo.create') }}">Add Information</a></li>
               </ul>
             </div>
           </li>
@@ -283,12 +286,12 @@
                 <span class="menu-icon">
                   <i class="mdi mdi-dns"></i>
                 </span>
-                <span class="menu-title">Payment Date</span>
+                <span class="menu-title text-light">Payment Date</span>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="payment">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ route('billdate.create') }}">Company Billdate Create </a></li>
+                  <li class="nav-item"> <a class="nav-link text-light" href="{{ route('billdate.create') }}">Company Billdate Create </a></li>
                 </ul>
               </div>
             </li>
