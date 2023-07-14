@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('c')->nullable();
             $table->string('d')->nullable();
             $table->string('e')->nullable();
+            $table->string('empolyee_salary')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

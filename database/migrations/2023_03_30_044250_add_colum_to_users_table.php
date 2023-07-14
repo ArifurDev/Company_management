@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('compony_name')->nullable();
             $table->integer('compony_id')->nullable();
             $table->string('gender')->nullable();
+            $table->string('pay_date')->nullable();
         });
     }
 

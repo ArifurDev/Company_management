@@ -94,6 +94,13 @@
     </li>
     @endif
 
+
+
+
+
+
+
+
     @if (Auth::user()->role != 'assistant')
     <li class="nav-item menu-items">
         <a class="nav-link" data-bs-toggle="collapse" href="#daily-report" aria-expanded="false" aria-controls="ui-basic">
@@ -164,6 +171,27 @@
           </ul>
         </div>
       </li>
+
+
+
+
+      {{-- Payroll management system  start --}}
+    <li class="nav-item menu-items">
+        <a class="nav-link" data-bs-toggle="collapse" href="#Payroll" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-icon">
+            <i class="mdi mdi-cash-usd"></i>
+          </span>
+          <span class="menu-title text-light">Payroll Managment</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="Payroll">
+          <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link text-light" href="{{ route('salary.managment') }}">Empolyee Salary</a></li>
+              <li class="nav-item"> <a class="nav-link text-light" href="">Show Salary</a></li>
+          </ul>
+        </div>
+      </li>
+    {{-- Payroll management system  end --}}
     @endif
 
 

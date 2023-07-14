@@ -27,7 +27,7 @@
                         <div class="card">
 
                             <div class="card-body">
-                               
+
                                 @if ($errors->any())
                                 @foreach ($errors->all() as $error)
                                          <ul>
@@ -236,7 +236,14 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Empolyee Salary</label>
+                                                <div class="col-sm-9">
+                                                    <input type="number"class="form-control text-light" name="empolyee_salary" min="0">
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
 

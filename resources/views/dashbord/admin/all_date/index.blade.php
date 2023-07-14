@@ -56,17 +56,37 @@
                                           <th class="text-light"> Card Bill </th>
                                           <th class="text-light"> Electricity Bill </th>
                                           <th class="text-light"> Sewerage Bill </th>
+                                          <th class="text-light"> Water Bill </th>
+                                          <th class="text-light"> fewa_bill </th>
+                                          <th class="text-light"> wifi_bill </th>
+                                          <th class="text-light"> A </th>
+                                          <th class="text-light"> B </th>
+                                          <th class="text-light"> C </th>
+                                          <th class="text-light"> Empolyee </th>
+
                                           <th class="text-light"> Action </th>
                                         </tr>
                                       </thead>
                                       <tbody>
+                                        <?php
+                                            $day =now()->format('d')
+                                        ?>
                                         @foreach ($payment_date  as $payment )
                                             <tr>
+                                                {{ $day }}
                                                 <td class="text-light"> {{ $payment->company_name }} </td>
                                                 <td class="text-light"> {{ $payment->house_rent }} </td>
                                                 <td class="text-light"> {{ $payment->gard_bill }} </td>
                                                 <td class="text-light"> {{ $payment->electricity_bill }} </td>
                                                 <td class="text-light"> {{ $payment->sewerage_bill }} </td>
+
+                                                <td class="text-light"> {{ $payment->water_bill }} </td>
+                                                <td class="text-light"> {{ $payment->fewa_bill }} </td>
+                                                <td class="text-light"> {{ $payment->wifi_bill }} </td>
+                                                <td class="text-light"> {{ $payment->a }} </td>
+                                                <td class="text-light"> {{ $payment->b }} </td>
+                                                <td class="text-light"> {{ $payment->c }} </td>
+                                                <td class="text-light"> {{ $payment->empolyee }} </td>
                                                 <td >
                                                     <div class="btn-group" role="group" aria-label="Basic example">
 

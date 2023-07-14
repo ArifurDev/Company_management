@@ -28,6 +28,7 @@ class Empolyeeinfo extends Model
         'c',
         'd',
         'e',
-        'email'
+        'email',
+        'empolyee_salary'
     ];
 }

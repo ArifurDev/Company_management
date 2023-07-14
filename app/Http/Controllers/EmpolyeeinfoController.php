@@ -40,7 +40,6 @@ class EmpolyeeinfoController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'email' =>"required|email",
         ]);
@@ -65,6 +64,7 @@ class EmpolyeeinfoController extends Controller
         $data['d'] = $request->d;
         $data['e'] = $request->e;
         $data['email'] = $request->email;
+        $data['empolyee_salary'] = $request->empolyee_salary;
 
         $data->save();
         $notification = array(
@@ -106,6 +106,7 @@ class EmpolyeeinfoController extends Controller
      */
     public function update(Request $request, Empolyeeinfo $empolyeeinfo)
     {
+
         $empolyeeinfo->update([
             'salary_raised' => $request->salary_raised,
             'salary_receivable' => $request->salary_receivable,
@@ -126,6 +127,7 @@ class EmpolyeeinfoController extends Controller
             'd' => $request->d,
             'e' => $request->e,
             'email' => $request->email,
+            'empolyee_salary' => $request->empolyee_salary,
 
         ]);
 

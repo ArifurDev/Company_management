@@ -135,7 +135,7 @@
 
                                                              <td >
                                                               <a href="{{ route('empolyee.info.restore',$trashed->id) }}" class="btn btn-outline-success btn-fw">Restore</a>
-                                                              <a href="{{ route('empolyee.info.delete',$trashed->id) }}" class="btn btn-outline-danger btn-fw">Delete</a> 
+                                                              <a href="{{ route('empolyee.info.delete',$trashed->id) }}" class="btn btn-outline-danger btn-fw">Delete</a>
 
                                                               {{-- <form action="{{ route('empolyeeinfo.destroy',$trashed->id) }}" method="post">
                                                               @csrf
@@ -160,7 +160,8 @@
                               <table class="table table-dark">
                                 <thead>
                                   <tr>
-                                        <th  class="text-light">Name</th>
+                                        <th  class="text-light">Email</th>
+                                        <th  class="text-light">Empolyee Salary</th>
                                         <th  class="text-light">Salary Raised</th>
                                         <th  class="text-light">Salary Receivable</th>
                                         <th  class="text-light">Loan Taken</th>
@@ -186,6 +187,7 @@
                                     @foreach ($empolyeeinfo as $info)
                                     <tr>
                                        <td  class="text-light">{{ $info->email }}</td>
+                                       <td  class="text-light">{{ $info->empolyee_salary }}</td>
                                        <td  class="text-light">{{ $info->salary_raised }}</td>
                                        <td  class="text-light">{{ $info->salary_receivable }}</td>
                                        <td  class="text-light">{{ $info->loan_taken }}</td>

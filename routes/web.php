@@ -10,11 +10,13 @@ use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\EmpolyeeController;
 use App\Http\Controllers\EmpolyeeinfoController;
 use App\Http\Controllers\EmpolyeereportController;
+use App\Http\Controllers\EmpolyeesalaryController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LoandetaileController;
 use App\Http\Controllers\LoanrecivesiduleController;
 use App\Http\Controllers\LoansendshiduleController;
 use App\Http\Controllers\MainloanController;
+use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\PersonalInfoController;
 use App\Http\Controllers\ReciveloanController;
 
@@ -79,6 +81,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     /**
      *  end live search route
      */
+
+     /*payroll management system with empolyee start */
+     Route::controller(EmpolyeeController::class)->group(function () {
+        Route::get('empolyee/salary', 'salary_managment')->name('salary.managment');
+        Route::get('empolyee/monthly/salary/{email}', 'monthly_payment')->name('monthly.payment');
+        Route::post('salary/save','salary_save')->name('salary.save');
+        Route::get('empolyee/salary/index', 'salary_index')->name('salary.managment.index');
+
+     });
+     /*payroll management system with empolyee end */
 
     /**
      * Admin daily reports
@@ -184,6 +196,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
      /**
      * Empolyee information  end
      */
+
 
 
 
@@ -299,5 +312,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         //selected mainloan installment show
         Route::get('loan/installment/show/{id}', 'show')->name('loaninstallment.show')->middleware('AssistantChecker');
     });
+
+
+
 
 });

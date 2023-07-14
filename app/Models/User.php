@@ -30,6 +30,7 @@ class User extends Authenticatable
         'compony_name',
         'compony_id',
         'gender',
+        'pay_date',
     ];
 
     /**
