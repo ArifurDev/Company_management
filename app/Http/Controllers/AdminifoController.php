@@ -44,31 +44,43 @@ class AdminifoController extends Controller
             'email' =>"required|email",
         ]);
 
-        $data =new Adminifo;
-        $data['salary_raised'] = $request->salary_raised;
-        $data['salary_receivable'] = $request->salary_receivable;
-        $data['loan_taken'] = $request->loan_taken;
-        $data['loan_repaid'] = $request->loan_repaid;
-        $data['visa_url'] = $request->visa_url;
-        $data['password'] = $request->password;
-        $data['card_holder_name'] = $request->card_holder_name;
-        $data['card_number'] = $request->card_number;
-        $data['currency'] = $request->currency;
-        $data['expairy_date'] = $request->expairy_date;
-        $data['bank_name'] = $request->bank_name;
-        $data['bank_account_number'] = $request->bank_account_number;
-        $data['exchange_name'] = $request->exchange_name;
-        $data['exchange_account_number'] = $request->exchange_account_number;
-        $data['bank_card_number'] = $request->bank_card_number;
-        $data['Pin'] = $request->Pin;
-        $data['online_transfer_Password'] = $request->online_transfer_Password;
-        $data['email'] = $request->email;
-        $data->save();
-        $notification = array(
-            'message' => 'Admin information Added',
-            'alert-type' => 'success'
-            );
-        return redirect()->back()->with($notification);
+       $info_check = Adminifo::where('email',$request->email)->first();
+       if (!$info_check) {
+            $data =new Adminifo;
+            $data['salary_raised'] = $request->salary_raised;
+            $data['salary_receivable'] = $request->salary_receivable;
+            $data['loan_taken'] = $request->loan_taken;
+            $data['loan_repaid'] = $request->loan_repaid;
+            $data['visa_url'] = $request->visa_url;
+            $data['password'] = $request->password;
+            $data['card_holder_name'] = $request->card_holder_name;
+            $data['card_number'] = $request->card_number;
+            $data['currency'] = $request->currency;
+            $data['expairy_date'] = $request->expairy_date;
+            $data['bank_name'] = $request->bank_name;
+            $data['bank_account_number'] = $request->bank_account_number;
+            $data['exchange_name'] = $request->exchange_name;
+            $data['exchange_account_number'] = $request->exchange_account_number;
+            $data['bank_card_number'] = $request->bank_card_number;
+            $data['Pin'] = $request->Pin;
+            $data['online_transfer_Password'] = $request->online_transfer_Password;
+            $data['email'] = $request->email;
+            $data->save();
+            $notification = array(
+                'message' => 'Admin information Added',
+                'alert-type' => 'success'
+                );
+            return redirect()->back()->with($notification);
+       } else {
+            $notification = array(
+                'message' => 'Information has already been created || Go Information Page & Edit',
+                'alert-type' => 'warning'
+                );
+            return redirect()->back()->with($notification);
+       }
+
+       die();
+
     }
 
     /**

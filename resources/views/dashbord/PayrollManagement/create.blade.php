@@ -29,37 +29,44 @@
                             <h4 class="card-title">Empolyee Salary</h4>
                             <div class="d-flex justify-content-between">
                                 <p class="card-description"> important <code>.document</code></p>
-
+                                <p class="card-description"> Payment Date <code>{{ $prev }} </code></p>
                             </div>
                             <div class="table-responsive">
                               <table class="table table-bordered">
                                 <thead>
                                   <tr>
                                     <th class="text-light"> # </th>
-                                    <th class="text-light"> Date </th>
+                                    <th class="text-light"> Information </th>
+                                    <th class="text-light"> Salary </th>
+                                    <th class="text-light">  Mondth </th>
+                                     <th class="text-light">  Payment Status </th>
                                     <th class="text-light">  Action </th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($payment_information as $info)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $info->payment_date }}</td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="" type="button" class="btn btn-primary">
-                                                      <i class="mdi mdi-eye"></i>
-                                                    </a>
-                                                    <form action="{{ route('salary.pdf.download') }}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $info->payment_date }}" name="date">
-                                                        <button type="submit"   class="btn btn-danger btn-icon-text">
-                                                            Print <i class="mdi mdi-printer btn-icon-append"></i>
-                                                       </button>
-                                                    </form>
-                                                  </div>
-                                            </td>
-                                        </tr>
+                                    @foreach ($empolyee as $empolyee_info)
+                                    <tr>
+                                        <td> {{ $loop->iteration  }} </td>
+                                        <td>
+                                            <ul class="list-arrow">
+                                                <li ><span>Company: {{ $empolyee_info->compony_name }}</span></li>
+                                                <li class="mt-1"><span>Email: {{ $empolyee_info->email }}</span></li>
+                                                <li class="mt-1"><span>Phone Number:{{ $empolyee_info->number }}</span></li>
+                                                <li class="mt-1"><span>Bank Name: {{ $empolyee_info->bank_name }}</span></li>
+                                                <li class="mt-1"><span>Bank Account Number: {{ $empolyee_info->bank_account_number }}</span></li>
+                                              </ul>
+                                        </td>
+                                        <td><label class="badge badge-info">{{ $empolyee_info->empolyee_salary }}</label></td>
+                                        <td>{{ $prev }}</td>
+                                        <td>@if ($prev_full_date == $empolyee_info->pay_date)
+                                            <label class="badge badge-success">Paid</label>
+                                        @else
+                                            <label class="badge badge-danger">Unpaid</label>
+                                        @endif</td>
+                                        <td>
+                                            <a href="{{ route('monthly.payment',['email'=> $empolyee_info->email] ) }}" class="btn btn-primary">Pay</a>
+                                        </td>
+                                      </tr>
                                     @endforeach
                                 </tbody>
                               </table>

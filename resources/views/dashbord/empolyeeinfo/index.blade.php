@@ -92,12 +92,14 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body">
-
+                            <h4 class="card-title">Empolyee Information</h4>
                             <div class="d-flex justify-content-between">
-                                <h4 class="card-title">Empolyee Information</h4>
                                 <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#largeModal">
                                     Trashed Bin
                                  </button>
+                                 <div class="col-sm-4 m-2">
+                                    <input type="search" class="form-control text-light" name="search" id="search" placeholder="search here......">
+                                </div>
                             </div>
                             <!-- Large Modal -->
                                 <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
@@ -124,7 +126,7 @@
                                                               <th  class="text-light">Action</th>
                                                         </tr>
                                                       </thead>
-                                                      <tbody>
+                                                      <tbody class="alldata">
                                                            @foreach ($trashed_info as $trashed)
                                                           <tr>
                                                              <td  class="text-light">{{ $trashed->email }}</td>
@@ -147,6 +149,11 @@
                                                          </tr>
                                                          @endforeach
                                                       </tbody>
+
+                                                      <tbody id="Content" class="searchdata">
+
+                                                      </tbody>
+
                                                     </table>
                                                   </div>
 
@@ -244,15 +251,15 @@
 
     <script type="text/javascript">
 
-       $('#search').on('keyup',function()
+      $('#search').on('keyup',function()
        {
 
         $value=$(this).val();
 
         if($value)
         {
-            $('.alldata').hide();
-            $('.searchdata').show();
+             $('.alldata').hide();
+             $('.searchdata').show();
         }else
         {
             $('.alldata').show();
@@ -261,7 +268,7 @@
 
         $.ajax({
                 type:'get',
-                url:'{{URL::to('search')}}',
+                url:'{{URL::to('empolyeeinfosearch')}}',
                 data:{'search':$value},
                 success:function(data)
                 {

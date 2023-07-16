@@ -187,7 +187,7 @@
         <div class="collapse" id="Payroll">
           <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link text-light" href="{{ route('salary.managment') }}">Empolyee Salary</a></li>
-              <li class="nav-item"> <a class="nav-link text-light" href="">Show Salary</a></li>
+              <li class="nav-item"> <a class="nav-link text-light" href="{{ route('salary.managment.index') }}">Show Salary</a></li>
           </ul>
         </div>
       </li>

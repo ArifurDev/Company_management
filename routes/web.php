@@ -88,6 +88,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('empolyee/monthly/salary/{email}', 'monthly_payment')->name('monthly.payment');
         Route::post('salary/save','salary_save')->name('salary.save');
         Route::get('empolyee/salary/index', 'salary_index')->name('salary.managment.index');
+        Route::post('salary/pdf/download','salary_pdf_download')->name('salary.pdf.download');
 
      });
      /*payroll management system with empolyee end */
@@ -192,6 +193,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
      Route::resource('empolyeeinfo', EmpolyeeinfoController::class)->middleware('RoleChecker');
      Route::get('empolyee/info/restore/{id}', [EmpolyeeinfoController::class,'restore'])->name('empolyee.info.restore')->middleware('RoleChecker')->middleware('AssistantChecker');
      Route::get('empolyee/info/delete/{id}', [EmpolyeeinfoController::class,'delete'])->name('empolyee.info.delete')->middleware('RoleChecker')->middleware('AssistantChecker');
+     Route::get('/empolyeeinfosearch', [EmpolyeeinfoController::class,'searching']);
 
      /**
      * Empolyee information  end

@@ -12,6 +12,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
+
 
 class EmpolyeeController extends Controller
 {
@@ -48,7 +50,6 @@ class EmpolyeeController extends Controller
 
         foreach ($empolyee as $empolye) {
             $output .=
-
             '<tr>
             <td> '.$empolye->compony_name.' </td>
             <td> '.$empolye->name.' </td>
@@ -201,7 +202,7 @@ class EmpolyeeController extends Controller
 
         $prev    = date('F',strtotime("-1 month"));
         $prev_full_date    = date('m/Y',strtotime("-1 month"));
-        return view('dashbord.PayrollManagement.index',compact('empolyee','prev','prev_full_date'));
+        return view('dashbord.PayrollManagement.create',compact('empolyee','prev','prev_full_date'));
 
      }
 
@@ -292,68 +293,66 @@ class EmpolyeeController extends Controller
              }
 
         } else {
-               if ($request->empolyee_salary == $request->amount) {
-                        if ($request->payment_status == 'advance') {
-                            $data = new Payroll;
-                            $data->email = $request->empolyee_email;
-                            $data->company = $request->empolyee_companoy;
-                            $data->bank_name = $request->empolyee_bank_name;
-                            $data->banck_account_number = $request->empolyee_bank_account_number;
-                            $data->salary = $request->empolyee_salary;
-                            $data->Amount= $request->amount;
-                            $data->due= $due_amount;
-                            $data->payment_date = $date_formate;
-                            $data->edit_date =  $date;
-                            $data->month = $month;
-                            $data->year= $year;
-                            $data->payment_method = $request->payment_system;
-                            $data->payment_type = $request->payment_status;
+            if ($request->payment_status == 'advance') {
+                $data = new Payroll;
+                $data->email = $request->empolyee_email;
+                $data->company = $request->empolyee_companoy;
+                $data->bank_name = $request->empolyee_bank_name;
+                $data->banck_account_number = $request->empolyee_bank_account_number;
+                $data->salary = $request->empolyee_salary;
+                $data->Amount= $request->amount;
+                $data->due= $due_amount;
+                $data->payment_date = $date_formate;
+                $data->edit_date =  $date;
+                $data->month = $month;
+                $data->year= $year;
+                $data->payment_method = $request->payment_system;
+                $data->payment_type = $request->payment_status;
 
-                            $data->save();
+                $data->save();
 
-                            $notification = array(
-                                'message' => 'Empolyee Payment  Successfully',
-                                'alert-type' => 'success'
-                                );
-                            return redirect()->back()->with($notification);
-                        } else {
-                            $data = new Payroll;
-                            $data->email = $request->empolyee_email;
-                            $data->company = $request->empolyee_companoy;
-                            $data->bank_name = $request->empolyee_bank_name;
-                            $data->banck_account_number = $request->empolyee_bank_account_number;
-                            $data->salary = $request->empolyee_salary;
-                            $data->Amount= $request->amount;
-                            $data->due= $due_amount;
-                            $data->payment_date = $date_formate;
-                            $data->edit_date =  $date;
-                            $data->month = $month;
-                            $data->year= $year;
-                            $data->payment_method = $request->payment_system;
-                            $data->payment_type = $request->payment_status;
+                $notification = array(
+                    'message' => 'Empolyee Payment  Successfully',
+                    'alert-type' => 'success'
+                    );
+                return redirect()->back()->with($notification);
+            } else {
+                if ($request->empolyee_salary == $request->amount) {
+                    $data = new Payroll;
+                    $data->email = $request->empolyee_email;
+                    $data->company = $request->empolyee_companoy;
+                    $data->bank_name = $request->empolyee_bank_name;
+                    $data->banck_account_number = $request->empolyee_bank_account_number;
+                    $data->salary = $request->empolyee_salary;
+                    $data->Amount= $request->amount;
+                    $data->due= $due_amount;
+                    $data->payment_date = $date_formate;
+                    $data->edit_date =  $date;
+                    $data->month = $month;
+                    $data->year= $year;
+                    $data->payment_method = $request->payment_system;
+                    $data->payment_type = $request->payment_status;
 
-                            $data->save();
+                    $data->save();
 
-                            User::where('email',$request->empolyee_email)->update([
-                                'pay_date' => $date_formate ,
-                            ]);
+                    User::where('email',$request->empolyee_email)->update([
+                        'pay_date' => $date_formate ,
+                    ]);
 
-                            $notification = array(
-                                'message' => 'Empolyee Payment  Successfully',
-                                'alert-type' => 'success'
-                                );
-                            return redirect()->back()->with($notification);
-                        }
-               } else {
                     $notification = array(
-                        'message' => 'Empolyee Salary & Pay amount not same',
-                        'alert-type' => 'warning'
+                        'message' => 'Empolyee Payment  Successfully',
+                        'alert-type' => 'success'
                         );
                     return redirect()->back()->with($notification);
-               }
-
-
-             }
+                } else {
+                     $notification = array(
+                         'message' => 'Empolyee Salary & Pay amount not same',
+                         'alert-type' => 'warning'
+                         );
+                     return redirect()->back()->with($notification);
+                }
+                }
+            }
 
 
     }
@@ -363,9 +362,18 @@ class EmpolyeeController extends Controller
      */
     public function salary_index()
     {
-
+        $payment_information  = DB::table('payrolls')->select('payment_date')->groupBy('payment_date')->get();
+        return view('dashbord.PayrollManagement.index',compact('payment_information'));
     }
 
+     /**
+     * empolyee salary index page
+     */
+    public function salary_pdf_download(Request $request)
+    {
+         $salary_datiles = Payroll::where('payment_date',$request->date)->get();
 
-
+         $pdf = PDF::loadView('dashbord.PayrollManagement.download_pdf',compact('salary_datiles'));
+	     return $pdf->download('salary.pdf');
+    }
 }

@@ -17,7 +17,7 @@ class EmpolyeeinfoController extends Controller
     public function index()
     {
         $trashed_info = Empolyeeinfo::onlyTrashed()->get();
-        $empolyeeinfo = Empolyeeinfo::all();
+        $empolyeeinfo = Empolyeeinfo::latest()->get();
         return view('dashbord.empolyeeinfo.index',compact('empolyeeinfo','trashed_info'));
     }
 
@@ -44,34 +44,47 @@ class EmpolyeeinfoController extends Controller
             'email' =>"required|email",
         ]);
 
-        $data =new Empolyeeinfo;
-        $data['salary_raised'] = $request->salary_raised;
-        $data['salary_receivable'] = $request->salary_receivable;
-        $data['loan_taken'] = $request->loan_taken;
-        $data['loan_repaid'] = $request->loan_repaid;
-        $data['visa_url'] = $request->visa_url;
-        $data['password'] = $request->password;
-        $data['bank_name'] = $request->bank_name;
-        $data['bank_account_number'] = $request->bank_account_number;
-        $data['exchange_name'] = $request->exchange_name;
-        $data['exchange_account_number'] = $request->exchange_account_number;
-        $data['bank_card_number'] = $request->bank_card_number;
-        $data['Pin'] = $request->Pin;
-        $data['online_transfer_Password'] = $request->online_transfer_Password;
-        $data['a'] = $request->a;
-        $data['b'] = $request->b;
-        $data['c'] = $request->c;
-        $data['d'] = $request->d;
-        $data['e'] = $request->e;
-        $data['email'] = $request->email;
-        $data['empolyee_salary'] = $request->empolyee_salary;
+        $empolyeeinfo_check = Empolyeeinfo::where('email',$request->email)->first();
+        if (!$empolyeeinfo_check) {
+            $data =new Empolyeeinfo;
+            $data['salary_raised'] = $request->salary_raised;
+            $data['salary_receivable'] = $request->salary_receivable;
+            $data['loan_taken'] = $request->loan_taken;
+            $data['loan_repaid'] = $request->loan_repaid;
+            $data['visa_url'] = $request->visa_url;
+            $data['password'] = $request->password;
+            $data['bank_name'] = $request->bank_name;
+            $data['bank_account_number'] = $request->bank_account_number;
+            $data['exchange_name'] = $request->exchange_name;
+            $data['exchange_account_number'] = $request->exchange_account_number;
+            $data['bank_card_number'] = $request->bank_card_number;
+            $data['Pin'] = $request->Pin;
+            $data['online_transfer_Password'] = $request->online_transfer_Password;
+            $data['a'] = $request->a;
+            $data['b'] = $request->b;
+            $data['c'] = $request->c;
+            $data['d'] = $request->d;
+            $data['e'] = $request->e;
+            $data['email'] = $request->email;
+            $data['empolyee_salary'] = $request->empolyee_salary;
 
-        $data->save();
-        $notification = array(
-            'message' => 'Empolyee information Added',
-            'alert-type' => 'success'
-            );
-        return redirect()->back()->with($notification);
+            $data->save();
+            $notification = array(
+                'message' => 'Empolyee information Added',
+                'alert-type' => 'success'
+                );
+            return redirect()->back()->with($notification);
+        } else {
+            $notification = array(
+                'message' => 'Information has already been created || Go Information Page & Edit',
+                'alert-type' => 'warning'
+                );
+            return redirect()->back()->with($notification);
+        }
+
+        die();
+
+
     }
 
     /**
@@ -178,6 +191,36 @@ class EmpolyeeinfoController extends Controller
             );
         return redirect()->back()->with($notification);
 
+    }
+
+
+
+    //live search
+    public function searching(Request $request)
+    {
+        $output = ' ';
+        $empolyee = User::where('role', 'empolyees')->orWhere('compony_name', 'Like', '%'.$request->search.'%')->orWhere('name', 'Like', '%'.$request->search.'%')->orWhere('email', 'Like', '%'.$request->search.'%')->orWhere('number', 'Like', '%'.$request->search.'%')->paginate(5);
+
+        foreach ($empolyee as $empolye) {
+            $output .=
+            '<tr>
+            <td> '.$empolye->compony_name.' </td>
+            <td> '.$empolye->name.' </td>
+            <td> '.$empolye->email.' </td>
+            <td> '.$empolye->role.' </td>
+            <td> '.$empolye->number.' </td>
+            <td> '.$empolye->created_at.' </td>
+            <td> '.'
+            <a  class="btn btn-primary" href="/edit/empolyee/'.$empolye->id.'" title="edit">
+                 '.'<i class="mdi mdi-border-color"></i></a>
+
+            <a  class="btn btn-primary" href="/delete/empolyee/'.$empolye->id.'" title="delete forever">
+                '.'<i class="mdi mdi-delete"></i></a>
+            '.' </td>
+            </tr>';
+        }
+
+        return response($output);
     }
 
 }

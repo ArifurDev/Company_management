@@ -280,8 +280,8 @@
 
         if($value)
         {
-            $('.alldata').hide();
-            $('.searchdata').show();
+             $('.alldata').hide();
+             $('.searchdata').show();
         }else
         {
             $('.alldata').show();
