@@ -199,24 +199,31 @@ class EmpolyeeinfoController extends Controller
     public function searching(Request $request)
     {
         $output = ' ';
-        $empolyee = User::where('role', 'empolyees')->orWhere('compony_name', 'Like', '%'.$request->search.'%')->orWhere('name', 'Like', '%'.$request->search.'%')->orWhere('email', 'Like', '%'.$request->search.'%')->orWhere('number', 'Like', '%'.$request->search.'%')->paginate(5);
+        $empolyee_info = Empolyeeinfo::where('salary_raised', 'Like', '%'.$request->search.'%')->orWhere('salary_receivable', 'Like', '%'.$request->search.'%')->orWhere('loan_taken', 'Like', '%'.$request->search.'%')->orWhere('loan_repaid', 'Like', '%'.$request->search.'%')->orWhere('visa_url', 'Like', '%'.$request->search.'%')->orWhere('password', 'Like', '%'.$request->search.'%')->orWhere('bank_name', 'Like', '%'.$request->search.'%')->orWhere('bank_account_number', 'Like', '%'.$request->search.'%')->orWhere('exchange_name', 'Like', '%'.$request->search.'%')->orWhere('exchange_account_number', 'Like', '%'.$request->search.'%')->orWhere('bank_card_number', 'Like', '%'.$request->search.'%')->orWhere('Pin', 'Like', '%'.$request->search.'%')->orWhere('online_transfer_Password', 'Like', '%'.$request->search.'%')->orWhere('a', 'Like', '%'.$request->search.'%')->orWhere('b', 'Like', '%'.$request->search.'%')->orWhere('c', 'Like', '%'.$request->search.'%')->orWhere('d', 'Like', '%'.$request->search.'%')->orWhere('e', 'Like', '%'.$request->search.'%')->orWhere('email', 'Like', '%'.$request->search.'%')->orWhere('empolyee_salary', 'Like', '%'.$request->search.'%')->paginate(5);
 
-        foreach ($empolyee as $empolye) {
+        foreach ($empolyee_info as $empolyee) {
             $output .=
-            '<tr>
-            <td> '.$empolye->compony_name.' </td>
-            <td> '.$empolye->name.' </td>
-            <td> '.$empolye->email.' </td>
-            <td> '.$empolye->role.' </td>
-            <td> '.$empolye->number.' </td>
-            <td> '.$empolye->created_at.' </td>
-            <td> '.'
-            <a  class="btn btn-primary" href="/edit/empolyee/'.$empolye->id.'" title="edit">
-                 '.'<i class="mdi mdi-border-color"></i></a>
-
-            <a  class="btn btn-primary" href="/delete/empolyee/'.$empolye->id.'" title="delete forever">
-                '.'<i class="mdi mdi-delete"></i></a>
-            '.' </td>
+            '<tr class="border border-info">
+                <td  class="text-light">'.$empolyee->email.'</td>
+                <td  class="text-light">'.$empolyee->empolyee_salary.'</td>
+                <td  class="text-light">'.$empolyee->salary_raised .'</td>
+                <td  class="text-light">'.$empolyee->salary_receivable.'</td>
+                <td  class="text-light">'.$empolyee->loan_taken.'</td>
+                <td  class="text-light">'.$empolyee->loan_repaid.'</td>
+                <td  class="text-light">'.$empolyee->visa_url.'</td>
+                <td  class="text-light">'.$empolyee->password .'</td>
+                <td  class="text-light">'.$empolyee->bank_name .'</td>
+                <td  class="text-light">'.$empolyee->bank_account_number .'</td>
+                <td  class="text-light">'.$empolyee->exchange_name .'</td>
+                <td  class="text-light">'.$empolyee->exchange_account_number.'</td>
+                <td  class="text-light">'.$empolyee->bank_card_number.'</td>
+                <td  class="text-light">'.$empolyee->Pin.'</td>
+                <td  class="text-light">'.$empolyee->online_transfer_Password.'</td>
+                <td  class="text-light">'.$empolyee->a.'</td>
+                <td  class="text-light">'.$empolyee->b.'</td>
+                <td  class="text-light">'.$empolyee->c.'</td>
+                <td  class="text-light">'.$empolyee->d.'</td>
+                <td  class="text-light">'.$empolyee->e.'</td>
             </tr>';
         }
 
