@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="{{ asset('dashbord/assets/css/fixedHeader.bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dashbord/assets/css/dataTables.bootstrap.min.css') }}">
 
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 
 
  <!-- End layout styles -->

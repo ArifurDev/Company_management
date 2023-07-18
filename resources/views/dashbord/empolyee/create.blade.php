@@ -4,12 +4,13 @@
 <head>
     {{-- all link --}}
     @include('dashbord.headerlink')
-
-
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
 </head>
-
+<style>
+    option{
+        background: black;
+    }
+</style>
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_sidebar.html -->
@@ -26,12 +27,7 @@
                     <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Empolyees</h4>
-                                @if (Session::has('success'))
-                                    <div class="alert alert-primary" role="alert">
-                                        {{ session::get('success') }}
-                                    </div>
-                                @endif
+                                <h4 class="card-title">Admin-Assistant-Empolyee</h4>
                                 @if ($errors->any())
                                             @foreach ($errors->all() as $error)
                                                      <ul>
@@ -50,18 +46,6 @@
                                         data-bs-target="#largeModal">
                                         <i class="mdi mdi-account d-block mb-1"> Add</i>
                                     </button>
-
-
-                                        <div class="col-md-4">
-                                            <div class="form-group row">
-
-
-                                        <div class="col-sm-9">
-                                                    <input type="search" class="form-control text-light" name="search" id="search" placeholder="search here......">
-                                                </div>
-                                            </div>
-                                        </div>
-
                                 </div>
                                 {{-- user add forme --}}
 
@@ -196,25 +180,20 @@
                                     </div>
                                 </div>
 
-                                <div class="table-responsive">
-
-                                    <table class="table table-dark">
-                                        <thead>
-                                            <tr>
-                                                <th  class="text-light">Company </th>
-                                                <th  class="text-light">Name </th>
-                                                <th  class="text-light">Email</th>
-                                                <th  class="text-light">Role</th>
-                                                <th  class="text-light">Number</th>
-                                                <th  class="text-light">Created at </th>
-                                                <th  class="text-light">Acction</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody class="alldata">
-                                            @foreach ($empolyee as $empolyees)
-
-
+                                <table id="example" class="display responsive nowrap" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th  class="text-light">Company </th>
+                                            <th  class="text-light">Name </th>
+                                            <th  class="text-light">Email</th>
+                                            <th  class="text-light">Role</th>
+                                            <th  class="text-light">Number</th>
+                                            <th  class="text-light">Created at </th>
+                                            <th  class="text-light">Acction</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($empolyee as $empolyees)
                                             <tr>
                                                 <td  class="text-light"> {{ $empolyees->compony_name }} </td>
                                                 <td  class="text-light"> {{ $empolyees->name }} </td>
@@ -227,29 +206,18 @@
                                                         <a type="button" title="edit" class="btn btn-primary" href="{{ route('edit.empolyee',['id'=>$empolyees->id]) }}">
                                                             <i class="mdi mdi-border-color"></i>
                                                         </a>
-
                                                         <form action="{{ route('delete.empolyee',['id'=>$empolyees->id]) }}" method="post" onclick="return confirm('are sure delete forever')">
                                                             @csrf
                                                             <button type="submit" class="btn btn-primary" title="delete forever" >
                                                                 <i class="mdi mdi-delete"></i>
                                                             </button>
                                                         </form>
-
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @endforeach
-
-
-                                        </tbody>
-                                        <tbody id="Content" class="searchdata"></tbody>
-
-
-                                    </table>
-                                    <div class="d-flex justify-content-center mt-3">
-                                        {!! $empolyee->links('pagination::simple-bootstrap-4') !!}
-                                    </div>
-                                </div>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -271,35 +239,11 @@
     {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
     <script type="text/javascript">
-
-       $('#search').on('keyup',function()
-       {
-
-        $value=$(this).val();
-
-        if($value)
-        {
-             $('.alldata').hide();
-             $('.searchdata').show();
-        }else
-        {
-            $('.alldata').show();
-            $('.searchdata').hide();
-        }
-
-        $.ajax({
-                type:'get',
-                url:'{{URL::to('search')}}',
-                data:{'search':$value},
-                success:function(data)
-                {
-                    console.log(data);
-                    $('#Content').html(data);
-                }
-            });
-
-        });
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
     </script>
 
 </body>

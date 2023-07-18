@@ -170,14 +170,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('empolyee/report/all/export', [EmpolyeereportController::class, 'all_export'])->name('all.export.empolyeereport')->middleware('RoleChecker')->middleware('AssistantChecker');
 
 
-
-    /**
-     * live search
-     */
-    Route::get('/empolyeereportsearch', [EmpolyeereportController::class, 'search'])->middleware('RoleChecker')->middleware('AssistantChecker');
-    /**
-     *  end live search route
-     */
     /**
      * date search
      */
@@ -193,7 +185,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
      Route::resource('empolyeeinfo', EmpolyeeinfoController::class)->middleware('RoleChecker');
      Route::get('empolyee/info/restore/{id}', [EmpolyeeinfoController::class,'restore'])->name('empolyee.info.restore')->middleware('RoleChecker')->middleware('AssistantChecker');
      Route::get('empolyee/info/delete/{id}', [EmpolyeeinfoController::class,'delete'])->name('empolyee.info.delete')->middleware('RoleChecker')->middleware('AssistantChecker');
-     Route::get('/empolyeeinfosearch', [EmpolyeeinfoController::class,'searching']);
 
      /**
      * Empolyee information  end
@@ -239,57 +230,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
 
         });
-
-    /**
-     * Loan send Controller
-     */
-    // Route::controller(LoanController::class)->middleware('RoleChecker')->group(function () {
-    //     Route::get('admin/loan/send', 'create')->name('adminLoanReportSend.create');
-    //     Route::post('admin/loan/send', 'store')->name('adminLoanReportSend.store');
-    //     Route::get('admin/loan/send/show', 'index')->name('adminLoanReportSend.show');
-    //     Route::get('admin/loan/send/edit/{id}', 'edit')->name('adminLoanReportSend.edit');
-    //     Route::post('admin/loan/send/edit/{id}', 'update')->name('adminLoanReportSend.update');
-    //     Route::get('admin/loan/send/destroy/{id}', 'destroy')->name('adminLoanReportSend.destroy');
-    //     Route::get('admin/loan/send/restor/{id}', 'restor')->name('adminLoanReportSend.restor');
-    //     Route::get('admin/loan/send/delete/{id}', 'delete')->name('adminLoanReportSend.delete');
-    // });
-    //loan send installment
-    // Route::controller(LoansendshiduleController::class)->middleware('RoleChecker')->group(function () {
-    //     Route::post('admin/loan/send/installment', 'store')->name('loanSendInstallment.store');
-    //     Route::get('admin/loan/send/installment/{number}', 'show')->name('loanSendInstallment.show');
-    //     Route::get('send/installment/edit/{id}', 'edit')->name('loanSendInstallment.edit');
-    //     Route::post('send/installment/edit/{id}', 'update')->name('loanSendInstallment.update');
-    //     Route::get('send/installment/destroy/{id}', 'destroy')->name('loanSendInstallment.destroy');
-    //     Route::get('send/installment/restor/{id}', 'restor')->name('loanSendInstallment.restor');
-    //     Route::get('send/installment/delete/{id}', 'delete')->name('loanSendInstallment.delete');
-    // });
-
-
-    /**
-     * Loan recive Controller
-     */
-    // Route::controller(ReciveloanController::class)->middleware('RoleChecker')->group(function () {
-    //     Route::get('admin/loan/recive', 'create')->name('adminLoanReportRecive.create');
-    //     Route::post('admin/loan/recive', 'store')->name('adminLoanReportRecive.store');
-    //     // Route::get('admin/loan/recive/show', 'create')->name('adminLoanReportRecive.show');
-    //     Route::get('admin/loan/recive/edit/{id}', 'edit')->name('adminLoanReportRecive.edit');
-    //     Route::post('admin/loan/recive/edit/{id}', 'update')->name('adminLoanReportRecive.update');
-    //     Route::get('admin/loan/recive/destroy/{id}', 'destroy')->name('adminLoanReportRecive.destroy');
-    //     Route::get('admin/loan/recive/restor/{id}', 'restor')->name('adminLoanReportRecive.restor');
-    //     Route::get('admin/loan/recive/delete/{id}', 'delete')->name('adminLoanReportRecive.delete');
-    // });
-
-     //loan recive installment
-    //  Route::controller(LoanrecivesiduleController::class)->middleware('RoleChecker')->group(function () {
-    //     Route::post('admin/loan/recive/installment', 'store')->name('loanReciveInstallment.store');
-    //     Route::get('admin/loan/recive/installment/{number}', 'show')->name('loanReciveInstallment.show');
-    //     Route::get('recive/installment/edit/{id}', 'edit')->name('loanReciveInstallment.edit');
-    //     Route::post('recive/installment/edit/{id}', 'update')->name('loanReciveInstallment.update');
-    //     Route::get('recive/installment/destroy/{id}', 'destroy')->name('loanReciveInstallment.destroy');
-    //     Route::get('recive/installment/restor/{id}', 'restor')->name('loanReciveInstallment.restor');
-    //     Route::get('recive/installment/delete/{id}', 'delete')->name('loanReciveInstallment.delete');
-
-    // });
 
 
     // new loan controller

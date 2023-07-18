@@ -34,41 +34,13 @@ class EmpolyeeController extends Controller
      */
     public function create()
     {
-        $empolyee = User::where('role', 'empolyees')->latest()->paginate(5);
+        $empolyee = User::latest()->get();
         $comopanies = comopany::all();
         //create a new empolyee
         return view('dashbord.empolyee.create', compact('empolyee', 'comopanies'));
     }
 
-    /**
-     * live search
-     */
-    public function search(Request $request)
-    {
-        $output = ' ';
-        $empolyee = User::where('role', 'empolyees')->orWhere('compony_name', 'Like', '%'.$request->search.'%')->orWhere('name', 'Like', '%'.$request->search.'%')->orWhere('email', 'Like', '%'.$request->search.'%')->orWhere('number', 'Like', '%'.$request->search.'%')->paginate(5);
 
-        foreach ($empolyee as $empolye) {
-            $output .=
-            '<tr>
-            <td> '.$empolye->compony_name.' </td>
-            <td> '.$empolye->name.' </td>
-            <td> '.$empolye->email.' </td>
-            <td> '.$empolye->role.' </td>
-            <td> '.$empolye->number.' </td>
-            <td> '.$empolye->created_at.' </td>
-            <td> '.'
-            <a  class="btn btn-primary" href="/edit/empolyee/'.$empolye->id.'" title="edit">
-                 '.'<i class="mdi mdi-border-color"></i></a>
-
-            <a  class="btn btn-primary" href="/delete/empolyee/'.$empolye->id.'" title="delete forever">
-                '.'<i class="mdi mdi-delete"></i></a>
-            '.' </td>
-            </tr>';
-        }
-
-        return response($output);
-    }
 
     /**
      * Store a newly created resource in storage.

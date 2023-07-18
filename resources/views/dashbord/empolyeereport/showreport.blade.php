@@ -64,14 +64,6 @@
                                     </div>
                                   </form>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="col-md-4">
-                                        <div class="form-group row">
-                                            <div class="col-sm-9">
-                                                <input type="search" class="form-control" name="search" id="search" placeholder="search here......">
-                                            </div>
-                                        </div>
-                                    </div>
-
 
                                     {{--  --}}
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#largeModal">
@@ -79,11 +71,7 @@
                                      </button>
                                 </div>
 
-                                 {{-- <div class="d-flex justify-content-end align-items-center p-1">
-                                        <a href="{{ route('export.empolyeereport') }}" class="btn btn-primary">Download This Month Report</a>
-                                        <a href="{{ route('all.export.empolyeereport') }}" class="btn btn-danger">Download Reports</a>
 
-                                </div> --}}
                                 <div class="d-flex justify-content-end align-items-center p-1">
                                       <div class="dropdown">
                                         <button type="button" class="btn btn-outline-info dropdown-toggle" id="dropdownMenuIconButton3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -227,12 +215,8 @@
                                             <td></td>
                                           </tr>
                                     </tbody>
-                                    <tbody id="Content" class="searchdata"></tbody>   {{--   live search result show this table--}}
                                   </table>
-                                  <div class="d-flex justify-content-center mt-3">
 
-                                    {{ $empolyees->links('pagination::bootstrap-5') }}
-                                </div>
                                 </div>
                               </div>
                             </div>
@@ -256,37 +240,7 @@
     {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    {{-- live search js code --}}
-    <script type="text/javascript">
 
-        $('#search').on('keyup',function()
-        {
-
-         $value=$(this).val();
-
-         if($value)
-         {
-             $('.alldata').hide();
-             $('.searchdata').show();
-         }else
-         {
-             $('.alldata').show();
-             $('.searchdata').hide();
-         }
-
-         $.ajax({
-                 type:'get',
-                 url:'{{URL::to('empolyeereportsearch')}}',
-                 data:{'search':$value},
-                 success:function(data)
-                 {
-                     console.log(data);
-                     $('#Content').html(data);
-                 }
-             });
-
-         });
-     </script>
 </body>
 
 </html>

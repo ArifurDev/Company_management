@@ -57,7 +57,7 @@
 
   <script src="{{ asset('dashbord/assets') }}/datatables/jquery.dataTables.min.js"></script>
   <script src="{{ asset('dashbord/assets') }}/datatables/dataTables.bootstrap.js"></script>
-
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <!-- image code -->
     <script type="text/javascript">
         function readURL(input) {

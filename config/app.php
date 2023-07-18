@@ -197,6 +197,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],
 
@@ -215,6 +216,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
            'Excel' => Maatwebsite\Excel\Facades\Excel::class,
            'PDF' => Barryvdh\DomePDF\Facade::class,
+           'Datatable'   =>  Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
 
 ];
