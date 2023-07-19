@@ -348,4 +348,11 @@ class EmpolyeeController extends Controller
          $pdf = PDF::loadView('dashbord.PayrollManagement.download_pdf',compact('salary_datiles'));
 	     return $pdf->download('salary.pdf');
     }
+
+    public function selected_month_view(Request $request)
+    {
+        $date = $request->date;
+        $salary_datiles = Payroll::where('payment_date',$request->date)->get();
+        return view('dashbord.PayrollManagement.selected_month',compact('salary_datiles','date'));
+    }
 }

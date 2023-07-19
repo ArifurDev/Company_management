@@ -31,17 +31,16 @@
                                 <p class="card-description"> important <code>.document</code></p>
                                 <p class="card-description"> Payment Date <code>{{ $prev }} </code></p>
                             </div>
-                            <div class="table-responsive">
-                              <table class="table table-bordered">
+                            <table id="example" class="display responsive nowrap" style="width:100%">
                                 <thead>
-                                  <tr>
-                                    <th class="text-light"> # </th>
-                                    <th class="text-light"> Information </th>
-                                    <th class="text-light"> Salary </th>
-                                    <th class="text-light">  Mondth </th>
-                                     <th class="text-light">  Payment Status </th>
-                                    <th class="text-light">  Action </th>
-                                  </tr>
+                                    <tr>
+                                        <th class="text-light"> # </th>
+                                        <th class="text-light"> Information </th>
+                                        <th class="text-light"> Salary </th>
+                                        <th class="text-light">  Mondth </th>
+                                         <th class="text-light">  Payment Status </th>
+                                        <th class="text-light">  Action </th>
+                                      </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($empolyee as $empolyee_info)
@@ -69,8 +68,7 @@
                                       </tr>
                                     @endforeach
                                 </tbody>
-                              </table>
-                            </div>
+                            </table>
                           </div>
                         </div>
                       </div>
@@ -90,10 +88,14 @@
     {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- ajax code -->
 
 
 
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
 </body>
 
 </html>

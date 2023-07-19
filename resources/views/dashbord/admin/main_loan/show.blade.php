@@ -99,68 +99,66 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive">
-                                  <table class="table">
+                                <table id="example" class="display responsive nowrap" style="width:100%">
                                     <thead>
-                                      <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>image</th>
-                                        <th>Amount</th>
-                                        <th>Install</th>
-                                        <th>Per Install</th>
-                                        <th>Type</th>
-                                        <th>Payment Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                      </tr>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>image</th>
+                                            <th>Amount</th>
+                                            <th>Install</th>
+                                            <th>Per Install</th>
+                                            <th>Type</th>
+                                            <th>Payment Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                          </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($loan_information as $item)
-                                          <tr>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->Email }}</td>
-                                            <td>{{ $item->phone }}</td>
-                                            <td><img src=" @if($item->image == null ) {{ asset('upload/loan_image') }}/{{ "demo.png" }} @else {{ asset('upload/loan_image') }}/{{ $item->image }} @endif" alt=""></td>
-                                            <td>{{ $item->amount }}</td>
-                                            <td>{{ $item->installment }}</td>
-                                            <td>{{ $item->per_installment }}</td>
-                                            <td><label @if ($item->loan_type === 'send')
-                                                class="badge badge-primary"
-                                            @else
-                                                class="badge badge-danger"
-                                            @endif>{{ $item->loan_type }}</label></td>
-                                            <td>{{ $item->payment_date }}</td>
-                                            <td><label class="badge badge-danger">{{ $item->status }}</label></td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="{{ route('loaninstallment.show',$item->id) }}" type="button" class="btn btn-primary" title="show">
-                                                      <i class="mdi mdi-eye"></i>
+                                        <tr>
+                                          <td>{{ $item->name }}</td>
+                                          <td>{{ $item->Email }}</td>
+                                          <td>{{ $item->phone }}</td>
+                                          <td><img width="50" src=" @if($item->image == null ) {{ asset('upload/loan_image') }}/{{ "demo.png" }} @else {{ asset('upload/loan_image') }}/{{ $item->image }} @endif" alt=""></td>
+                                          <td>{{ $item->amount }}</td>
+                                          <td>{{ $item->installment }}</td>
+                                          <td>{{ $item->per_installment }}</td>
+                                          <td><label @if ($item->loan_type === 'send')
+                                              class="badge badge-primary"
+                                          @else
+                                              class="badge badge-danger"
+                                          @endif>{{ $item->loan_type }}</label></td>
+                                          <td>{{ $item->payment_date }}</td>
+                                          <td><label class="badge badge-danger">{{ $item->status }}</label></td>
+                                          <td>
+                                              <div class="btn-group" role="group" aria-label="Basic example">
+                                                  <a href="{{ route('loaninstallment.show',$item->id) }}" type="button" class="btn btn-primary" title="show">
+                                                    <i class="mdi mdi-eye"></i>
+                                                  </a>
+                                                  {{-- add installment --}}
+                                                  <a href="{{ route('loandetaile.create',$item->id) }}" type="button" class="btn btn-primary" title="add installment" >
+                                                      <i class="mdi mdi-database-plus"></i>
                                                     </a>
-                                                    {{-- add installment --}}
-                                                    <a href="{{ route('loandetaile.create',$item->id) }}" type="button" class="btn btn-primary" title="add installment" >
-                                                        <i class="mdi mdi-database-plus"></i>
-                                                      </a>
-                                                      {{-- edit main loan selected user information --}}
-                                                    <a href="{{ route('mainloan.edit',$item->id) }}" class="btn btn-primary" title="edit">
-                                                      <i class="mdi mdi-table-edit"></i>
-                                                    </a>
-                                                    {{-- tepm delete main loan selected user information --}}
-                                                    <form action="{{ route('mainloan.destroy',$item->id) }}" method="post" title="delete">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button  type="submit" class="btn btn-primary" >
-                                                            <i class="mdi mdi-delete"></i>
-                                                          </button>
-                                                    </form>
-                                                  </div>
-                                            </td>
-                                          </tr>
-                                        @endforeach
+                                                    {{-- edit main loan selected user information --}}
+                                                  <a href="{{ route('mainloan.edit',$item->id) }}" class="btn btn-primary" title="edit">
+                                                    <i class="mdi mdi-table-edit"></i>
+                                                  </a>
+                                                  {{-- tepm delete main loan selected user information --}}
+                                                  <form action="{{ route('mainloan.destroy',$item->id) }}" method="post" title="delete">
+                                                      @csrf
+                                                      @method('DELETE')
+                                                      <button  type="submit" class="btn btn-primary" >
+                                                          <i class="mdi mdi-delete"></i>
+                                                        </button>
+                                                  </form>
+                                                </div>
+                                          </td>
+                                        </tr>
+                                      @endforeach
                                     </tbody>
-                                  </table>
-                                </div>
+                                </table>
                               </div>
                             </div>
                           </div>
@@ -180,7 +178,11 @@
     @include('dashbord.allscript')
     {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+             $('#example').DataTable();
+         } );
+     </script>
 
 </body>
 

@@ -89,6 +89,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::post('salary/save','salary_save')->name('salary.save');
         Route::get('empolyee/salary/index', 'salary_index')->name('salary.managment.index');
         Route::post('salary/pdf/download','salary_pdf_download')->name('salary.pdf.download');
+        Route::post('salary/selected/month/view','selected_month_view')->name('selected.month.view');
 
      });
      /*payroll management system with empolyee end */

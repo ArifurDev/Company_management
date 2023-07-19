@@ -31,39 +31,41 @@
                                 <p class="card-description"> important <code>.document</code></p>
 
                             </div>
-                            <div class="table-responsive">
-                              <table class="table table-bordered">
+                            <table id="example" class="display responsive nowrap" style="width:100%">
                                 <thead>
-                                  <tr>
-                                    <th class="text-light"> # </th>
-                                    <th class="text-light"> Date </th>
-                                    <th class="text-light">  Action </th>
-                                  </tr>
+                                    <tr>
+                                        <th class="text-light"> # </th>
+                                        <th class="text-light"> Date </th>
+                                        <th class="text-light">  Action </th>
+                                      </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($payment_information as $info)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $info->payment_date }}</td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="" type="button" class="btn btn-primary">
-                                                      <i class="mdi mdi-eye"></i>
-                                                    </a>
-                                                    <form action="{{ route('salary.pdf.download') }}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $info->payment_date }}" name="date">
-                                                        <button type="submit"   class="btn btn-danger btn-icon-text">
-                                                            Print <i class="mdi mdi-printer btn-icon-append"></i>
-                                                       </button>
-                                                    </form>
-                                                  </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $info->payment_date }}</td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <form action="{{ route('selected.month.view') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" value="{{ $info->payment_date }}" name="date">
+                                                    <button type="submit"   class="btn btn-primary btn-icon-text">
+                                                        View  <i class="mdi mdi-eye"></i>
+                                                   </button>
+                                                </form>
+                                                <form action="{{ route('salary.pdf.download') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" value="{{ $info->payment_date }}" name="date">
+                                                    <button type="submit"   class="btn btn-danger btn-icon-text">
+                                                        Print <i class="mdi mdi-printer btn-icon-append"></i>
+                                                   </button>
+                                                </form>
+                                              </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
-                              </table>
-                            </div>
+                        </table>
                           </div>
                         </div>
                       </div>

@@ -9,7 +9,11 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 </head>
-
+<style>
+    option{
+        background: black;
+    }
+</style>
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_sidebar.html -->
@@ -26,11 +30,6 @@
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
-                                @if (Session::has('success'))
-                                <div class="alert alert-primary" role="alert">
-                                    {{ session::get('success') }}
-                                </div>
-                            @endif
                               <div class="card-body">
                                 <h4 class="card-title">Empolyees Reports</h4>
                                   {{-- date search form --}}
@@ -42,7 +41,6 @@
                                                 <label class="col-sm-3 col-form-label">From</label>
                                                 <div class="col-sm-9 ">
                                                     <input type="date" class="form-control" id="" name="fromdate">
-
                                                 </div>
                                             </div>
                                         </div>
@@ -54,13 +52,10 @@
                                                     <input type="date" class="form-control" id=""name="today">
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-md-2">
                                             <button class="btn btn-primary">Filter</button>
                                         </div>
-
-
                                     </div>
                                   </form>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -142,31 +137,22 @@
                                     </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive">
-                                  <table class="table table-dark">
+                                <table id="example" class="display responsive nowrap" style="width:100%">
                                     <thead>
-                                      <tr>
-
-                                        <th class="text-light"> Company </th>
-                                        <th class="text-light"> Empolyee Email </th>
-                                        <th class="text-light"> Incoming Card</th>
-                                        <th class="text-light"> Incoming Cash</th>
-                                        <th class="text-light"> Incoming </th>
-                                        <th class="text-light"> Outgoing </th>
-                                        <th class="text-light"> Cash </th>
-                                        <th class="text-light"> Date </th>
-                                        <th class="text-light"> Acction </th>
-                                      </tr>
+                                        <tr>
+                                            <th class="text-light"> Company </th>
+                                            <th class="text-light"> Empolyee Email </th>
+                                            <th class="text-light"> Incoming Card</th>
+                                            <th class="text-light"> Incoming Cash</th>
+                                            <th class="text-light"> Incoming </th>
+                                            <th class="text-light"> Outgoing </th>
+                                            <th class="text-light"> Cash </th>
+                                            <th class="text-light"> Date </th>
+                                            <th class="text-light"> Note </th>
+                                            <th class="text-light"> Acction </th>
+                                          </tr>
                                     </thead>
-                                    @php
-                                        $t_incoming_card = 0;
-                                        $t_incoming_cash = 0;
-                                        $total_incoming = 0;
-                                        $total_outgoing = 0;
-                                        $total_cash = 0;
-                                    @endphp
-                                    <tbody class="alldata">
-
+                                    <tbody>
                                         @foreach ($empolyees as $empolyee)
                                         <tr>
                                             <td class="text-light"> {{ $empolyee->company }} </td>
@@ -177,6 +163,7 @@
                                             <td class="text-light"> {{ $empolyee->outgoing }} tk</td>
                                             <td class="text-light">  {{ $empolyee->cash }} tk</td>
                                             <td class="text-light">{{ $empolyee->created_at->format('d/m/Y') }}  </td>
+                                            <td class="text-light">{{ $empolyee->note }}  </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="{{ route('details.empolyeereport',['id'=>$empolyee->id]) }}" title="details">
@@ -193,30 +180,11 @@
                                                         </button>
                                                     </form>
                                             </div></td>
-                                            @php
-                                                $t_incoming_card = $t_incoming_card + $empolyee->incoming_card;
-                                                $t_incoming_cash = $t_incoming_cash + $empolyee->incoming_cash;
 
-                                                $total_incoming = $total_incoming + $empolyee->incoming;
-                                                $total_outgoing = $total_outgoing + $empolyee->outgoing;
-                                                $total_cash = $total_cash + $empolyee->cash;
-                                            @endphp
                                           </tr>
                                         @endforeach
-                                          <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td  class="text-light">{{ $t_incoming_card }} tk</td>
-                                            <td class="text-light">{{ $t_incoming_cash }} tk</td>
-                                            <td class="text-light">{{ $total_incoming }} tk</td>
-                                            <td class="text-light">{{ $total_outgoing }} tk</td>
-                                            <td class="text-light">{{ $total_cash }} tk</td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
                                     </tbody>
-                                  </table>
-
+                                </table>
                                 </div>
                               </div>
                             </div>
@@ -239,7 +207,11 @@
     @include('dashbord.allscript')
     {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script type="text/javascript">
+       $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
 
 </body>
 

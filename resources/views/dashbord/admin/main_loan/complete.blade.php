@@ -99,22 +99,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive">
-                                  <table class="table">
+                                <table id="example" class="display responsive nowrap" style="width:100%">
                                     <thead>
-                                      <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>image</th>
-                                        <th>Amount</th>
-                                        <th>Install</th>
-                                        <th>Per Install</th>
-                                        <th>Type</th>
-                                        <th>Payment Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                      </tr>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>image</th>
+                                            <th>Amount</th>
+                                            <th>Install</th>
+                                            <th>Per Install</th>
+                                            <th>Type</th>
+                                            <th>Payment Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                          </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($loan_information as $item)
@@ -122,7 +121,7 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->Email }}</td>
                                             <td>{{ $item->phone }}</td>
-                                            <td><img src="@if($item->image == null ) {{ asset('upload/loan_image') }}/{{ "demo.png" }} @else {{ asset('upload/loan_image') }}/{{ $item->image }} @endif" alt=""></td>
+                                            <td><img width="50" src="@if($item->image == null ) {{ asset('upload/loan_image') }}/{{ "demo.png" }} @else {{ asset('upload/loan_image') }}/{{ $item->image }} @endif" alt=""></td>
                                             <td>{{ $item->amount }}</td>
                                             <td>{{ $item->installment }}</td>
                                             <td>{{ $item->per_installment }}</td>
@@ -153,9 +152,9 @@
                                             </td>
                                           </tr>
                                         @endforeach
+
                                     </tbody>
-                                  </table>
-                                </div>
+                                </table>
                               </div>
                             </div>
                           </div>
