@@ -21,9 +21,9 @@ class AdminriportsController extends Controller
      */
     public function index()
     {
-        $adminriports = adminriports::latest()->paginate(30);
-        $adminriports_onlyTrashed = adminriports::onlyTrashed()->get();
+        $adminriports = adminriports::latest()->get();
 
+        $adminriports_onlyTrashed = adminriports::onlyTrashed()->get();
         return view('dashbord.admin.report.show', compact('adminriports', 'adminriports_onlyTrashed'));
     }
 

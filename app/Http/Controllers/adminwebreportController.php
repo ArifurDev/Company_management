@@ -10,7 +10,7 @@ class adminwebreportController extends Controller
 {
     public function index()
     {
-        $reportinfo = siteriports::latest()->paginate(30);
+        $reportinfo = siteriports::latest()->get();
         $reportinfo_treshed = siteriports::onlyTrashed()->get();
 
         return view('dashbord.admin.adminwebreportshow', compact('reportinfo', 'reportinfo_treshed'));
@@ -138,43 +138,6 @@ class adminwebreportController extends Controller
 
     }
 
-    /**
-     * web report search
-     */
-    public function search(Request $request)
-    {
-        $output = ' ';
-        $siteriports = siteriports::where('company', 'Like', '%'.$request->search.'%')->orWhere('email', 'Like', '%'.$request->search.'%')->orWhere('site_name', 'Like', '%'.$request->search.'%')->orWhere('url', 'Like', '%'.$request->search.'%')->orWhere('user_name', 'Like', '%'.$request->search.'%')->orWhere('user_id', 'Like', '%'.$request->search.'%')->orWhere('password', 'Like', '%'.$request->search.'%')->orWhere('verifi_code', 'Like', '%'.$request->search.'%')->orWhere('payment_date', 'Like', '%'.$request->search.'%')->orWhere('why_create', 'Like', '%'.$request->search.'%')->orWhere('number', 'Like', '%'.$request->search.'%')->orWhere('note', 'Like', '%'.$request->search.'%')->get();
-
-        foreach ($siteriports as $siteriport) {
-            $output .=
-
-            '<tr>
-            <td> '.$siteriport->company.' </td>
-            <td> '.$siteriport->email.' </td>
-            <td> '.$siteriport->site_name.' </td>
-            <td> '.$siteriport->url.' </td>
-            <td> '.$siteriport->user_name.' </td>
-            <td> '.$siteriport->user_id.' </td>
-            <td> '.$siteriport->password.' </td>
-            <td> '.$siteriport->why_create.' </td>
-            <td> '.$siteriport->number.' </td>
-            <td> '.$siteriport->verifi_code.' </td>
-            <td> '.$siteriport->note.' </td>
-            <td> '.$siteriport->payment_date.' </td>
-            <td> '.$siteriport->created_at.' </td>
-            <td> '.'
-            <a  class="btn btn-primary" href="/adminwebreport/edit/'.$siteriport->id.'" title="edit">
-                 '.'<i class="mdi mdi-border-color"></i></a>
-
-            <a  class="btn btn-primary" href="/adminwebreport/destroy/'.$siteriport->id.'" title="edit">
-                '.'<i class="mdi mdi-delete"></i></a>
-            '.' </td>
-            </tr>';
-        }
-
-        return response($output);
-    }
 
     public function view($id){
       $single_view =  siteriports::find($id);

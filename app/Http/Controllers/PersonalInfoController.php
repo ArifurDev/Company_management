@@ -14,7 +14,9 @@ class PersonalInfoController extends Controller
      */
     public function index()
     {
-      $personal_info =  PersonalInfo::latest()->get();
+      $personal_info =  PersonalInfo::all();
+      return $personal_info;
+      die();
       return view('dashbord.admin.Personal_info.index',compact('personal_info'));
     }
 

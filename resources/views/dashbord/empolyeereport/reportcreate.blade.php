@@ -31,11 +31,6 @@
 
                                 <p>Please fill the form correctly!</p>
                             </div>
-                                @if (Session::has('success'))
-                                    <div class="alert alert-primary" role="alert">
-                                        {{ session::get('success') }}
-                                    </div>
-                                @endif
                                 @if ($errors->any())
                                     @foreach ($errors->all() as $error)
                                         <ul>

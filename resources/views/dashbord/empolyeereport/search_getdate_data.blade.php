@@ -36,15 +36,15 @@
                                     <thead>
                                       <tr>
 
-                                        <th> Company </th>
-                                        <th> Empolyee Email </th>
-                                        <th> Incoming Card</th>
-                                        <th> Incoming Cash</th>
-                                        <th> Incoming </th>
-                                        <th> Outgoing </th>
-                                        <th> Cash </th>
-                                        <th> Date </th>
-                                        <th> Acction </th>
+                                        <th class="text-light"> Company </th>
+                                        <th class="text-light"> Empolyee Email </th>
+                                        <th class="text-light"> Incoming Card</th>
+                                        <th class="text-light"> Incoming Cash</th>
+                                        <th class="text-light"> Incoming </th>
+                                        <th class="text-light"> Outgoing </th>
+                                        <th class="text-light"> Cash </th>
+                                        <th class="text-light"> Date </th>
+                                        <th class="text-light"> Acction </th>
                                       </tr>
                                     </thead>
                                     @php

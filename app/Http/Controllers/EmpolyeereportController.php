@@ -29,7 +29,7 @@ class EmpolyeereportController extends Controller
         //     return 'admin';
         // }
 
-        $empolyees = empolyeereport::latest()->paginate(30);
+        $empolyees = empolyeereport::latest()->get();
         $empolyeereport_onlyTrashed = empolyeereport::onlyTrashed()->get();
 
         return view('dashbord.empolyeereport.showreport', compact('empolyees', 'empolyeereport_onlyTrashed'));

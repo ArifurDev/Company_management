@@ -26,11 +26,7 @@
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
-                                @if (Session::has('success'))
-                                    <div class="alert alert-primary" role="alert">
-                                        {{ session::get('success') }}
-                                    </div>
-                                @endif
+
                               <div class="card-body">
 
 
@@ -43,15 +39,15 @@
                                   <table class="table table-dark">
                                     <thead>
                                       <tr>
-                                        <th> House Rent </th>
-                                        <th> Gard Bill </th>
-                                        <th> Electricity Bill </th>
-                                        <th> Sewerage Bill </th>
-                                        <th> Expanse </th>
-                                        <th> Personal </th>
-                                        <th> Total </th>
-                                        <th> Date </th>
-                                        <th> Action </th>
+                                        <th class="text-light"> House Rent </th>
+                                        <th class="text-light"> Gard Bill </th>
+                                        <th class="text-light"> Electricity Bill </th>
+                                        <th class="text-light"> Sewerage Bill </th>
+                                        <th class="text-light"> Expanse </th>
+                                        <th class="text-light"> Personal </th>
+                                        <th class="text-light"> Total </th>
+                                        <th class="text-light"> Date </th>
+                                        <th class="text-light"> Action </th>
                                       </tr>
                                     </thead>
                                     @php

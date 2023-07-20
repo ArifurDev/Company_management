@@ -33,55 +33,6 @@
                             @endif
                               <div class="card-body">
                                 <h4 class="card-title">Empolyees Reports</h4>
-                                  {{-- date search form --}}
-                                  {{-- <form action="{{ route('daily.comopany.reports.search') }}" method="GET">
-                                    @csrf
-                                    <div class="row">
-
-                                        <div class="col-md">
-                                            <div class="form-group row">
-                                                <label
-                                                    class="col-sm col-form-label">From</label>
-                                                <div class="col-sm ">
-                                                    <input type="date" class="form-control" id="" name="fromdate">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md">
-                                            <div class="form-group row">
-                                                <label
-                                                    class="col-sm col-form-label">To</label>
-                                                <div class="col-sm">
-                                                    <input type="date" class="form-control" id=""name="today">
-                                                </div>
-                                            </div>
-                                        <div class="col-md">
-                                            <select class="form-control text-light" id="exampleSelectGender" name="payment">
-                                                <option value=" " selected>payment method</option>
-                                                <option value="card">card</option>
-                                                <option value="none">None</option>
-                                              </select>
-
-                                        </div>
-                                        <div class="col-md">
-                                            <div class="form-group">
-                                                <select class="form-control text-light" id="exampleSelectGender" name="company">
-                                                    <option value=" " selected>company</option>
-                                                    @foreach ($componies as $compony)
-                                                     <option value="{{ $compony->compony_name }}" >{{ $compony->compony_name }}</option>
-                                                    @endforeach
-                                                  </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-mdm-0">
-                                            <button class="btn btn-primary" type="submit">Filter</button>
-                                        </div>
-
-
-                                    </div>
-                                  </form> --}}
                                   <form class="form-sample" action="{{ route('daily.comopany.reports.search') }}" method="POST">
                                     @csrf
                                     <div class="row">
@@ -137,15 +88,15 @@
                                     <thead>
                                       <tr>
 
-                                        <th> Company </th>
-                                        <th> Empolyee Email </th>
-                                        <th> Incoming Card</th>
-                                        <th> Incoming Cash</th>
-                                        <th> Incoming </th>
-                                        <th> Outgoing </th>
-                                        <th> Cash </th>
-                                        <th> Date </th>
-                                        <th> Acction </th>
+                                        <th class="text-light"> Company </th>
+                                        <th class="text-light"> Empolyee Email </th>
+                                        <th class="text-light"> Incoming Card</th>
+                                        <th class="text-light"> Incoming Cash</th>
+                                        <th class="text-light"> Incoming </th>
+                                        <th class="text-light"> Outgoing </th>
+                                        <th class="text-light"> Cash </th>
+                                        <th class="text-light"> Date </th>
+                                        <th class="text-light"> Acction </th>
                                       </tr>
                                     </thead>
                                     @php

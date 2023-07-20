@@ -162,7 +162,7 @@
                               <table class="table table-dark">
                                 <thead>
                                   <tr>
-                                        <th  class="text-light">Name</th>
+                                        <th  class="text-light">Email</th>
                                         <th  class="text-light">Salary Raised</th>
                                         <th  class="text-light">Salary Receivable</th>
                                         <th  class="text-light">Loan Taken</th>

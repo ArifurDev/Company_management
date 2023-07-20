@@ -211,10 +211,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         //
         Route::get('adminwebreport/single/view/{id}', 'view')->name('view.adminwebreport')->middleware('AssistantChecker');
 
-        /**
-         * live search
-         */
-        Route::get('/adminwebreportsearch', 'search');
+       
     });
      /**
      * bill payment date

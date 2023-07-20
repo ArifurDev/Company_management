@@ -146,11 +146,6 @@
                                 <label for="online_transfer_Password">Online Transfer Password</label>
                                 <input type="text" class="form-control text-light" id="online_transfer_Password" placeholder="Online Transfer Password" name="online_transfer_Password">
                               </div>
-
-
-
-
-
                               <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Note</label>
                                 <textarea class="form-control text-light" id="exampleFormControlTextarea1" rows="3" name="note"></textarea>

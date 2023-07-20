@@ -140,9 +140,9 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link text-light" href="{{ route('admindailyraport.create') }}">Create Report</a></li>
             <li class="nav-item"> <a class="nav-link text-light" href="{{ route('admindailyraport.show') }}">Reports</a></li>
-            <hr>
+            {{-- <hr>
             <li class="nav-item"> <a class="nav-link text-light" href="{{ route('personalinfo.create') }}">Site Info</a></li>
-            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('personalinfo.index') }}">Show Site Info</a></li>
+            <li class="nav-item"> <a class="nav-link text-light" href="{{ route('personalinfo.index') }}">Show Site Info</a></li> --}}
             <hr>
             <li class="nav-item"> <a class="nav-link text-light" href="{{ route('admininfo.create') }}">Add Information</a></li>
             <li class="nav-item"> <a class="nav-link text-light" href="{{ route('admininfo.index') }}">Show Information</a></li>
@@ -279,7 +279,7 @@
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link text-light" href="{{ route('admindailyraport.create') }}">Create Report</a></li>
-                <li class="nav-item"> <a class="nav-link text-light" href="{{ route('personalinfo.create') }}">Site Info</a></li>
+                {{-- <li class="nav-item"> <a class="nav-link text-light" href="{{ route('personalinfo.create') }}">Site Info</a></li> --}}
                 <li class="nav-item"> <a class="nav-link text-light " href="{{ route('admininfo.create') }}">Add Information</a></li>
               </ul>
             </div>

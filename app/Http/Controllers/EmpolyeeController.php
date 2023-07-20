@@ -228,68 +228,52 @@ class EmpolyeeController extends Controller
          * condition
         */
 
-
-        $advanch_check =  Payroll::where('email',$request->empolyee_email)->where('payment_date',$date_formate)->first();
-        // return $advanch_check->payment_type;
-        if ($advanch_check) {
-             if ($advanch_check->payment_type == 'advance') {
-                   $prev_date    = date('m/Y',strtotime("-1 month"));
-                   $empolyee_advance = Payroll::where('email',$request->empolyee_email)->where('payment_date',$prev_date)->where('payment_type','advance')->first();
-                   $salary_id = $empolyee_advance->id;
-
-                        if ($empolyee_advance->due == $request->amount) {
-                                Payroll::find($salary_id)->update([
-                                    'Amount'=> $empolyee_advance->Amount + $request->amount,
-                                    'due'=> '0',
-                                    'payment_method' => $request->payment_system,
-                                    'payment_type' => 'none',
-                                ]);
-                                $notification = array(
-                                    'message' => 'Empolyee Payment  Successfully',
-                                    'alert-type' => 'success'
-                                    );
-                                return redirect()->back()->with($notification);
-                        } else {
-                                $notification = array(
-                                    'message' => 'Empolyee Due Amount & Amount not same',
-                                    'alert-type' => 'error'
-                                    );
-                                return redirect()->back()->with($notification);
-                        }
-             } else {
-                    $notification = array(
-                        'message' => 'You have already paid',
-                        'alert-type' => 'warning'
-                        );
-                    return redirect()->back()->with($notification);
-             }
-
+        $advance_payment_check =  Payroll::where('email',$request->empolyee_email)->where('payment_type','advance')->count();
+        if ($advance_payment_check && $request->payment_status == 'advance') {
+            $notification = array(
+                'message' => 'You have already paid in advance',
+                'alert-type' => 'warning'
+                );
+            return redirect()->back()->with($notification);
         } else {
-            if ($request->payment_status == 'advance') {
-                $data = new Payroll;
-                $data->email = $request->empolyee_email;
-                $data->company = $request->empolyee_companoy;
-                $data->bank_name = $request->empolyee_bank_name;
-                $data->banck_account_number = $request->empolyee_bank_account_number;
-                $data->salary = $request->empolyee_salary;
-                $data->Amount= $request->amount;
-                $data->due= $due_amount;
-                $data->payment_date = $date_formate;
-                $data->edit_date =  $date;
-                $data->month = $month;
-                $data->year= $year;
-                $data->payment_method = $request->payment_system;
-                $data->payment_type = $request->payment_status;
+            $advanch_check =  Payroll::where('email',$request->empolyee_email)->where('payment_date',$date_formate)->first();
+            if ($advanch_check) {
+                 if ($advanch_check->payment_type == 'advance') {//Due payment
+                       $prev_date    = date('m/Y',strtotime("-1 month"));
+                       $empolyee_advance = Payroll::where('email',$request->empolyee_email)->where('payment_date',$prev_date)->where('payment_type','advance')->first();
+                       $salary_id = $empolyee_advance->id;
+                            if ($empolyee_advance->due == $request->amount) {
+                                    Payroll::find($salary_id)->update([
+                                        'Amount'=> $empolyee_advance->Amount + $request->amount,
+                                        'due'=> '0',
+                                        'payment_method' => $request->payment_system,
+                                        'payment_type' => 'none',
+                                    ]);
+                                    User::where('email',$request->empolyee_email)->update([
+                                        'pay_date' => $date_formate ,
+                                    ]);
+                                    $notification = array(
+                                        'message' => 'Empolyee  Payment  Successfully',
+                                        'alert-type' => 'success'
+                                        );
+                                    return redirect()->back()->with($notification);
+                            } else {
+                                    $notification = array(
+                                        'message' => 'Empolyee Due Amount & Amount not same',
+                                        'alert-type' => 'error'
+                                        );
+                                    return redirect()->back()->with($notification);
+                            }
+                 } else {
+                        $notification = array(
+                            'message' => 'You have already paid',
+                            'alert-type' => 'warning'
+                            );
+                        return redirect()->back()->with($notification);
+                 }
 
-                $data->save();
-
-                $notification = array(
-                    'message' => 'Empolyee Payment  Successfully',
-                    'alert-type' => 'success'
-                    );
-                return redirect()->back()->with($notification);
             } else {
-                if ($request->empolyee_salary == $request->amount) {
+                if ($request->payment_status == 'advance') {//check payment status
                     $data = new Payroll;
                     $data->email = $request->empolyee_email;
                     $data->company = $request->empolyee_companoy;
@@ -307,24 +291,51 @@ class EmpolyeeController extends Controller
 
                     $data->save();
 
-                    User::where('email',$request->empolyee_email)->update([
-                        'pay_date' => $date_formate ,
-                    ]);
-
                     $notification = array(
-                        'message' => 'Empolyee Payment  Successfully',
+                        'message' => 'Empolyee Advance Payment  Successfully',
                         'alert-type' => 'success'
                         );
                     return redirect()->back()->with($notification);
                 } else {
-                     $notification = array(
-                         'message' => 'Empolyee Salary & Pay amount not same',
-                         'alert-type' => 'warning'
-                         );
-                     return redirect()->back()->with($notification);
+                    if ($request->empolyee_salary == $request->amount) {
+                        $data = new Payroll;
+                        $data->email = $request->empolyee_email;
+                        $data->company = $request->empolyee_companoy;
+                        $data->bank_name = $request->empolyee_bank_name;
+                        $data->banck_account_number = $request->empolyee_bank_account_number;
+                        $data->salary = $request->empolyee_salary;
+                        $data->Amount= $request->amount;
+                        $data->due= $due_amount;
+                        $data->payment_date = $date_formate;
+                        $data->edit_date =  $date;
+                        $data->month = $month;
+                        $data->year= $year;
+                        $data->payment_method = $request->payment_system;
+                        $data->payment_type = $request->payment_status;
+
+                        $data->save();
+
+                        User::where('email',$request->empolyee_email)->update([
+                            'pay_date' => $date_formate ,
+                        ]);
+
+                        $notification = array(
+                            'message' => 'Empolyee Payment  Successfully',
+                            'alert-type' => 'success'
+                            );
+                        return redirect()->back()->with($notification);
+                    } else {
+                         $notification = array(
+                             'message' => 'Empolyee Salary & Pay amount not same',
+                             'alert-type' => 'warning'
+                             );
+                         return redirect()->back()->with($notification);
+                    }
+                    }
                 }
-                }
-            }
+
+        }
+
 
 
     }

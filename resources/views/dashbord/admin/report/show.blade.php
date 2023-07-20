@@ -26,11 +26,6 @@
                     <div class="row">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
-                                @if (Session::has('success'))
-                                    <div class="alert alert-primary" role="alert">
-                                        {{ session::get('success') }}
-                                    </div>
-                                @endif
                               <div class="card-body">
 
 
@@ -145,65 +140,64 @@
                                     </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive">
-                                  <table class="table table-dark">
-                                    <thead>
-                                      <tr>
-                                        <th class="text-light"> House Rent </th>
-                                        <th class="text-light"> Gard Bill </th>
-                                        <th class="text-light"> Electricity Bill </th>
-                                        <th class="text-light"> Sewerage Bill </th>
-                                        <th class="text-light"> Water Bill </th>
-                                        <th class="text-light"> Fewa Bill </th>
-                                        <th class="text-light"> Wifi Bill </th>
-                                        <th class="text-light"> Expanse </th>
-                                        <th class="text-light"> Personal </th>
-                                        {{-- <th class="text-light"> Loan </th> --}}
-                                        <th class="text-light"> A </th>
-                                        <th class="text-light"> B </th>
-                                        <th class="text-light"> C </th>
-                                        <th class="text-light"> Total </th>
-                                        <th class="text-light"> Date </th>
-                                        <th class="text-light"> Note </th>
-                                        <th class="text-light"> Action </th>
-                                      </tr>
-                                    </thead>
-                                    <tbody class="alldata">
-                                        @foreach ($adminriports as $info)
-                                        <tr>
-                                            <td class="text-light"> {{ $info->house_rent }} tk</td>
-                                            <td class="text-light"> {{ $info->gard_bill }} tk</td>
-                                            <td class="text-light"> {{ $info->electricity_bill }} tk</td>
-                                            <td class="text-light"> {{ $info->sewerage_bill }} tk</td>
-                                            <td class="text-light"> {{ $info->water_bill }} tk</td>
-                                            <td class="text-light"> {{ $info->fewa_bill }} tk</td>
-                                             <td class="text-light"> {{ $info->wifi_bill }} tk</td>
-                                            <td class="text-light"> {{ $info->expanse }} tk</td>
-                                            <td class="text-light"> {{ $info->personal }} tk</td>
-                                            {{-- <td class="text-light"> {{ $info->loan }} tk</td> --}}
-                                            <td class="text-light" > {{ $info->a }} tk</td>
-                                            <td class="text-light" > {{ $info->b }} tk</td>
-                                            <td class="text-light" > {{ $info->c }} tk</td>
-                                            <td class="text-light" > {{ $info->total }} tk</td>
-                                            <td class="text-light" > {{ $info->created_at->format('d/m/Y')}}</td>
-                                            <td class="text-light" > {{ $info->note }} </td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                <div class="container ddd">
+                                    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-light"> House Rent </th>
+                                                    <th class="text-light"> Gard Bill </th>
+                                                    <th class="text-light"> Electricity Bill </th>
+                                                    <th class="text-light"> Sewerage Bill </th>
+                                                    <th class="text-light"> Water Bill </th>
+                                                    <th class="text-light"> Fewa Bill </th>
+                                                    <th class="text-light"> Wifi Bill </th>
+                                                    <th class="text-light"> Expanse </th>
+                                                    <th class="text-light"> Personal </th>
+                                                    <th class="text-light"> A </th>
+                                                    <th class="text-light"> B </th>
+                                                    <th class="text-light"> C </th>
+                                                    <th class="text-light"> Total </th>
+                                                    <th class="text-light"> Date </th>
+                                                    <th class="text-light"> Note </th>
+                                                    <th class="text-light"> Action </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($adminriports as $info)
+                                                <tr>
+                                                    <td class="text-light"> {{ $info->house_rent }} tk</td>
+                                                    <td class="text-light"> {{ $info->gard_bill }} tk</td>
+                                                    <td class="text-light"> {{ $info->electricity_bill }} tk</td>
+                                                    <td class="text-light"> {{ $info->sewerage_bill }} tk</td>
+                                                    <td class="text-light"> {{ $info->water_bill }} tk</td>
+                                                    <td class="text-light"> {{ $info->fewa_bill }} tk</td>
+                                                     <td class="text-light"> {{ $info->wifi_bill }} tk</td>
+                                                    <td class="text-light"> {{ $info->expanse }} tk</td>
+                                                    <td class="text-light"> {{ $info->personal }} tk</td>
+                                                    {{-- <td class="text-light"> {{ $info->loan }} tk</td> --}}
+                                                    <td class="text-light" > {{ $info->a }} tk</td>
+                                                    <td class="text-light" > {{ $info->b }} tk</td>
+                                                    <td class="text-light" > {{ $info->c }} tk</td>
+                                                    <td class="text-light" > {{ $info->total }} tk</td>
+                                                    <td class="text-light" > {{ $info->created_at->format('d/m/Y')}}</td>
+                                                    <td class="text-light" > {{ $info->note }} </td>
+                                                    <td>
+                                                        <div class="btn-group" role="group" aria-label="Basic example">
 
-                                                    <a type="button" class="btn btn-primary" href="{{ route('admindailyraport.edit',['id'=>$info->id]) }}" title="edit">
-                                                        <i class="mdi mdi-border-color"></i>
-                                                    </a>
-                                                    <a type="button" class="btn btn-primary" href="{{ route('admindailyraport.destroy',['id'=>$info->id]) }}" title="delete tem">
-                                                        <i class="mdi mdi-delete"></i>
-                                                    </a>
-                                            </div></td>
+                                                            <a type="button" class="btn btn-primary" href="{{ route('admindailyraport.edit',['id'=>$info->id]) }}" title="edit">
+                                                                <i class="mdi mdi-border-color"></i>
+                                                            </a>
+                                                            <a type="button" class="btn btn-primary" href="{{ route('admindailyraport.destroy',['id'=>$info->id]) }}" title="delete tem">
+                                                                <i class="mdi mdi-delete"></i>
+                                                            </a>
+                                                    </div></td>
 
-                                          </tr>
-                                        @endforeach
-                                    </tbody>
+                                                  </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                  </table>
-                                </div>
                               </div>
                             </div>
                           </div>
