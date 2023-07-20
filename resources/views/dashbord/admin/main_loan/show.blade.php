@@ -9,7 +9,11 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 </head>
-
+<style>
+    option{
+        color: black;
+    }
+</style>
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_sidebar.html -->
