@@ -228,7 +228,7 @@ class EmpolyeeController extends Controller
          * condition
         */
 
-        $advance_payment_check =  Payroll::where('email',$request->empolyee_email)->where('payment_type','advance')->count();
+        $advance_payment_check =  Payroll::where('email',$request->empolyee_email)->where('payment_type','advance')->first();
         if ($advance_payment_check && $request->payment_status == 'advance') {
             $notification = array(
                 'message' => 'You have already paid in advance',

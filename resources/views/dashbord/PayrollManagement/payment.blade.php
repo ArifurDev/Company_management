@@ -97,7 +97,7 @@
                                               <label class="col-sm-3 col-form-label">Month</label>
                                               <div class="col-sm-9">
                                                 @if ($advanch_check)
-                                                <input type="date" class="form-control text-light" name="payment_date" value="{{ $advanch_check->edit_date  }}">
+                                                <input type="date" class="form-control text-light" name="payment_date" value="{{ $advanch_check->edit_date }}">
                                                 @else
                                                 <input type="date" class="form-control text-light" name="payment_date" >
                                                 @endif
